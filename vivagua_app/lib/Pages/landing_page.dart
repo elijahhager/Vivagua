@@ -47,7 +47,7 @@ class StartButtonState extends State<StartButton>{
 
       child: new Text("Log a Dive!", style: new TextStyle(color: Colors.white, fontSize: 32, fontStyle: FontStyle.italic)),
       color: const Color(0xff33ebff),
-      onPressed: onPressed,
+      onPressed: () {Navigator.of(context).pushNamed("/DiveSitePage");}
     );
   }
 }
