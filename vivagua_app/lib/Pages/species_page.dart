@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-class DiveSitePage extends StatelessWidget {
+class SpeciesSitePage extends StatelessWidget {
   @override
   Widget build(BuildContext context){ // build a widget
     return Scaffold(
