@@ -7,7 +7,8 @@ void main(){
     debugShowCheckedModeBanner: false,
     home: new LandingPage(),
     routes: <String, WidgetBuilder>{
-      "/DiveSitePage": (BuildContext context) => new DiveSitePage()
+      "/DiveSitePage": (BuildContext context) => new DiveSitePage(),
+      "/SpeciesSitePage": (BuildContext context) => new SpeciesSitePage()
     }
   ));
 } 
