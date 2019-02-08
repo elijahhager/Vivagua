@@ -119,7 +119,7 @@ class LogDiveAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     buttonController.addListener(() {
       if (buttonController.isCompleted) {
-        Navigator.pushNamed(context, "/landing_page");
+        Navigator.pushNamed(context, "/landing");
       }
     });
     return new AnimatedBuilder(
