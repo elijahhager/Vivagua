@@ -1,44 +1,18 @@
 import 'package:flutter/material.dart';
 import 'styles.dart';
-import 'toAdminHomeAnimation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/animation.dart';
 import 'dart:async';
-import '../../Components/AdminButton.dart';
-import '../../Components/Form.dart';
-import '../../Components/SignInButton.dart';
 import '../../Components/WhiteTick.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key key}) : super(key: key);
+class SpeciesScreen extends StatefulWidget {
+  const SpeciesScreen({Key key}) : super(key: key);
   @override
-  LoginScreenState createState() => new LoginScreenState();
+  SpeciesScreenState createState() => new SpeciesScreenState();
 }
 
-class LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin {
-  AnimationController _loginButtonController;
-  var animationStatus = 0;
-  @override
-  void initState() {
-    super.initState();
-    _loginButtonController = new AnimationController(
-        duration: new Duration(milliseconds: 3000), vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _loginButtonController.dispose();
-    super.dispose();
-  }
-
-  Future<Null> _playAnimation() async {
-    try {
-      await _loginButtonController.forward();
-      await _loginButtonController.reverse();
-    } on TickerCanceled {}
-  }
+class SpeciesScreenState extends State<SpeciesScreen> {
 
   Future<bool> _onWillPop() {
     return showDialog(
@@ -69,9 +43,7 @@ class LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin 
         onWillPop: _onWillPop,
         child: new Scaffold(
           body: new Container(
-              decoration: new BoxDecoration(
-                image: backgroundImage,
-              ),
+              
               child: new Container(
                   decoration: new BoxDecoration(
                       gradient: new LinearGradient(
@@ -93,25 +65,10 @@ class LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin 
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               new Tick(image: tick),
-                              new FormContainer(),
                               // new AdminButton()
                             ],
                           ),
-                          animationStatus == 0
-                              ? new Padding(
-                                  padding: const EdgeInsets.only(bottom: 50.0),
-                                  child: new InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          animationStatus = 1;
-                                        });
-                                        _playAnimation();
-                                      },
-                                      child: new SignIn()),
-                                )
-                              : new AdminHomeAnimation(
-                                  buttonController:
-                                      _loginButtonController.view),
+                         
                         ],
                       ),
                     ],

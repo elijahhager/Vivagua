@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/Screens/login_page/index.dart';
-import 'package:dribbbledanimation/Screens/admin_page/index.dart';
+import 'package:dribbbledanimation/Screens/species_page/index.dart';
 import 'package:dribbbledanimation/Screens/landing_page/index.dart';
+import 'package:dribbbledanimation/Screens/choose_dive_site/index.dart';
 
 class Routes {
   Routes() {
@@ -18,18 +18,17 @@ class Routes {
               settings: settings,
             );
 
-          case '/login':
+          case '/choose_dive_site':
             return new MyCustomRoute(
-              builder: (_) => new LoginScreen(),
+              builder: (_) => new ChooseDiveSiteScreen(),
               settings: settings,
             );
 
-          case '/admin_home':
+          case '/species':
             return new MyCustomRoute(
-              builder: (_) => new AdminHomeScreen(),
+              builder: (_) => new SpeciesScreen(),
               settings: settings,
             );
-
           
         }
       },

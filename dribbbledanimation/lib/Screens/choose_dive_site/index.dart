@@ -1,59 +1,64 @@
 import 'package:flutter/material.dart';
 import 'styles.dart';
-import 'toAdminHomeAnimation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/animation.dart';
 import 'dart:async';
-import '../../Components/AdminButton.dart';
-import '../../Components/Form.dart';
-import '../../Components/SignInButton.dart';
 import '../../Components/WhiteTick.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import '../../Components/SiteCard.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key key}) : super(key: key);
+class ChooseDiveSiteScreen extends StatefulWidget {
+  const ChooseDiveSiteScreen({Key key}) : super(key: key);
   @override
-  LoginScreenState createState() => new LoginScreenState();
+  ChooseDiveSiteScreenState createState() => new ChooseDiveSiteScreenState();
 }
 
-class LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin {
-  AnimationController _loginButtonController;
-  var animationStatus = 0;
+class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
+  
+  List<String> items = new List();
+  TextEditingController controller = new TextEditingController();
+  String filter;
+
   @override
-  void initState() {
-    super.initState();
-    _loginButtonController = new AnimationController(
-        duration: new Duration(milliseconds: 3000), vsync: this);
+  initState() {
+
+    items.add("Turtle Crossing");
+    items.add("Dive Site #1");
+    items.add("Dive Site #2");
+    items.add("Dive Site #3");
+    items.add("Dive Site #1");
+    items.add("Dive Site #2");
+    items.add("Dive Site #3");
+    items.add("Dive Site #1");
+
+    controller.addListener(() {
+      setState(() {
+        filter = controller.text;
+      });
+    });
+
   }
 
   @override
   void dispose() {
-    _loginButtonController.dispose();
+    controller.dispose();
     super.dispose();
-  }
-
-  Future<Null> _playAnimation() async {
-    try {
-      await _loginButtonController.forward();
-      await _loginButtonController.reverse();
-    } on TickerCanceled {}
   }
 
   Future<bool> _onWillPop() {
     return showDialog(
           context: context,
           child: new AlertDialog(
-            title: new Text('Are you sure?'),
+            title: new Text('Go back to the start?'),
             actions: <Widget>[
               new FlatButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: new Text('No'),
+                child: new Text('No thanks'),
               ),
               new FlatButton(
                 onPressed: () =>
                     Navigator.pushReplacementNamed(context, "/landing"),
-                child: new Text('Yes'),
+                child: new Text('Yep'),
               ),
             ],
           ),
@@ -69,53 +74,47 @@ class LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin 
         onWillPop: _onWillPop,
         child: new Scaffold(
           body: new Container(
-              decoration: new BoxDecoration(
-                image: backgroundImage,
-              ),
-              child: new Container(
-                  decoration: new BoxDecoration(
-                      gradient: new LinearGradient(
-                    colors: <Color>[
-                      const Color.fromRGBO(162, 146, 199, 0.8),
-                      const Color.fromRGBO(51, 51, 63, 0.9),
-                    ],
-                    stops: [0.2, 1.0],
-                    begin: const FractionalOffset(0.0, 0.0),
-                    end: const FractionalOffset(0.0, 1.0),
-                  )),
-                  child: new ListView(
-                    padding: const EdgeInsets.all(0.0),
-                    children: <Widget>[
-                      new Stack(
-                        alignment: AlignmentDirectional.bottomCenter,
-                        children: <Widget>[
-                          new Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              new Tick(image: tick),
-                              new FormContainer(),
-                              // new AdminButton()
-                            ],
-                          ),
-                          animationStatus == 0
-                              ? new Padding(
-                                  padding: const EdgeInsets.only(bottom: 50.0),
-                                  child: new InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          animationStatus = 1;
-                                        });
-                                        _playAnimation();
-                                      },
-                                      child: new SignIn()),
-                                )
-                              : new AdminHomeAnimation(
-                                  buttonController:
-                                      _loginButtonController.view),
-                        ],
+            child: new Center(
+              child: new Padding(
+                padding: EdgeInsets.all(20.0),
+                child: new Column(
+                  
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    new Tick(image: logo_darker),
+                    new Text(
+                      "Find your divesite",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 24.0
                       ),
-                    ],
-                  ))),
-        )));
+                    ),
+                    new TextField(
+                        decoration: new InputDecoration(
+                          hintText: "Search your divesite",
+                          contentPadding: const EdgeInsets.only(right: 40.0, left: 40.0, top: 20.0, bottom: 10.0)
+                        ),
+                        textAlign: TextAlign.center,
+          controller: controller,
+                      ),
+                    new Expanded(
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: items.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return filter == null || filter == "" ? 
+                          new SiteCard(site_name: items[index], site_location: " 64 Oak River") : items[index].toLowerCase().contains(filter.toLowerCase()) ? 
+                          new SiteCard(site_name: items[index], site_location: " 54 Oak Lane") : new Container();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+    )));
   }
 }
