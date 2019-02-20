@@ -73,7 +73,7 @@ Positioned cardDemo(
                   width: screenSize.width / 1.2 + cardWidth,
                   height: screenSize.height / 1.7,
                   decoration: new BoxDecoration(
-                    color: new Color(0xff007582),
+                    color: new Color(0xff2298f2),
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
                   child: new Column(

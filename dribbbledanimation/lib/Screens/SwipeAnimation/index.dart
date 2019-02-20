@@ -140,13 +140,13 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     return (new Scaffold(
         appBar: new AppBar(
           elevation: 0.0,
-          backgroundColor: new Color(0xff007582), //0xff007582 dark blue ---- 0xff33ebff light blue
+          backgroundColor: new Color(0xff2298f2), //0xff007582 dark blue ---- 0xff33ebff light blue
           centerTitle: true,
           leading: new Container(
            // margin: const EdgeInsets.all(15.0),
             child: new IconButton(
               onPressed: () {
-                //Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
               icon: new Icon(
                 Icons.arrow_back,
@@ -229,7 +229,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                     }
                   }).toList())
               : new Text("No More Species",
-                  style: new TextStyle(color: Color(0xff007582), fontSize: 50.0)),
+                  style: new TextStyle(color: Color(0xff2298f2), fontSize: 50.0)),
         )));
   }
 }

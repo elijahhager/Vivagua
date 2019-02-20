@@ -33,7 +33,7 @@ flutter:
   - assets/tick.png
   - assets/avatars/sea_turtle.jpg
   - assets/logo_darker.png
-   - assets/lionfish.jpg
+  - assets/lionfish.jpg
   - assets/green_turtle.jpg
   - assets/caribbean_reef_shark.jpg
   - assets/hawksbill_turtle.jpg

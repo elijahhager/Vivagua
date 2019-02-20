@@ -69,7 +69,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
     return new Theme(
       data: new ThemeData(
         brightness: Brightness.light,
-        primaryColor: const Color(0xff007582),
+        primaryColor: const Color(0xff2298f2),
         platform: Theme.of(context).platform,
       ),
       child: new Container(

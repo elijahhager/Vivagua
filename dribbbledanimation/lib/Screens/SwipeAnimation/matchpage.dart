@@ -97,7 +97,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
     return new Theme(
       data: new ThemeData(
         brightness: Brightness.light,
-        primaryColor: const Color(0xff007582),
+        primaryColor: const Color(0xff2298f2),
         platform: Theme.of(context).platform,
       ),
       child: new Container(
@@ -191,7 +191,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                             new Padding(
                                               padding:
                                                   const EdgeInsets.only(right: 74.0),
-                                              child: new Text("How many did you see?", style: TextStyle(fontSize: 36, color: Color(0xff007582)),),
+                                              child: new Text("How many did you see?", style: TextStyle(fontSize: 36, color: Color(0xff2298f2)),),
                                             )
                                           ],
                                         ),
@@ -242,7 +242,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                             child: RaisedButton(
                                               onPressed: _submit,
                                               elevation: 4,
-                                              color: new Color(0xff007582),
+                                              color: new Color(0xff2298f2),
                                               child: const Text('Submit'),
                                             ),      
                                           ),

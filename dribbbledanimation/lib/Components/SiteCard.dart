@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Screens/landing_page/index.dart';
 import '../globals.dart' as globals;
+import '../Screens/SwipeAnimation/index.dart';
 
 class SiteCard extends StatelessWidget {
   
@@ -20,7 +21,7 @@ class SiteCard extends StatelessWidget {
         globals.selected_dive_site = this.site_name;
         Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => LandingScreen()),
+              MaterialPageRoute(builder: (context) => CardDemo()),
             );
       },
       child: new Card(

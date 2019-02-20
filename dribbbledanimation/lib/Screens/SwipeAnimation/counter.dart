@@ -88,14 +88,14 @@ class Counter extends StatelessWidget {
               elevation: 2,
               tooltip: 'Decrement',
               child: Icon(Icons.remove),
-              backgroundColor: new Color(0xff007582),
+              backgroundColor: new Color(0xff2298f2),
             ),
           ),
           new Container(
             padding: EdgeInsets.all(36.0),
             child: new Text(
                 '${num.parse((selectedValue).toStringAsFixed(decimalPlaces))}',
-                style: TextStyle(fontSize: 36, color: Color(0xff007582)),
+                style: TextStyle(fontSize: 36, color: Color(0xff2298f2)),
             ),
           ),
           new SizedBox(
@@ -107,7 +107,7 @@ class Counter extends StatelessWidget {
               elevation: 2,
               tooltip: 'Increment',
               child: Icon(Icons.add),
-              backgroundColor: new Color(0xff007582),
+              backgroundColor: new Color(0xff2298f2),
             ),
           ),
         ],
