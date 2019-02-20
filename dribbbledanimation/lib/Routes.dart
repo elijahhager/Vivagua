@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/Screens/species_page/index.dart';
+import 'package:dribbbledanimation/Screens/SwipeAnimation/index.dart';
 import 'package:dribbbledanimation/Screens/landing_page/index.dart';
 import 'package:dribbbledanimation/Screens/choose_dive_site/index.dart';
 
@@ -26,7 +26,7 @@ class Routes {
 
           case '/species':
             return new MyCustomRoute(
-              builder: (_) => new SpeciesScreen(),
+              builder: (_) => new CardDemo(),
               settings: settings,
             );
           
