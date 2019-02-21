@@ -4,14 +4,14 @@ class SpeciesMatch extends ChangeNotifier {
   Decision decision = Decision.undecided;
 
   void yes(){
-    if(decision == Decision.undecided){
+    if(decision != Decision.yes){
       decision = Decision.yes;
       notifyListeners();
     }
   }
 
   void nope(){
-    if(decision == Decision.undecided){
+    if(decision != Decision.nope){
       decision = Decision.nope;
       notifyListeners();
     }
