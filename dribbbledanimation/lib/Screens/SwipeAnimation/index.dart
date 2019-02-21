@@ -49,7 +49,6 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           //data.insert(0, i);
           //print();
           if (match.decision == Decision.yes){
-            print("match!!");
             selectedData.insert(0, i);
             Navigator.of(context).push(new PageRouteBuilder(
                       pageBuilder: (_, __, ___) => new MatchPage(type: i.image, spe: i),
