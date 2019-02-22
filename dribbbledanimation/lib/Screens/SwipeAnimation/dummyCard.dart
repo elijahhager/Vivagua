@@ -21,8 +21,8 @@ Positioned cardDemoDummy(
       elevation: 4.0,
       child: new Container(
         alignment: Alignment.center,
-        width: screenSize.width / 1.2 + cardWidth,
-        height: screenSize.height / 1.7,
+        width: screenSize.width / 1.2 + cardWidth - 70,
+        height: screenSize.height / 1.7 - 70,
         decoration: new BoxDecoration(
           color: new Color(0xff2298f2),
           borderRadius: new BorderRadius.circular(8.0),
@@ -30,8 +30,8 @@ Positioned cardDemoDummy(
         child: new Column(
           children: <Widget>[
             new Container(
-              width: screenSize.width / 1.2 + cardWidth,
-              height: screenSize.height / 2.2,
+              width: screenSize.width / 1.2 + cardWidth - 70,
+              height: screenSize.height / 2.2 - 70,
               decoration: new BoxDecoration(
                 borderRadius: new BorderRadius.only(
                     topLeft: new Radius.circular(8.0),
@@ -40,8 +40,8 @@ Positioned cardDemoDummy(
               ),
             ),
             new Container(
-                width: screenSize.width / 1.2 + cardWidth,
-                height: screenSize.height / 1.7 - screenSize.height / 2.2,
+                width: screenSize.width / 1.2 + cardWidth - 70,
+                height: screenSize.height / 1.7 - screenSize.height / 2.2 - 70,
                 alignment: Alignment.center,
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -59,7 +59,7 @@ Positioned cardDemoDummy(
                           ),
                           child: new Text(
                             "NO",
-                            style: new TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 26),
+                            style: new TextStyle(color: Colors.red, fontSize: 26),
                           ),
                         )),
                     new FlatButton(
@@ -75,7 +75,7 @@ Positioned cardDemoDummy(
                           ),
                           child: new Text(
                             "YES",
-                            style: new TextStyle(color: Color(0xff33ebff), fontWeight: FontWeight.bold, fontSize: 26),
+                            style: new TextStyle(color: Color(0xff33ebff), fontSize: 26),
                           ),
                         ))
                   ],

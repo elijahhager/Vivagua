@@ -41,7 +41,17 @@ class SuccessScreenState extends State<SuccessScreen> {
   }
 
   void onClose() {
-    Navigator.of(context).pushNamed('/landing');
+    Navigator.of(context).pushReplacement(new PageRouteBuilder(
+        maintainState: true,
+        opaque: true,
+        pageBuilder: (context, _, __) => new LandingScreen(),
+        transitionDuration: const Duration(milliseconds: 250),
+        transitionsBuilder: (context, anim1, anim2, child) {
+          return new FadeTransition(
+            child: child,
+            opacity: anim1,
+          );
+        }));
   }
 
 }

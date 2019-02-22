@@ -70,8 +70,8 @@ Positioned cardDemo(
                 elevation: 4.0,
                 child: new Container(
                   alignment: Alignment.center,
-                  width: screenSize.width / 1.2 + cardWidth,
-                  height: screenSize.height / 1.7,
+                  width: screenSize.width / 1.2 + cardWidth - 50,
+                  height: screenSize.height / 1.7 - 50,
                   decoration: new BoxDecoration(
                     color: new Color(0xff2298f2),
                     borderRadius: new BorderRadius.circular(8.0),
@@ -79,8 +79,8 @@ Positioned cardDemo(
                   child: new Column(
                     children: <Widget>[
                       new Container(
-                        width: screenSize.width / 1.2 + cardWidth,
-                        height: screenSize.height / 2.2,
+                        width: screenSize.width / 1.2 + cardWidth - 50,
+                        height: screenSize.height / 2.2 - 50,
                         decoration: new BoxDecoration(
                           borderRadius: new BorderRadius.only(
                               topLeft: new Radius.circular(8.0),
