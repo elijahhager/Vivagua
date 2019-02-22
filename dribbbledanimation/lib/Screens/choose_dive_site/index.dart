@@ -23,13 +23,10 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
   initState() {
 
     items.add("Turtle Crossing");
-    items.add("Dive Site #1");
-    items.add("Dive Site #2");
-    items.add("Dive Site #3");
-    items.add("Dive Site #1");
-    items.add("Dive Site #2");
-    items.add("Dive Site #3");
-    items.add("Dive Site #1");
+    items.add("Hager Boardwalk");
+    items.add("Moran Drawstring");
+    items.add("Mancuso Waterway");
+    items.add("Razzano Ripcurrent");
 
     controller.addListener(() {
       setState(() {
@@ -73,6 +70,14 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
     return (new WillPopScope(
         onWillPop: _onWillPop,
         child: new Scaffold(
+            appBar: AppBar(
+            title: Tick(image: choose, width: 280.0, height: 40.0),
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            iconTheme: IconThemeData(
+              color: Colors.blue, //change your color here
+            ),
+          ),
           body: new Container(
             child: new Center(
               child: new Padding(
@@ -82,24 +87,17 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    new Tick(image: logo_darker),
-                    new Text(
-                      "Find your divesite",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 24.0
-                      ),
-                    ),
                     new TextField(
                         decoration: new InputDecoration(
-                          hintText: "Search your divesite",
-                          contentPadding: const EdgeInsets.only(right: 40.0, left: 40.0, top: 20.0, bottom: 10.0)
+                          hintText: "Search...",
+                          contentPadding: const EdgeInsets.only(right: 40.0, left: 40.0, top: 10.0, bottom: 10.0)
                         ),
                         textAlign: TextAlign.center,
           controller: controller,
                       ),
                     new Expanded(
                       child: ListView.builder(
+                        padding: EdgeInsets.only(top: 20.0),
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: items.length,

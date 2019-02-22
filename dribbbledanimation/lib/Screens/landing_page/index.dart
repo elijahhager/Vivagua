@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'styles.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:async';
 import '../../Components/LogDiveButton.dart';
 import '../../Components/WhiteTick.dart';
+import '../choose_dive_site/index.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import '../../globals.dart' as globals;
@@ -50,7 +53,7 @@ class LandingScreenState extends State<LandingScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  new Tick(image: logo_darker), 
+                  new Tick(image: logo, width: 250.0, height: 250.0), 
                   new KOutlineButton(
                     radius: 30.0,
                     borderColor: Colors.blue,
@@ -58,7 +61,10 @@ class LandingScreenState extends State<LandingScreen> {
                     textColor: Colors.blue,
                     textFontWeight: FontWeight.bold,
                     onPressed: () {
-                      Navigator.pushNamed(context, "/choose_dive_site");
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => ChooseDiveSiteScreen()),
+                      );
                     },
                   ),
                 ],

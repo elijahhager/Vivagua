@@ -14,3 +14,8 @@ DecorationImage logo_darker = new DecorationImage(
   image: new ExactAssetImage('assets/logo_darker.png'),
   fit: BoxFit.cover,
 );
+
+DecorationImage choose = new DecorationImage(
+  image: new ExactAssetImage('assets/choose.png'),
+  fit: BoxFit.cover,
+);
