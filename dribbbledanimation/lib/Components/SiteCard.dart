@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../Screens/landing_page/index.dart';
 import '../globals.dart' as globals;
+import '../Screens/SwipeAnimation/index.dart';
 
 class SiteCard extends StatelessWidget {
   
@@ -16,6 +17,7 @@ class SiteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return new Card(
         elevation: 3.0,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
@@ -27,7 +29,7 @@ class SiteCard extends StatelessWidget {
               
               Navigator.push(
                     context,
-                    CupertinoPageRoute(builder: (context) => LandingScreen()),
+                    CupertinoPageRoute(builder: (context) => CardDemo()),
                   );
             },
             child: new ListTile(
