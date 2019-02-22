@@ -84,10 +84,6 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
   //   }
   // }
 
-  void _submit(){
-    Navigator.of(context).pop();
-  }
-
   // void _decrementCounter() {
   //   if (count - 1 >= 0) {
   //     //count = (count - 1);
@@ -219,11 +215,8 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                       textColor: Colors.blue,
                                       textFontWeight: FontWeight.bold,
                                       onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          CupertinoPageRoute(builder: (context) => LandingScreen()),
-                                        );
-                                      },
+                                        Navigator.of(context).pop();
+                                      }
                                     ),
                                   )
                                 ],
