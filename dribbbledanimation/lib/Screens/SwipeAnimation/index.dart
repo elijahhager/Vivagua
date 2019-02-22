@@ -193,7 +193,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
               new Container(
                 width: 18.0,
                 height: 18.0,
-                margin: new EdgeInsets.only(bottom: 20.0),
+                margin: new EdgeInsets.only(bottom: 10.0),
                 alignment: Alignment.center,
                 child: new Text(
                   dataLength.toString(),

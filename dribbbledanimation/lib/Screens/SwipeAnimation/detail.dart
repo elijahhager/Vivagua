@@ -147,17 +147,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                                 color: Colors.black12))),
                                     child: new Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.end,
                                       children: <Widget>[
-                                        new Row(
-                                          children: <Widget>[
-                                            
-                                            new Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                            )
-                                          ],
-                                        ),
                                         new Row(
                                           children: <Widget>[
                                             new Icon(
@@ -167,7 +158,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                             new Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text(spe.status),
+                                             child: new Text(spe.status),
                                             )
                                           ],
                                         ),
