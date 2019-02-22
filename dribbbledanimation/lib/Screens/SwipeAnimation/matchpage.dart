@@ -175,43 +175,20 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                                 color: Colors.black12))),
                                     child: new Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
-                                        new Row(
-                                          children: <Widget>[
-                                            new Padding(
-                                              padding:
-                                                  const EdgeInsets.all(20.0),
-                                            )
-                                          ],
-                                        ),
-                                        new Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            new Padding(
-                                              padding:
-                                                  const EdgeInsets.only(right: 74.0),
-                                              child: new Text("How many did you see?", style: TextStyle(fontSize: 36, color: Color(0xff2298f2)),),
-                                            )
-                                          ],
-                                        ),
+                                             new Text("How many did you see?", style: TextStyle(fontSize: 36, color: Color(0xff2298f2)),),
+
                                       ],
                                     ),
                                   ),
                                   new Container(
-                                    padding: new EdgeInsets.only(bottom: 20.0),
+                                   // padding: new EdgeInsets.only(bottom: 20.0),
                                     alignment: Alignment.center,
-                                    // decoration: new BoxDecoration(
-                                    //     color: Colors.white,
-                                    //     border: new Border(
-                                    //         bottom: new BorderSide(
-                                    //             color: Colors.black12))
-                                    // ),
                                     child: new Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[ 
                                             new Container(
-                                            padding: new EdgeInsets.only(left: 130.0, top: 20),
                                             alignment: Alignment.center,
                                             child: Counter(
                                                       initialValue: _defaultValue,
@@ -236,7 +213,6 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[ 
                                           new SizedBox(
-                                                  //padding: new EdgeInsets.only(left: 130.0, top: 20),
                                             width: 400,
                                             height: 60,
                                             child: RaisedButton(
