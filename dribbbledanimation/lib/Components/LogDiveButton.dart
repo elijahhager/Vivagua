@@ -14,7 +14,7 @@ class KOutlineButton extends StatelessWidget {
   final Icon icon;
 
   KOutlineButton(
-      {this.minWidth = 150.0,
+      {this.minWidth = 50.0,
       this.height = 50.0,
       this.radius = 0,
       this.borderWidth = 2.0,

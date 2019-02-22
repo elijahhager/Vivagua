@@ -112,7 +112,7 @@ Positioned cardDemo(
                                     ),
                                     child: new Text(
                                       "NO",
-                                      style: new TextStyle(color: Colors.red, fontWeight: FontWeight.bold, fontSize: 26),
+                                      style: new TextStyle(color: Colors.red, fontSize: 26),
                                     ),
                                   )),
                               new FlatButton(
@@ -131,7 +131,7 @@ Positioned cardDemo(
                                     ),
                                     child: new Text(
                                       "YES",
-                                      style: new TextStyle(color: Color(0xff33ebff), fontWeight: FontWeight.bold, fontSize: 26),
+                                      style: new TextStyle(color: Colors.green, fontSize: 26),
                                     ),
                                   ))
                             ],

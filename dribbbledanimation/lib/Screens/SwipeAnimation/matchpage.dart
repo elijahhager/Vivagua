@@ -177,7 +177,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
-                                             new Text("How many did you see?", style: TextStyle(fontSize: 36, color: Color(0xff2298f2)),),
+                                             new Text("How many did you see?", style: TextStyle(fontSize: 22, color: Colors.black),),
 
                                       ],
                                     ),
@@ -209,7 +209,8 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                   ),
                                   new Center(
                                     child: new KOutlineButton(
-                                      radius: 30.0,
+                                      minWidth: 150.0,
+                                      radius: 50.0,
                                       borderColor: Colors.blue,
                                       text: 'Submit',
                                       textColor: Colors.blue,

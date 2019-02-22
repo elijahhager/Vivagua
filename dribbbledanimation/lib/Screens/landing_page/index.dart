@@ -55,6 +55,7 @@ class LandingScreenState extends State<LandingScreen> {
                 children: <Widget>[
                   new Tick(image: logo, width: 250.0, height: 250.0), 
                   new KOutlineButton(
+                    minWidth: 150.0,
                     radius: 30.0,
                     borderColor: Colors.blue,
                     text: 'Start',

@@ -3,6 +3,7 @@ library counter;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import '../../Components/LogDiveButton.dart';
 
 typedef void CounterChangeCallback(num value);
 
@@ -53,18 +54,6 @@ class Counter extends StatelessWidget {
 
   final double buttonSize;
 
-  void _incrementCounter() {
-    if (selectedValue + step <= maxValue) {
-      onChanged((selectedValue + step));
-    }
-  }
-
-  void _decrementCounter() {
-    if (selectedValue - step >= minValue) {
-      onChanged((selectedValue - step));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -79,17 +68,17 @@ class Counter extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          new SizedBox(
-            width: buttonSize,
-            height: buttonSize,
-            child: FloatingActionButton(
-              heroTag: "decrement",
-              onPressed: _decrementCounter,
-              elevation: 2,
-              tooltip: 'Decrement',
-              child: Icon(Icons.remove),
-              backgroundColor: new Color(0xff2298f2),
-            ),
+          new KOutlineButton(
+            radius: 200.0,
+            borderColor: Colors.blue,
+            text: '-',
+            textColor: Colors.blue,
+            textFontWeight: FontWeight.bold,
+            onPressed: () {
+              if (selectedValue - step >= minValue) {
+                onChanged((selectedValue - step));
+              }
+            }
           ),
           new Container(
             padding: EdgeInsets.all(36.0),
@@ -98,17 +87,17 @@ class Counter extends StatelessWidget {
                 style: TextStyle(fontSize: 36, color: Color(0xff2298f2)),
             ),
           ),
-          new SizedBox(
-            width: buttonSize,
-            height: buttonSize,
-            child: FloatingActionButton(
-              heroTag: "increment",
-              onPressed: _incrementCounter,
-              elevation: 2,
-              tooltip: 'Increment',
-              child: Icon(Icons.add),
-              backgroundColor: new Color(0xff2298f2),
-            ),
+          new KOutlineButton(
+            radius: 200.0,
+            borderColor: Colors.blue,
+            text: '+',
+            textColor: Colors.blue,
+            textFontWeight: FontWeight.bold,
+            onPressed: () {
+              if (selectedValue + step <= maxValue) {
+                onChanged((selectedValue + step));
+              }
+            }
           ),
         ],
       ),
