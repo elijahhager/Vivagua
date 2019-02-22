@@ -193,7 +193,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                           }
                         }).toList())
                     : new Text("No More Species",
-                        style: new TextStyle(color: Color(0xff2298f2), fontSize: 50.0)),
+                        style: new TextStyle(color: Color(0xff2298f2), fontSize: 40.0)),
               )));
   }
 }

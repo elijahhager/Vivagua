@@ -4,6 +4,10 @@ import 'styles.dart';
 import 'package:flutter/scheduler.dart';
 import 'species.dart';
 import 'counter.dart';
+import 'package:flutter/cupertino.dart';
+import '../../Components/LogDiveButton.dart';
+import '../../Screens/landing_page/index.dart';
+ 
 
 //typedef void CounterChangeCallback(num value);
 
@@ -207,23 +211,20 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                       ],
                                     )
                                   ),
-                                  new Container(
-                                    height: 100.0,
-                                    child: new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[ 
-                                          new SizedBox(
-                                            width: 400,
-                                            height: 60,
-                                            child: RaisedButton(
-                                              onPressed: _submit,
-                                              elevation: 4,
-                                              color: new Color(0xff2298f2),
-                                              child: const Text('Submit'),
-                                            ),      
-                                          ),
-                                      ],
-                                    )
+                                  new Center(
+                                    child: new KOutlineButton(
+                                      radius: 30.0,
+                                      borderColor: Colors.blue,
+                                      text: 'Submit',
+                                      textColor: Colors.blue,
+                                      textFontWeight: FontWeight.bold,
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          CupertinoPageRoute(builder: (context) => LandingScreen()),
+                                        );
+                                      },
+                                    ),
                                   )
                                 ],
                               ),
