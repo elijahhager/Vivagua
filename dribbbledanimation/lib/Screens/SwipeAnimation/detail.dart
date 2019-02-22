@@ -75,7 +75,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
       child: new Container(
         width: width.value,
         height: heigth.value,
-        color: new Color(0xff33ebff),
+        color: new Color(0xff2298f2),
         child: new Hero(
           tag: "img",
           child: new Card(
