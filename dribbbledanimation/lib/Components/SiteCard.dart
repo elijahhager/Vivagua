@@ -17,7 +17,7 @@ class SiteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
+
     return new Card(
         elevation: 3.0,
         margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
