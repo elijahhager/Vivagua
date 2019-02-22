@@ -26,7 +26,7 @@ class SpeciesScreenState extends State<SpeciesScreen> {
               ),
               new FlatButton(
                 onPressed: () =>
-                    Navigator.pushReplacementNamed(context, "/landing"),
+                    Navigator.popUntil(context, ModalRoute.withName('/landing')),
                 child: new Text('Yes'),
               ),
             ],
@@ -65,7 +65,6 @@ class SpeciesScreenState extends State<SpeciesScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               new Tick(image: tick),
-                              // new AdminButton()
                             ],
                           ),
                          

@@ -30,7 +30,7 @@ class LandingScreenState extends State<LandingScreen> {
               ),
               new FlatButton(
                 onPressed: () =>
-                    Navigator.pushReplacementNamed(context, "/landing"),
+                    Navigator.of(context).pop(true),
                 child: new Text('Yep'),
               ),
             ],

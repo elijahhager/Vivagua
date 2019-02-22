@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dribbbledanimation/Screens/SwipeAnimation/index.dart';
 import 'package:dribbbledanimation/Screens/landing_page/index.dart';
 import 'package:dribbbledanimation/Screens/choose_dive_site/index.dart';
+import 'package:dribbbledanimation/Screens/success_page/index.dart';
+
 
 class Routes {
   Routes() {
@@ -15,6 +17,18 @@ class Routes {
           case '/landing':
             return new MyCustomRoute(
               builder: (_) => new LandingScreen(),
+              settings: settings,
+            );
+
+          case '/success':
+            return new MyCustomRoute(
+              builder: (_) => new SuccessScreen(),
+              settings: settings,
+            );
+
+          case '/card_demo':
+            return new MyCustomRoute(
+              builder: (_) => new CardDemo(),
               settings: settings,
             );
 

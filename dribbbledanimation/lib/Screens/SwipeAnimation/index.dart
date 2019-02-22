@@ -54,7 +54,12 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                       pageBuilder: (_, __, ___) => new MatchPage(type: i.image, spe: i),
                     ));
           }
+
           _buttonController.reset();
+
+          if (data.length == 0) {
+            Navigator.of(context).pushNamed('/success');
+          }
         }
       });
     });
