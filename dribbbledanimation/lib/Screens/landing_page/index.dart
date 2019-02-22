@@ -30,7 +30,7 @@ class LandingScreenState extends State<LandingScreen> {
               ),
               new FlatButton(
                 onPressed: () =>
-                    Navigator.of(context).pop(true),
+                    Navigator.pushReplacementNamed(context, "/landing"),
                 child: new Text('Yep'),
               ),
             ],
@@ -41,6 +41,7 @@ class LandingScreenState extends State<LandingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(globals.selected_dive_site);
     timeDilation = 0.4;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return (new WillPopScope(

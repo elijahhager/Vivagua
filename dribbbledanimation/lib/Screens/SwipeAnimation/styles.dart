@@ -106,6 +106,10 @@ DecorationImage image7 = new DecorationImage(
   image: new ExactAssetImage('assets/caribbean_reef_shark.jpg'),
   fit: BoxFit.cover,
 );
+DecorationImage which = new DecorationImage(
+  image: new ExactAssetImage('assets/which.png'),
+  fit: BoxFit.cover,
+);
 ImageProvider avatar1 = new ExactAssetImage('assets/avatars/avatar-1.jpg');
 ImageProvider avatar2 = new ExactAssetImage('assets/avatars/avatar-2.jpg');
 ImageProvider avatar3 = new ExactAssetImage('assets/avatars/avatar-3.jpg');

@@ -4,11 +4,13 @@ import 'dummyCard.dart';
 import 'activeCard.dart';
 
 //import 'package:animation_exp/PageReveal/page_main.dart';
+import '../../Components/WhiteTick.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'matches.dart';
 import 'species.dart';
 import 'matchpage.dart';
+import 'styles.dart';
 
 class CardDemo extends StatefulWidget {
   @override
@@ -58,6 +60,10 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           _buttonController.reset();
 
           if (data.length == 0) {
+            // send firebase request
+            // clear user input values
+            // reset the species card
+            data = imageData;
             Navigator.of(context).pushNamed('/success');
           }
         }
@@ -146,98 +152,48 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
     double backCardWidth = -10.0;
     return (new Scaffold(
-        appBar: new AppBar(
-          elevation: 0.0,
-          backgroundColor: new Color(0xff2298f2), //0xff007582 dark blue ---- 0xff33ebff light blue
-          centerTitle: true,
-          leading: new Container(
-           // margin: const EdgeInsets.all(15.0),
-            child: new IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: new Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-                size: 30.0,
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            new GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //     context,
-                //     new MaterialPageRoute(
-                //         builder: (context) => new PageMain()));
-              },
-              child: new Container(
-                  margin: const EdgeInsets.all(15.0),
-                  child: new Icon(
-                    Icons.layers,
-                    color: Colors.white,
-                    size: 30.0,
-                  )),
-            ),
-          ],
-          title: new Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Text(
-                "Did You See This Species?",
-                style: new TextStyle(
-                    fontSize: 18.0,
-                    letterSpacing: 2,
-                    fontWeight: FontWeight.bold),
-              ),
-              new Container(
-                width: 18.0,
-                height: 18.0,
-                margin: new EdgeInsets.only(bottom: 10.0),
-                alignment: Alignment.center,
-                child: new Text(
-                  dataLength.toString(),
-                  style: new TextStyle(fontSize: 14.0),
-                ),
-                decoration: new BoxDecoration(
-                    color: Colors.red, shape: BoxShape.circle),
-              )
-            ],
-          ),
-        ),
-        body: new Container(
-          color: new Color(0xffffffff),
-          alignment: Alignment.center,
-          child: dataLength > 0
-              ? new Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: data.map((item) {
-                    if (data.indexOf(item) == dataLength - 1) {
-                      return cardDemo(
-                          item,
-                          item.image,
-                          bottom.value,
-                          right.value,
-                          0.0,
-                          backCardWidth + 10,
-                          rotate.value,
-                          rotate.value < -10 ? 0.1 : 0.0,
-                          context,
-                          dismissImg,
-                          flag,
-                          addImg,
-                          swipeRight,
-                          swipeLeft);
-                    } else {
-                      backCardPosition = backCardPosition - 10;
-                      backCardWidth = backCardWidth + 10;
+        appBar: AppBar(
 
-                      return cardDemoDummy(item.image, backCardPosition, 0.0, 0.0,
-                          backCardWidth, 0.0, 0.0, context);
-                    }
-                  }).toList())
-              : new Text("No More Species",
-                  style: new TextStyle(color: Color(0xff2298f2), fontSize: 50.0)),
-        )));
+              title: Tick(image: which, width: 300.0, height: 30.0),
+              centerTitle: true,
+              backgroundColor: Colors.white,
+              iconTheme: IconThemeData(
+                color: Colors.blue, //change your color here
+              )),
+        
+              body: new Container(
+                color: new Color(0xffffffff),
+                alignment: Alignment.center,
+                child: dataLength > 0
+                    ? new Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: data.map((item) {
+                          if (data.indexOf(item) == dataLength - 1) {
+                            return cardDemo(
+                                item,
+                                item.image,
+                                bottom.value,
+                                right.value,
+                                0.0,
+                                backCardWidth + 10,
+                                rotate.value,
+                                rotate.value < -10 ? 0.1 : 0.0,
+                                context,
+                                dismissImg,
+                                flag,
+                                addImg,
+                                swipeRight,
+                                swipeLeft);
+                          } else {
+                            backCardPosition = backCardPosition - 10;
+                            backCardWidth = backCardWidth + 10;
+
+                            return cardDemoDummy(item.image, backCardPosition, 0.0, 0.0,
+                                backCardWidth, 0.0, 0.0, context);
+                          }
+                        }).toList())
+                    : new Text("No More Species",
+                        style: new TextStyle(color: Color(0xff2298f2), fontSize: 50.0)),
+              )));
   }
 }
