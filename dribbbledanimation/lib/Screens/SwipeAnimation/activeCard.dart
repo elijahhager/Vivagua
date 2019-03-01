@@ -73,8 +73,12 @@ Positioned cardDemo(
                   width: screenSize.width / 1.2 + cardWidth - 50,
                   height: screenSize.height / 1.7 - 50,
                   decoration: new BoxDecoration(
-                    color: new Color(0xff2298f2),
+                    color: new Color(0xffffffff),
                     borderRadius: new BorderRadius.circular(8.0),
+                    // border: Border.all(
+                    //               color: Color(0xff2298f2),
+                    //               width: 2.0,
+                    //        ),
                   ),
                   child: new Column(
                     children: <Widget>[
@@ -86,6 +90,10 @@ Positioned cardDemo(
                               topLeft: new Radius.circular(8.0),
                               topRight: new Radius.circular(8.0)),
                           image: img,
+                          // border: Border.all(
+                          //         color: Color(0xff2298f2),
+                          //         width: 5.0,
+                          //  ),
                         ),
                       ),
                       new Container(
@@ -109,6 +117,10 @@ Positioned cardDemo(
                                       color: Colors.white,
                                       borderRadius:
                                           new BorderRadius.circular(60.0),
+                                          border: Border.all(
+                                            color: Colors.red,
+                                             width: 3.0,
+                                          ),
                                     ),
                                     child: new Text(
                                       "NO",
@@ -128,6 +140,10 @@ Positioned cardDemo(
                                       color: Colors.white,
                                       borderRadius:
                                           new BorderRadius.circular(60.0),
+                                      border: Border.all(
+                                            color: Colors.green,
+                                             width: 3.0,
+                                          ),
                                     ),
                                     child: new Text(
                                       "YES",

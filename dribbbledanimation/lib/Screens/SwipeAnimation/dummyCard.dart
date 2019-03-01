@@ -24,7 +24,7 @@ Positioned cardDemoDummy(
         width: screenSize.width / 1.2 + cardWidth - 70,
         height: screenSize.height / 1.7 - 70,
         decoration: new BoxDecoration(
-          color: new Color(0xff2298f2),
+          color: new Color(0xffffffff),
           borderRadius: new BorderRadius.circular(8.0),
         ),
         child: new Column(
@@ -40,8 +40,8 @@ Positioned cardDemoDummy(
               ),
             ),
             new Container(
-                width: screenSize.width / 1.2 + cardWidth - 70,
-                height: screenSize.height / 1.7 - screenSize.height / 2.2 - 70,
+                width: screenSize.width / 1.2 + cardWidth,
+                height: screenSize.height / 1.7 - screenSize.height / 2.2,
                 alignment: Alignment.center,
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -56,6 +56,10 @@ Positioned cardDemoDummy(
                           decoration: new BoxDecoration(
                             color: Colors.white,
                             borderRadius: new BorderRadius.circular(60.0),
+                            border: Border.all(
+                                            color: Colors.red,
+                                             width: 3.0,
+                                    ),
                           ),
                           child: new Text(
                             "NO",
@@ -72,10 +76,14 @@ Positioned cardDemoDummy(
                           decoration: new BoxDecoration(
                             color: Colors.white,
                             borderRadius: new BorderRadius.circular(60.0),
+                            border: Border.all(
+                                            color: Colors.green,
+                                            width: 3.0,
+                            ),
                           ),
                           child: new Text(
                             "YES",
-                            style: new TextStyle(color: Color(0xff33ebff), fontSize: 26),
+                            style: new TextStyle(color: Colors.green, fontSize: 26),
                           ),
                         ))
                   ],
