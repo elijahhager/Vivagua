@@ -177,7 +177,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
-                                             new Text("How many did you see?", style: TextStyle(fontSize: 22, color: Colors.black),),
+                                             new Text("How many did you see?", style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.w400),),
 
                                       ],
                                     ),

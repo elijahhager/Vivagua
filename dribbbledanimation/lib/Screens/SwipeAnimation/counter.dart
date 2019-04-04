@@ -70,6 +70,7 @@ class Counter extends StatelessWidget {
         children: [
           new KOutlineButton(
             radius: 200.0,
+            minWidth: 100.0,
             borderColor: Colors.blue,
             text: '-',
             textColor: Colors.blue,
@@ -84,15 +85,16 @@ class Counter extends StatelessWidget {
             padding: EdgeInsets.all(36.0),
             child: new Text(
                 '${num.parse((selectedValue).toStringAsFixed(decimalPlaces))}',
-                style: TextStyle(fontSize: 36, color: Color(0xff2298f2)),
+                style: TextStyle(fontSize: 36, color: Color(0xff2298f2), fontWeight: FontWeight.w300),
             ),
           ),
           new KOutlineButton(
             radius: 200.0,
+            minWidth: 100.0,
             borderColor: Colors.blue,
             text: '+',
             textColor: Colors.blue,
-            textFontWeight: FontWeight.bold,
+            textFontWeight: FontWeight.normal,
             onPressed: () {
               if (selectedValue + step <= maxValue) {
                 onChanged((selectedValue + step));

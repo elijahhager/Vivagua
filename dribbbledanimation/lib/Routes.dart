@@ -1,63 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/Screens/SwipeAnimation/index.dart';
 import 'package:dribbbledanimation/Screens/landing_page/index.dart';
+import 'package:dribbbledanimation/Screens/admin_page/index.dart';
 import 'package:dribbbledanimation/Screens/choose_dive_site/index.dart';
-import 'package:dribbbledanimation/Screens/success_page/index.dart';
+import 'package:fluro/fluro.dart';
+import 'package:flutter/material.dart';
+import './Screens/admin_page/SpeciesDetailPage.dart';
+import 'package:dribbbledanimation/ui/home/home_page.dart';
 
 
 class Routes {
-  Routes() {
-    runApp(new MaterialApp(
-      title: "Vivagua",
-      debugShowCheckedModeBanner: false,
-      home: new LandingScreen(),
-      onGenerateRoute: (RouteSettings settings) {
-        switch (settings.name) {
 
-          case '/landing':
-            return new MyCustomRoute(
-              builder: (_) => new LandingScreen(),
-              settings: settings,
-            );
+  static final Router _router = new Router();
 
-          case '/success':
-            return new MyCustomRoute(
-              builder: (_) => new SuccessScreen(),
-              settings: settings,
-            );
+  static var speciesDetailHandler = new Handler(
+    handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      debugPrint(params["id"].toString().substring(1, params["id"].toString().length-1));
+      return new SpeciesDetailPage(params["id"].toString().substring(1, params["id"].toString().length-1));
+    });
 
-          case '/card_demo':
-            return new MyCustomRoute(
-              builder: (_) => new CardDemo(),
-              settings: settings,
-            );
+  static void initRoutes() {
 
-          case '/choose_dive_site':
-            return new MyCustomRoute(
-              builder: (_) => new ChooseDiveSiteScreen(),
-              settings: settings,
-            );
+    _router.define("/detail/:id", handler: speciesDetailHandler);
 
-          case '/species':
-            return new MyCustomRoute(
-              builder: (_) => new CardDemo(),
-              settings: settings,
-            );
-          
-        }
-      },
-    ));
+    _router.define("/detail/:id", handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new SpeciesDetailPage(params["id"]);
+    }));
+    
+    _router.define('landing', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new LandingScreen();
+    }));
+
+    _router.define('choose_dive_site', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new ChooseDiveSiteScreen();
+    }));
+
+    _router.define('admin_home', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new HomePage();
+    }));
+
   }
-}
 
-class MyCustomRoute<T> extends MaterialPageRoute<T> {
-  MyCustomRoute({WidgetBuilder builder, RouteSettings settings})
-      : super(builder: builder, settings: settings);
-
-  @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
-    if (settings.isInitialRoute) return child;
-    return new FadeTransition(opacity: animation, child: child);
+  static void navigateTo(context, String route, {TransitionType transition}) {
+    _router.navigateTo(context, route, transition: transition);
   }
+  
 }

@@ -5,11 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'dart:async';
 import '../../Components/LogDiveButton.dart';
 import '../../Components/WhiteTick.dart';
+import 'package:dribbbledanimation/Screens/admin_page/index.dart';
+import 'package:dribbbledanimation/Routes.dart';
 import '../choose_dive_site/index.dart';
-
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import '../../globals.dart' as globals;
+import 'package:dribbbledanimation/Routes.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key key}) : super(key: key);
@@ -30,7 +32,7 @@ class LandingScreenState extends State<LandingScreen> {
               ),
               new FlatButton(
                 onPressed: () =>
-                    Navigator.pushReplacementNamed(context, "/landing"),
+                    Routes.navigateTo(context, 'landing'),
                 child: new Text('Yep'),
               ),
             ],
@@ -58,7 +60,7 @@ class LandingScreenState extends State<LandingScreen> {
                     minWidth: 150.0,
                     radius: 30.0,
                     borderColor: Colors.blue,
-                    text: 'Start',
+                    text: 'Log a Dive',
                     textColor: Colors.blue,
                     textFontWeight: FontWeight.bold,
                     onPressed: () {
@@ -66,6 +68,20 @@ class LandingScreenState extends State<LandingScreen> {
                         context,
                         CupertinoPageRoute(builder: (context) => ChooseDiveSiteScreen()),
                       );
+                    },
+                  ),
+                  new Container(
+                    height: 10.0,
+                  ),
+                  new KOutlineButton(
+                    minWidth: 100.0,
+                    radius: 30.0,
+                    borderColor: Colors.blue,
+                    text: 'Admin',
+                    textColor: Colors.blue,
+                    textFontWeight: FontWeight.bold,
+                    onPressed: () {
+                      Routes.navigateTo(context, 'admin_home');
                     },
                   ),
                 ],
