@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ImageBackground extends StatelessWidget {
+  final DecorationImage backgroundImage;
   final DecorationImage profileImage;
   final VoidCallback selectbackward;
   final VoidCallback selectforward;
   final Animation<double> containerGrowAnimation;
   ImageBackground(
-      {this.containerGrowAnimation,
+      {this.backgroundImage,
+      this.containerGrowAnimation,
       this.profileImage,
       this.selectbackward,
       this.selectforward});
@@ -18,6 +20,7 @@ class ImageBackground extends StatelessWidget {
     return (new Container(
         width: screenSize.width,
         height: screenSize.height / 3,
+        decoration: new BoxDecoration(image: backgroundImage),
         child: new Container(
           decoration: new BoxDecoration(
               gradient: new LinearGradient(

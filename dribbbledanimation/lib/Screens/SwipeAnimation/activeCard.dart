@@ -67,18 +67,14 @@ Positioned cardDemo(
               },
               child: new Card(
                 color: Colors.transparent,
-                elevation: 4.0,
+                elevation: 8.0,
                 child: new Container(
                   alignment: Alignment.center,
                   width: screenSize.width / 1.2 + cardWidth - 50,
                   height: screenSize.height / 1.7 - 50,
                   decoration: new BoxDecoration(
-                    color: new Color(0xffffffff),
-                    borderRadius: new BorderRadius.circular(8.0),
-                    // border: Border.all(
-                    //               color: Color(0xff2298f2),
-                    //               width: 2.0,
-                    //        ),
+                    color: Color.fromRGBO(250, 250, 250, 1),
+                    borderRadius: new BorderRadius.circular(12.0),
                   ),
                   child: new Column(
                     children: <Widget>[
@@ -86,9 +82,10 @@ Positioned cardDemo(
                         width: screenSize.width / 1.2 + cardWidth - 50,
                         height: screenSize.height / 2.2 - 50,
                         decoration: new BoxDecoration(
+                          color: Colors.transparent,
                           borderRadius: new BorderRadius.only(
-                              topLeft: new Radius.circular(8.0),
-                              topRight: new Radius.circular(8.0)),
+                              topLeft: new Radius.circular(12.0),
+                              topRight: new Radius.circular(12.0)),
                           image: img,
                           // border: Border.all(
                           //         color: Color(0xff2298f2),
@@ -105,26 +102,25 @@ Positioned cardDemo(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               new FlatButton(
+                                  
                                   padding: new EdgeInsets.all(0.0),
                                   onPressed: () {
                                     swipeLeft();
                                   },
+                                  
                                   child: new Container(
                                     height: 60.0,
                                     width: 130.0,
+                                    
                                     alignment: Alignment.center,
                                     decoration: new BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          new BorderRadius.circular(60.0),
-                                          border: Border.all(
-                                            color: Colors.red,
-                                             width: 3.0,
-                                          ),
+                                      color: Color.fromRGBO(255, 10, 10, 0.9),
+                                      borderRadius: new BorderRadius.circular(60.0),
+                                      boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 1.8)],
                                     ),
                                     child: new Text(
                                       "NO",
-                                      style: new TextStyle(color: Colors.red, fontSize: 26),
+                                      style: new TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.w400),
                                     ),
                                   )),
                               new FlatButton(
@@ -133,21 +129,18 @@ Positioned cardDemo(
                                     swipeRight();                                  
                                   },
                                   child: new Container(
+                                    
                                     height: 60.0,
                                     width: 130.0,
                                     alignment: Alignment.center,
                                     decoration: new BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          new BorderRadius.circular(60.0),
-                                      border: Border.all(
-                                            color: Colors.green,
-                                             width: 3.0,
-                                          ),
+                                      color: Color.fromRGBO(10, 235, 10, 0.85),
+                                      borderRadius: new BorderRadius.circular(60.0),
+                                      boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 1.8)],
                                     ),
                                     child: new Text(
                                       "YES",
-                                      style: new TextStyle(color: Colors.green, fontSize: 26),
+                                      style: new TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.w400),
                                     ),
                                   ))
                             ],

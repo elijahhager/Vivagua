@@ -113,7 +113,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                             _appBarBehavior == AppBarBehavior.snapping,
                         snap: _appBarBehavior == AppBarBehavior.snapping,
                         flexibleSpace: new FlexibleSpaceBar(
-                          title: new Text(spe.name),
                           background: new Stack(
                             fit: StackFit.expand,
                             children: <Widget>[
@@ -141,28 +140,33 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                     padding: new EdgeInsets.only(bottom: 20.0),
                                     alignment: Alignment.center,
                                     decoration: new BoxDecoration(
-                                        color: Colors.white,
-                                        border: new Border(
-                                            bottom: new BorderSide(
-                                                color: Colors.black12))),
+                                      color: Colors.white,
+                                      border: new Border(
+                                        bottom: new BorderSide(
+                                        color: Colors.black12)
+                                      )
+                                    ),
                                     child: new Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
-                                      children: <Widget>[
-                                        new Row(
+                                      
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
-                                            new Icon(
+                                            new Text(
+                                              spe.name, 
+                                              style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold
+                                              )
+                                            ),
+                                            new Row(children: <Widget>[new Icon(
                                               Icons.brightness_1,
                                               color: spe.color,
                                             ),
                                             new Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                             child: new Text(spe.status),
-                                            )
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: new Text(spe.status),
+                                            )],)
+                                            
                                           ],
-                                        ),
-                                      ],
                                     ),
                                   ),
                                   new Padding(
@@ -174,7 +178,17 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                  new Text(spe.about, style: new TextStyle(fontSize: 16),),
+                                  new Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 16.0, bottom: 8.0),
+                                    child: new Text(
+                                      spe.about, 
+                                      style: new TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ),
                                   new Container(
                                     margin: new EdgeInsets.only(top: 25.0),
                                     padding: new EdgeInsets.only(

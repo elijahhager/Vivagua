@@ -17,7 +17,7 @@ class KOutlineButton extends StatelessWidget {
       {this.minWidth = 50.0,
       this.height = 50.0,
       this.radius = 0,
-      this.borderWidth = 2.0,
+      this.borderWidth = 1.0,
       @required this.borderColor,
       @required this.text,
       @required this.textColor,

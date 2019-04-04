@@ -29,12 +29,13 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   SpeciesMatch match = new SpeciesMatch();
   List data = imageData;
   List selectedData = [];
+
   void initState() {
     super.initState();
     match = new SpeciesMatch();
 
     _buttonController = new AnimationController(
-        duration: new Duration(milliseconds: 1000), vsync: this);
+        duration: new Duration(milliseconds: 500), vsync: this);
 
     rotate = new Tween<double>(
       begin: -0.0,
@@ -45,6 +46,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
         curve: Curves.ease,
       ),
     );
+
     rotate.addListener(() {
       setState(() {
         if (rotate.isCompleted) {
@@ -61,15 +63,16 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           _buttonController.reset();
 
           if (data.length == 0) {
+            
             // send firebase request
             // clear user input values
             // reset the species card
-            data = imageData;
+            
             Navigator.of(context).pushReplacement(new PageRouteBuilder(
               maintainState: true,
               opaque: true,
               pageBuilder: (context, _, __) => new SuccessScreen(),
-              transitionDuration: const Duration(milliseconds: 250),
+              transitionDuration: const Duration(milliseconds: 1000),
               transitionsBuilder: (context, anim1, anim2, child) {
                 return new FadeTransition(
                   child: child,
@@ -165,46 +168,46 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     return (new Scaffold(
         appBar: AppBar(
 
-              title: Tick(image: which, width: 300.0, height: 30.0),
+              title: Tick(image: which, width: 250.0, height: 30.0),
               centerTitle: true,
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(
                 color: Colors.blue, //change your color here
               )),
         
-              body: new Container(
-                color: new Color(0xffffffff),
-                alignment: Alignment.center,
-                child: dataLength > 0
-                    ? new Stack(
-                        alignment: AlignmentDirectional.center,
-                        children: data.map((item) {
-                          if (data.indexOf(item) == dataLength - 1) {
-                            return cardDemo(
-                                item,
-                                item.image,
-                                bottom.value,
-                                right.value,
-                                0.0,
-                                backCardWidth + 10,
-                                rotate.value,
-                                rotate.value < -10 ? 0.1 : 0.0,
-                                context,
-                                dismissImg,
-                                flag,
-                                addImg,
-                                swipeRight,
-                                swipeLeft);
-                          } else {
-                            backCardPosition = backCardPosition - 10;
-                            backCardWidth = backCardWidth + 10;
+      body: new Container(
+        color: new Color(0xffffffff),
+        alignment: Alignment.center,
+        child: dataLength > 0
+            ? new Stack(
+                alignment: AlignmentDirectional.center,
+                children: data.map((item) {
+                  if (data.indexOf(item) == dataLength - 1) {
+                    return cardDemo(
+                        item,
+                        item.image,
+                        bottom.value,
+                        right.value,
+                        0.0,
+                        backCardWidth + 10,
+                        rotate.value,
+                        rotate.value < -10 ? 0.1 : 0.0,
+                        context,
+                        dismissImg,
+                        flag,
+                        addImg,
+                        swipeRight,
+                        swipeLeft);
+                  } else {
+                    backCardPosition = backCardPosition - 10;
+                    backCardWidth = backCardWidth + 10;
 
-                            return cardDemoDummy(item.image, backCardPosition, 0.0, 0.0,
-                                backCardWidth, 0.0, 0.0, context);
-                          }
-                        }).toList())
-                    : new Text("No More Species",
-                        style: new TextStyle(color: Color(0xff2298f2), fontSize: 40.0)),
-              )));
+                    return cardDemoDummy(item.image, backCardPosition, 0.0, 0.0,
+                        backCardWidth, 0.0, 0.0, context);
+                  }
+                }).toList())
+            : new Text("",
+                style: new TextStyle(color: Color(0xff2298f2), fontSize: 40.0)),
+      )));
   }
 }
