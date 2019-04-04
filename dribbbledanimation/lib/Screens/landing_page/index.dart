@@ -6,6 +6,7 @@ import 'dart:async';
 import '../../Components/LogDiveButton.dart';
 import '../../Components/WhiteTick.dart';
 import '../choose_dive_site/index.dart';
+import '../Map_Page/index.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
@@ -65,6 +66,20 @@ class LandingScreenState extends State<LandingScreen> {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(builder: (context) => ChooseDiveSiteScreen()),
+                      );
+                    },
+                  ),
+                  new KOutlineButton(
+                    minWidth: 150.0,
+                    radius: 30.0,
+                    borderColor: Colors.blue,
+                    text: 'Test Map Page',
+                    textColor: Colors.blue,
+                    textFontWeight: FontWeight.bold,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => MapPage()),
                       );
                     },
                   ),
