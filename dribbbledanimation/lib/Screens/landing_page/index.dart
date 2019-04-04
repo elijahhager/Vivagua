@@ -72,19 +72,6 @@ class LandingScreenState extends State<LandingScreen> {
                       );
                     },
                   ),
-                  new KOutlineButton(
-                    minWidth: 150.0,
-                    radius: 30.0,
-                    borderColor: Colors.blue,
-                    text: 'Test Map Page',
-                    textColor: Colors.blue,
-                    textFontWeight: FontWeight.bold,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(builder: (context) => MapPage()),
-                      );},
-                  ),
                   new Container(
                     height: 10.0,
                   ),
