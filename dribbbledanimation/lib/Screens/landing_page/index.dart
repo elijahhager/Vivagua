@@ -8,11 +8,8 @@ import '../../Components/WhiteTick.dart';
 import 'package:dribbbledanimation/Screens/admin_page/index.dart';
 import 'package:dribbbledanimation/Routes.dart';
 import '../choose_dive_site/index.dart';
-<<<<<<< HEAD
 import '../Map_Page/index.dart';
 
-=======
->>>>>>> 9a7c7ebe7fe0b8288f547883f293fbc6d39e1467
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import '../../globals.dart' as globals;
