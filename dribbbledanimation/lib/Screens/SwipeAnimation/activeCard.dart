@@ -87,6 +87,10 @@ Positioned cardDemo(
                               topLeft: new Radius.circular(12.0),
                               topRight: new Radius.circular(12.0)),
                           image: img,
+                          // border: Border.all(
+                          //         color: Color(0xff2298f2),
+                          //         width: 5.0,
+                          //  ),
                         ),
                       ),
                       new Container(

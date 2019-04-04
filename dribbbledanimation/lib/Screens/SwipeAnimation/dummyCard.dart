@@ -40,8 +40,8 @@ Positioned cardDemoDummy(
               ),
             ),
             new Container(
-                width: screenSize.width / 1.2 + cardWidth - 70,
-                height: screenSize.height / 1.7 - screenSize.height / 2.2 - 70,
+                width: screenSize.width / 1.2 + cardWidth,
+                height: screenSize.height / 1.7 - screenSize.height / 2.2,
                 alignment: Alignment.center,
             ),
           ],

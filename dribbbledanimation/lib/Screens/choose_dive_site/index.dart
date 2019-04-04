@@ -6,6 +6,7 @@ import '../../Components/WhiteTick.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import '../../Components/SiteCard.dart';
+import 'data.dart';
 
 class ChooseDiveSiteScreen extends StatefulWidget {
   const ChooseDiveSiteScreen({Key key}) : super(key: key);
@@ -15,18 +16,18 @@ class ChooseDiveSiteScreen extends StatefulWidget {
 
 class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
   
-  List<String> items = new List();
+ // List<String> items = diveItems;
   TextEditingController controller = new TextEditingController();
   String filter;
 
   @override
   initState() {
 
-    items.add("Turtle Crossing");
-    items.add("Hager Boardwalk");
-    items.add("Moran Drawstring");
-    items.add("Mancuso Waterway");
-    items.add("Razzano Ripcurrent");
+    diveItems.add("Turtle Crossing");
+    diveItems.add("Hager Boardwalk");
+    diveItems.add("Moran Drawstring");
+    diveItems.add("Mancuso Waterway");
+    diveItems.add("Razzano Ripcurrent");
 
     controller.addListener(() {
       setState(() {
@@ -78,6 +79,12 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
               color: Colors.blue, //change your color here
             ),
           ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Color(0xff2298f2),
+            tooltip: "Add Divesite",
+            onPressed: () {print("test");},
+            child: Icon(Icons.add), 
+          ),
           body: new Container(
             child: new Center(
               child: new Padding(
@@ -100,11 +107,11 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
                         padding: EdgeInsets.only(top: 20.0),
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
-                        itemCount: items.length,
+                        itemCount: diveItems.length,
                         itemBuilder: (BuildContext context, int index) {
                           return filter == null || filter == "" ? 
-                          new SiteCard(site_name: items[index], site_location: " 64 Oak River") : items[index].toLowerCase().contains(filter.toLowerCase()) ? 
-                          new SiteCard(site_name: items[index], site_location: " 54 Oak Lane") : new Container();
+                          new SiteCard(site_name: diveItems[index], site_location: " 64 Oak River") : diveItems[index].toLowerCase().contains(filter.toLowerCase()) ? 
+                          new SiteCard(site_name: diveItems[index], site_location: " 54 Oak Lane") : new Container();
                         },
                       ),
                     ),
