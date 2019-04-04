@@ -4,6 +4,8 @@ import 'package:dribbbledanimation/ui/common/plannet_summary.dart';
 import 'package:dribbbledanimation/ui/common/separator.dart';
 import 'package:dribbbledanimation/ui/text_style.dart';
 import 'package:dribbbledanimation/globals.dart';
+import 'package:dribbbledanimation/Components/WhiteTick.dart';
+import 'styles.dart';
 
 
 class DetailPage extends StatelessWidget {
@@ -15,9 +17,10 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      
       body: new Container(
         constraints: new BoxConstraints.expand(),
-        color: new Color(0xFF736AB7),
+        color: new Color(0xFFFFFFFF),
         child: new Stack (
           children: <Widget>[
             _getBackground(),
@@ -32,7 +35,7 @@ class DetailPage extends StatelessWidget {
 
   Container _getBackground () {
     return new Container(
-            child: new Image.network(planet.picture,
+            child: new Image.asset('assets/hawksbill_turtle.jpg',
               fit: BoxFit.cover,
               height: 300.0,
             ),
@@ -48,7 +51,7 @@ class DetailPage extends StatelessWidget {
               gradient: new LinearGradient(
                 colors: <Color>[
                   new Color(0x00736AB7),
-                  new Color(0xFF736AB7)
+                  new Color(0xFFFFFFFF)
                 ],
                 stops: [0.0, 0.9],
                 begin: const FractionalOffset(0.0, 0.0),

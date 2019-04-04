@@ -22,74 +22,52 @@ class LandingScreen extends StatefulWidget {
 }
 
 class LandingScreenState extends State<LandingScreen> {
-  Future<bool> _onWillPop() {
-    return showDialog(
-          context: context,
-          child: new AlertDialog(
-            title: new Text('Go back to the start?'),
-            actions: <Widget>[
-              new FlatButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: new Text('No thanks'),
-              ),
-              new FlatButton(
-                onPressed: () =>
-                    Routes.navigateTo(context, 'landing'),
-                child: new Text('Yep'),
-              ),
-            ],
-          ),
-        ) ??
-        false;
-  }
-
   @override
   Widget build(BuildContext context) {
     debugPrint(globals.selected_dive_site);
     timeDilation = 0.4;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    return (new WillPopScope(
-        onWillPop: _onWillPop,
-        child: new Scaffold(
-          body: new Container(
-            child: new Center(
-              child: new Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  new Tick(image: logo, width: 250.0, height: 250.0), 
-                  new KOutlineButton(
-                    minWidth: 150.0,
-                    radius: 30.0,
-                    borderColor: Colors.blue,
-                    text: 'Log a Dive',
-                    textColor: Colors.blue,
-                    textFontWeight: FontWeight.bold,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(builder: (context) => ChooseDiveSiteScreen()),
-                      );
-                    },
-                  ),
-                  new Container(
-                    height: 10.0,
-                  ),
-                  new KOutlineButton(
-                    minWidth: 100.0,
-                    radius: 30.0,
-                    borderColor: Colors.blue,
-                    text: 'Admin',
-                    textColor: Colors.blue,
-                    textFontWeight: FontWeight.bold,
-                    onPressed: () {
-                      Routes.navigateTo(context, 'admin_home');
-                    },
-                  ),
-                ],
+    return new Scaffold(
+      body: new Container(
+        child: new Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              new Tick(image: logo, width: 250.0, height: 250.0),
+              new KOutlineButton(
+                minWidth: 150.0,
+                radius: 30.0,
+                borderColor: Colors.blue,
+                text: 'Log a Dive',
+                textColor: Colors.blue,
+                textFontWeight: FontWeight.bold,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (context) => ChooseDiveSiteScreen()),
+                  );
+                },
               ),
-            ),
+              new Container(
+                height: 10.0,
+              ),
+              new KOutlineButton(
+                minWidth: 100.0,
+                radius: 30.0,
+                borderColor: Colors.blue,
+                text: 'Admin',
+                textColor: Colors.blue,
+                textFontWeight: FontWeight.bold,
+                onPressed: () {
+                  Routes.navigateTo(context, 'admin_home');
+                },
+              ),
+            ],
           ),
-        )));
+        ),
+      ),
+    );
   }
 }

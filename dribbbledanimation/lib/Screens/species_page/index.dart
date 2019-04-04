@@ -5,6 +5,7 @@ import 'dart:async';
 import '../../Components/WhiteTick.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:dribbbledanimation/Routes.dart';
 
 class SpeciesScreen extends StatefulWidget {
   const SpeciesScreen({Key key}) : super(key: key);
@@ -14,34 +15,11 @@ class SpeciesScreen extends StatefulWidget {
 
 class SpeciesScreenState extends State<SpeciesScreen> {
 
-  Future<bool> _onWillPop() {
-    return showDialog(
-          context: context,
-          child: new AlertDialog(
-            title: new Text('Are you sure?'),
-            actions: <Widget>[
-              new FlatButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: new Text('No'),
-              ),
-              new FlatButton(
-                onPressed: () =>
-                    Navigator.popUntil(context, ModalRoute.withName('/landing')),
-                child: new Text('Yes'),
-              ),
-            ],
-          ),
-        ) ??
-        false;
-  }
-
   @override
   Widget build(BuildContext context) {
     timeDilation = 0.4;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    return (new WillPopScope(
-        onWillPop: _onWillPop,
-        child: new Scaffold(
+    return new Scaffold(
           body: new Container(
               
               child: new Container(
@@ -72,6 +50,6 @@ class SpeciesScreenState extends State<SpeciesScreen> {
                       ),
                     ],
                   ))),
-        )));
+        );
   }
 }

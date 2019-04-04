@@ -17,7 +17,7 @@ class HomePageBody extends StatelessWidget {
             ),
           ),
       body: new Container(
-        color: Color.fromRGBO(90, 170, 255, 0.5),
+        color: Color.fromRGBO(90, 170, 255, 0.1),
         child: new CustomScrollView(
           scrollDirection: Axis.vertical,
           shrinkWrap: false,

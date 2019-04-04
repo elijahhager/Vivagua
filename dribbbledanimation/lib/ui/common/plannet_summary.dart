@@ -25,11 +25,11 @@ class PlanetSummary extends StatelessWidget {
       child: new Hero(
           tag: "planet-hero-${planet.id}",
           child: new Image(
-          image: new AssetImage(planet.image),
-          height: 92.0,
-          width: 92.0,
+            image: new AssetImage(planet.image),      
+            height: 91.0,
+            width: 91.0,
+          ),
         ),
-      ),
     );
 
 

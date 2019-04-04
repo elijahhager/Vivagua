@@ -6,6 +6,8 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import './Screens/admin_page/SpeciesDetailPage.dart';
 import 'package:dribbbledanimation/ui/home/home_page.dart';
+import 'package:dribbbledanimation/ui/home/home_page_body.dart';
+
 
 
 class Routes {
@@ -32,6 +34,10 @@ class Routes {
 
     _router.define('choose_dive_site', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       return new ChooseDiveSiteScreen();
+    }));
+
+    _router.define('species_page', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new HomePageBody();
     }));
 
     _router.define('admin_home', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
