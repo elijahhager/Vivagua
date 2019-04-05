@@ -163,6 +163,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
     double initialBottom = 15.0;
     var dataLength = data.length;
+    if(dataLength <= 0){Navigator.popUntil(context, ModalRoute.withName('landing'));}
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
     double backCardWidth = -10.0;
     return (new Scaffold(
@@ -206,7 +207,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                         backCardWidth, 0.0, 0.0, context);
                   }
                 }).toList())
-            : new Text("",
+            : new Text("Thank You for the Log!",
                 style: new TextStyle(color: Color(0xff2298f2), fontSize: 40.0)),
       )));
   }
