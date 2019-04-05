@@ -44,11 +44,11 @@ class HomePageState extends State<HomePage> {
           },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_atm),
+            icon: Icon(Icons.scatter_plot),
             title: Text("Species")
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_activity),
+            icon: Icon(Icons.map),
             title: Text("Dive Sites")
           ),
         ])
