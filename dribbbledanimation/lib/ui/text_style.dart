@@ -19,13 +19,13 @@ class Style {
 
   static final increaseTextStyle = baseTextStyle.copyWith(
     color: Colors.green,
-    fontSize: 18.0,
+    fontSize: 22.0,
     fontWeight: FontWeight.w400
   );
 
   static final decreaseTextStyle = baseTextStyle.copyWith(
     color: Colors.red,
-    fontSize: 18.0,
+    fontSize: 22.0,
     fontWeight: FontWeight.w400
   );
   
