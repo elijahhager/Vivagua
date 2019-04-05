@@ -149,11 +149,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
     double initialBottom = 15.0;
     var dataLength = data.length;
-<<<<<<< HEAD
-    if(dataLength <= 0){Routes.navigateTo(context, "landing", clear: true);}
-=======
     if (dataLength <= 0) {Routes.navigateTo(context, "landing", clear: true);}
->>>>>>> bb41fb50eb2594e238e2d7526db80965563541c6
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
     double backCardWidth = -10.0;
     return (new Scaffold(
