@@ -6,6 +6,7 @@ import 'package:dribbbledanimation/ui/text_style.dart';
 import 'package:dribbbledanimation/globals.dart';
 import 'package:dribbbledanimation/Components/WhiteTick.dart';
 import 'styles.dart';
+import 'package:dribbbledanimation/Components/SimpleTimeSeriesChart.dart';
 
 class DetailPage extends StatelessWidget {
   final Planet planet;
@@ -57,8 +58,6 @@ class DetailPage extends StatelessWidget {
   }
 
   Container _getContent() {
-
-
     return new Container(
       child: new ListView(
         padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
@@ -91,15 +90,177 @@ class DetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 new Text(
-                  "SIGHTINGS",
+                  "INSIGHTS",
                   style: Style.headerTextStyle,
                 ),
                 new Separator(),
-                new Row(children: <Widget>[
-                  new Text("23%", style: Style.increaseTextStyle),
-                  new Icon(Icons.arrow_drop_up, color: Colors.green, size: 40.0),
-                ],)
-                
+                new Row(
+                  children: <Widget>[
+                    // a floating block
+                    new Container(
+                      margin: EdgeInsets.all(10.0),
+                      padding: new EdgeInsets.all(8.0),
+                      decoration: new BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black45,
+                            offset: new Offset(0.0, 0.0),
+                            spreadRadius: 1.0,
+                            blurRadius: 10.0,
+                          )
+                        ],
+                      ),
+                      width: 150,
+                      height: 90,
+                      child: new Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text("23%", style: Style.increaseTextStyle),
+                              Icon(Icons.arrow_drop_up, color: Colors.green, size: 40.0),
+                            ],
+                          ),
+                          Text("increase since last week", style: Style.commonTextStyle, textAlign: TextAlign.center),
+                        ],
+                      ),
+                    ),
+                    // a floating block
+                    new Container(
+                      margin: EdgeInsets.all(10.0),
+                      padding: new EdgeInsets.all(8.0),
+                      decoration: new BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black45,
+                            offset: new Offset(0.0, 0.0),
+                            spreadRadius: 1.0,
+                            blurRadius: 10.0,
+                          )
+                        ],
+                      ),
+                      width: 150,
+                      height: 90,
+                      child: new Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text("23%", style: Style.increaseTextStyle),
+                              Icon(Icons.arrow_drop_up, color: Colors.green, size: 40.0),
+                            ],
+                          ),
+                          Text("increase since last week", style: Style.commonTextStyle, textAlign: TextAlign.center),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                new Row(
+                  children: <Widget>[
+                    // a floating block
+                    new Container(
+                      margin: EdgeInsets.all(10.0),
+                      padding: new EdgeInsets.all(8.0),
+                      decoration: new BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black45,
+                            offset: new Offset(0.0, 0.0),
+                            spreadRadius: 1.0,
+                            blurRadius: 10.0,
+                          )
+                        ],
+                      ),
+                      width: 150,
+                      height: 90,
+                      child: new Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text("23%", style: Style.increaseTextStyle),
+                              Icon(Icons.arrow_drop_up, color: Colors.green, size: 40.0),
+                            ],
+                          ),
+                          Text("increase since last week", style: Style.commonTextStyle, textAlign: TextAlign.center),
+                        ],
+                      ),
+                    ),
+                    // a floating block
+                    new Container(
+                      margin: EdgeInsets.all(10.0),
+                      padding: new EdgeInsets.all(8.0),
+                      decoration: new BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black45,
+                            offset: new Offset(0.0, 0.0),
+                            spreadRadius: 1.0,
+                            blurRadius: 10.0,
+                          )
+                        ],
+                      ),
+                      width: 150,
+                      height: 90,
+                      child: new Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text("23%", style: Style.increaseTextStyle),
+                              Icon(Icons.arrow_drop_up, color: Colors.green, size: 40.0),
+                            ],
+                          ),
+                          Text("increase since last week", style: Style.commonTextStyle, textAlign: TextAlign.center),
+                        ],
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          // trends block
+          new Container(
+            margin: EdgeInsets.only(top: 20.0),
+            padding: new EdgeInsets.symmetric(horizontal: 32.0),
+            child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new Text(
+                  "TRENDS",
+                  style: Style.headerTextStyle,
+                ),
+                new Separator(),
+                new SimpleTimeSeriesChart.withSampleData(),
+                // new Row(
+                //   children: <Widget>[
+                //     new Text("23%", style: Style.increaseTextStyle),
+                //     new Icon(Icons.arrow_drop_up,
+                //         color: Colors.green, size: 40.0),
+                //   ],
+                // )
               ],
             ),
           ),
