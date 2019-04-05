@@ -16,6 +16,14 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff2298f2),
+        tooltip: "Export Data",
+        onPressed: () {
+          print("Export data...");
+        },
+        child: Icon(Icons.add),
+      ),
       body: new Container(
         constraints: new BoxConstraints.expand(),
         color: new Color(0xFFFFFFFF),

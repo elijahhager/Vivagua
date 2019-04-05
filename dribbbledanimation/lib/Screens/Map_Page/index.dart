@@ -64,7 +64,7 @@ class _MapPageState extends State<MapPage> {
                 child: Column(children: <Widget>[
               IconButton(
                 icon: Icon(Icons.location_on),
-                color: Colors.blue,
+                color: Colors.red,
                 iconSize: 45.0,
                 onPressed: () => Routes.navigateTo(context, 'species_page'),
               ),
@@ -72,7 +72,7 @@ class _MapPageState extends State<MapPage> {
                 "Black Rock",
                 textAlign: TextAlign.center,
                 style: new TextStyle(
-                  color: Colors.blue,
+                  color: Colors.red,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -86,7 +86,7 @@ class _MapPageState extends State<MapPage> {
                 child: Column(children: <Widget>[
               IconButton(
                 icon: Icon(Icons.location_on),
-                color: Colors.blue,
+                color: Colors.red,
                 iconSize: 45.0,
                 onPressed: () => Routes.navigateTo(context, 'species_page'),
               ),
@@ -94,7 +94,7 @@ class _MapPageState extends State<MapPage> {
                 "Turtles Crossing",
                 textAlign: TextAlign.center,
                 style: new TextStyle(
-                  color: Colors.blue,
+                  color: Colors.red,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -108,7 +108,7 @@ class _MapPageState extends State<MapPage> {
                 child: Column(children: <Widget>[
               IconButton(
                 icon: Icon(Icons.location_on),
-                color: Colors.blue,
+                color: Colors.red,
                 iconSize: 45.0,
                 onPressed: () => Routes.navigateTo(context, 'species_page'),
               ),
@@ -116,7 +116,7 @@ class _MapPageState extends State<MapPage> {
                 "The Bight",
                 textAlign: TextAlign.center,
                 style: new TextStyle(
-                  color: Colors.blue,
+                  color: Colors.red,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -130,7 +130,7 @@ class _MapPageState extends State<MapPage> {
                 child: Column(children: <Widget>[
               IconButton(
                 icon: Icon(Icons.location_on),
-                color: Colors.blue,
+                color: Colors.red,
                 iconSize: 45.0,
                 onPressed: () => Routes.navigateTo(context, 'species_page'),
               ),
@@ -138,7 +138,7 @@ class _MapPageState extends State<MapPage> {
                 "Blue Channel",
                 textAlign: TextAlign.center,
                 style: new TextStyle(
-                  color: Colors.blue,
+                  color: Colors.red,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -152,7 +152,7 @@ class _MapPageState extends State<MapPage> {
                 child: Column(children: <Widget>[
               IconButton(
                 icon: Icon(Icons.location_on),
-                color: Colors.blue,
+                color: Colors.red,
                 iconSize: 45.0,
                 onPressed: () => Routes.navigateTo(context, 'species_page'),
               ),
@@ -160,7 +160,7 @@ class _MapPageState extends State<MapPage> {
                 "LightHouse Reef",
                 textAlign: TextAlign.center,
                 style: new TextStyle(
-                  color: Colors.blue,
+                  color: Colors.red,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -174,7 +174,7 @@ class _MapPageState extends State<MapPage> {
                 child: Column(children: <Widget>[
               IconButton(
                 icon: Icon(Icons.location_on),
-                color: Colors.blue,
+                color: Colors.red,
                 iconSize: 45.0,
                 onPressed: () => Routes.navigateTo(context, 'species_page'),
               ),
@@ -182,7 +182,7 @@ class _MapPageState extends State<MapPage> {
                 "DiveMasters Choice",
                 textAlign: TextAlign.center,
                 style: new TextStyle(
-                  color: Colors.blue,
+                  color: Colors.red,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -196,7 +196,7 @@ class _MapPageState extends State<MapPage> {
                 child: Column(children: <Widget>[
               IconButton(
                 icon: Icon(Icons.location_on),
-                color: Colors.blue,
+                color: Colors.red,
                 iconSize: 45.0,
                 onPressed: () => Routes.navigateTo(context, 'species_page'),
               ),
@@ -204,7 +204,7 @@ class _MapPageState extends State<MapPage> {
                 "Churchs Reef",
                 textAlign: TextAlign.center,
                 style: new TextStyle(
-                  color: Colors.blue,
+                  color: Colors.red,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
