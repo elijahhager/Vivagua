@@ -60,7 +60,6 @@ class DetailPage extends StatelessWidget {
   Container _getContent() {
     return new Container(
       child: new ListView(
-        padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
         children: <Widget>[
           // header block
           new PlanetSummary(
@@ -71,13 +70,13 @@ class DetailPage extends StatelessWidget {
           new Container(
             decoration: new BoxDecoration(
               gradient: new LinearGradient(
-                colors: <Color>[new Color(0xFFFFFFFF), new Color(0xFFFFFFFF)],
-                stops: [0.9, 0.1],
+                colors: <Color>[new Color.fromRGBO(255, 255, 255, 0), new Color(0xFFFFFFFF)],
+                stops: [0, 0.1],
                 begin: const FractionalOffset(0.0, 0.0),
                 end: const FractionalOffset(0.0, 1.0),
               ),
             ),
-            padding: new EdgeInsets.symmetric(horizontal: 32.0),
+            padding: new EdgeInsets.only(top: 35.0, left: 25.0, right: 25.0, bottom: 25.0),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -95,8 +94,7 @@ class DetailPage extends StatelessWidget {
             decoration: new BoxDecoration(
               color: Colors.white,
             ),
-            margin: EdgeInsets.only(top: 25.0),
-            padding: new EdgeInsets.symmetric(horizontal: 32.0),
+            padding: new EdgeInsets.all(25.0),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -257,8 +255,7 @@ class DetailPage extends StatelessWidget {
             decoration: new BoxDecoration(
               color: Colors.white,
             ),
-            margin: EdgeInsets.only(top: 25.0),
-            padding: new EdgeInsets.symmetric(horizontal: 32.0),
+            padding: new EdgeInsets.all(25),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'dart:async';
 import '../../Components/LogDiveButton.dart';
 import '../../Components/WhiteTick.dart';
-import 'package:dribbbledanimation/Screens/admin_page/index.dart';
 import 'package:dribbbledanimation/Routes.dart';
 import '../choose_dive_site/index.dart';
 import '../Map_Page/index.dart';

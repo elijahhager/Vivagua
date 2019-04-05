@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'List.dart';
-import '../Screens/admin_page/styles.dart';
 import 'SiteCard.dart';
 
 
