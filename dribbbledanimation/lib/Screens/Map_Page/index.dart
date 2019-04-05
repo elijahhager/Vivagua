@@ -38,24 +38,39 @@ class _MapPageState extends State<MapPage> {
     controller.addListener(() {
       setState(() {
         filter = controller.text;
-        switch(filter){
-          case "Black Rock": { curr = new LatLng(16.269053, -86.603612);}
-          break;
-          case "Turtles Crossing": {curr = new LatLng(16.284706, -86.603121);}
-          break;
-          case "The Bight": {curr = new LatLng(16.297822, -86.600038);}
-          break;
-          case "Blue Channel": {curr = new LatLng(16.299490, -86.599759);}
-          break;
-          case "LightHouse Reef": {curr = new LatLng(16.305757, -86.597909);}
-          break;
-          case "DiveMasters Choice": {curr = new LatLng(16.311148, -86.595091);}
-          break;
-          case "Church Reef": {curr = new LatLng(16.287661, -86.573854);}
-          break;
-          default:{}
-          break;
+        if("Black Rock".startsWith(filter)){
+          curr = new LatLng(16.269053, -86.603612);
+        }else if("Turtles Crossing".startsWith(filter)){
+          curr = new LatLng(16.284706, -86.603121);
+        }else if("The Bight".startsWith(filter)){
+          curr = new LatLng(16.297822, -86.600038);
+        }else if("Blue Channel".startsWith(filter)){
+          curr = new LatLng(16.299490, -86.599759);
+        }else if("LightHouse Reef".startsWith(filter)){
+          curr = new LatLng(16.305757, -86.597909);
+        }else if("DiveMasters Choice".startsWith(filter)){
+          curr = new LatLng(16.311148, -86.595091);
+        }else if("Church Reef".startsWith(filter)){
+          curr = new LatLng(16.287661, -86.573854);
         }
+        // switch(filter){
+        //   case "Black Rock": { curr = new LatLng(16.269053, -86.603612);}
+        //   break;
+        //   case "Turtles Crossing": {curr = new LatLng(16.284706, -86.603121);}
+        //   break;
+        //   case "The Bight": {curr = new LatLng(16.297822, -86.600038);}
+        //   break;
+        //   case "Blue Channel": {curr = new LatLng(16.299490, -86.599759);}
+        //   break;
+        //   case "LightHouse Reef": {curr = new LatLng(16.305757, -86.597909);}
+        //   break;
+        //   case "DiveMasters Choice": {curr = new LatLng(16.311148, -86.595091);}
+        //   break;
+        //   case "Church Reef": {curr = new LatLng(16.287661, -86.573854);}
+        //   break;
+        //   default:{}
+        //   break;
+        // }
         mpcontroller.move(curr, 18);
       });
 
@@ -192,7 +207,7 @@ class _MapPageState extends State<MapPage> {
                 color: Colors.blue,
                 iconSize: 45.0,
                 onPressed: () => Routes.navigateTo(context, 'species_page'),
-              
+               
               ),
               Text(
                 "DiveMasters Choice",
