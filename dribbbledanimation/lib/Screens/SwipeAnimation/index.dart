@@ -210,5 +210,6 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
             : new Text("Thank You for the Log!",
                 style: new TextStyle(color: Color(0xff2298f2), fontSize: 40.0)),
       )));
+
   }
 }
