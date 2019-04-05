@@ -16,6 +16,18 @@ class Style {
     fontSize: 14.0,
     fontWeight: FontWeight.w400
   );
+
+  static final increaseTextStyle = baseTextStyle.copyWith(
+    color: Colors.green,
+    fontSize: 18.0,
+    fontWeight: FontWeight.w400
+  );
+
+  static final decreaseTextStyle = baseTextStyle.copyWith(
+    color: Colors.red,
+    fontSize: 18.0,
+    fontWeight: FontWeight.w400
+  );
   
   static final titleTextStyle = baseTextStyle.copyWith(
     color: vivaguaBlue,

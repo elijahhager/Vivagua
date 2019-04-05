@@ -57,8 +57,7 @@ class DetailPage extends StatelessWidget {
   }
 
   Container _getContent() {
-    final _overviewTitle = "Summary".toUpperCase();
-    final _statsTitle = "Statistics".toUpperCase();
+
 
     return new Container(
       child: new ListView(
@@ -76,7 +75,7 @@ class DetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 new Text(
-                  _overviewTitle,
+                  "SUMMARY",
                   style: Style.headerTextStyle,
                 ),
                 new Separator(),
@@ -92,11 +91,15 @@ class DetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 new Text(
-                  _statsTitle,
+                  "SIGHTINGS",
                   style: Style.headerTextStyle,
                 ),
                 new Separator(),
-                new Text(planet.description, style: Style.commonTextStyle),
+                new Row(children: <Widget>[
+                  new Text("23%", style: Style.increaseTextStyle),
+                  new Icon(Icons.arrow_drop_up, color: Colors.green),
+                ],)
+                
               ],
             ),
           ),
