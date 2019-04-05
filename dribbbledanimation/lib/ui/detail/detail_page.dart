@@ -105,7 +105,7 @@ class DetailPage extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
                           new BoxShadow(
-                            color: Colors.black45,
+                            color: Colors.black12,
                             offset: new Offset(0.0, 0.0),
                             spreadRadius: 1.0,
                             blurRadius: 10.0,
@@ -139,7 +139,7 @@ class DetailPage extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
                           new BoxShadow(
-                            color: Colors.black45,
+                            color: Colors.black12,
                             offset: new Offset(0.0, 0.0),
                             spreadRadius: 1.0,
                             blurRadius: 10.0,
@@ -177,7 +177,7 @@ class DetailPage extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
                           new BoxShadow(
-                            color: Colors.black45,
+                            color: Colors.black12,
                             offset: new Offset(0.0, 0.0),
                             spreadRadius: 1.0,
                             blurRadius: 10.0,
@@ -211,7 +211,7 @@ class DetailPage extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
                           new BoxShadow(
-                            color: Colors.black45,
+                            color: Colors.black12,
                             offset: new Offset(0.0, 0.0),
                             spreadRadius: 1.0,
                             blurRadius: 10.0,
