@@ -19,7 +19,7 @@ List<Planet> planets = [
     location: "Roatan, Honduras",
     distance: "Endangered",
     gravity: "Native",
-    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water. Unlike other turtles, sea turtles cannot retract their legs and head into their shells. Their color varies between yellow, greenish and black depending on the species.",
+    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water.",
     image: "assets/hawksbill_turtle_circle.png",
     picture: "https://www.nasa.gov/sites/default/files/thumbnails/image/pia21723-16.jpg"
   ),
@@ -29,7 +29,7 @@ List<Planet> planets = [
     location: "Roatan, Honduras",
     distance: "Endangered",
     gravity: "Native",
-    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water. Unlike other turtles, sea turtles cannot retract their legs and head into their shells. Their color varies between yellow, greenish and black depending on the species.",
+    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water.",
     image: "assets/lined_seahorse_circle.png",
     picture: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/images/110411main_Voyager2_280_yshires.jpg"
   ),
@@ -39,7 +39,7 @@ List<Planet> planets = [
     location: "Roatan, Honduras",
     distance: "Endangered",
     gravity: "Native",
-    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water. Unlike other turtles, sea turtles cannot retract their legs and head into their shells. Their color varies between yellow, greenish and black depending on the species.",
+    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water.",
     image: "assets/caribbean_reef_shark_circle.png",
     picture: "https://farm5.staticflickr.com/4086/5052125139_43c31b7012.jpg"
   ),
@@ -49,7 +49,7 @@ List<Planet> planets = [
     location: "Roatan, Honduras",
     distance: "Abundant",
     gravity: "Non-native",
-    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water. Unlike other turtles, sea turtles cannot retract their legs and head into their shells. Their color varies between yellow, greenish and black depending on the species.",
+    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water.",
     image: "assets/img/earth.png",
     picture: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/iss042e340851_1.jpg"
   ),
@@ -59,7 +59,7 @@ List<Planet> planets = [
     location: "Roatan, Honduras",
     distance: "Endangered",
     gravity: "Native",
-    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water. Unlike other turtles, sea turtles cannot retract their legs and head into their shells. Their color varies between yellow, greenish and black depending on the species.",
+    description: "Sea turtles are one of the Earth's most ancient creatures. The seven species that can be found today have been around for 110  million years, since the time of the dinosaurs. The sea turtle's shell, or carapace, is streamlined for swimming through the water.",
     image: "assets/parrot_fish_circle.png",
     picture: "https://c1.staticflickr.com/9/8105/8497927473_2845ae671e_b.jpg"
   ),

@@ -97,7 +97,7 @@ class DetailPage extends StatelessWidget {
                 new Separator(),
                 new Row(children: <Widget>[
                   new Text("23%", style: Style.increaseTextStyle),
-                  new Icon(Icons.arrow_drop_up, color: Colors.green),
+                  new Icon(Icons.arrow_drop_up, color: Colors.green, size: 40.0),
                 ],)
                 
               ],
