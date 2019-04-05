@@ -63,24 +63,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
           _buttonController.reset();
 
-          if (data.length == 0) {
-            
-            // send firebase request
-            // clear user input values
-            // reset the species card
-            
-            Navigator.of(context).pushReplacement(new PageRouteBuilder(
-              maintainState: true,
-              opaque: true,
-              pageBuilder: (context, _, __) => new SuccessScreen(),
-              transitionDuration: const Duration(milliseconds: 1000),
-              transitionsBuilder: (context, anim1, anim2, child) {
-                return new FadeTransition(
-                  child: child,
-                  opacity: anim1,
-                );
-              }));
-          }
+          if (data.length == 0) { Routes.navigateTo(context, 'landing', clear: true);}
         }
       });
     });
@@ -146,6 +129,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
       });
     match.yes();
     _swipeAnimation();
+    if (data.length == 0) { Routes.navigateTo(context, 'landing', clear: true);}
 
   }
 
@@ -156,6 +140,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
       });
     match.nope();
     _swipeAnimation();
+    if (data.length == 0) { Routes.navigateTo(context, 'landing', clear: true);}
   }
 
   @override
@@ -164,7 +149,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
     double initialBottom = 15.0;
     var dataLength = data.length;
-    if(dataLength <= 0){Routes.navigateTo(context, "landing", true)}
+    if (dataLength <= 0) {Routes.navigateTo(context, "landing", clear: true);}
     double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
     double backCardWidth = -10.0;
     return (new Scaffold(
