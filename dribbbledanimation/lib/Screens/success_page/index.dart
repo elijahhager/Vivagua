@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'styles.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:async';
 import '../../Components/WhiteTick.dart';
-import '../landing_page/index.dart';
-
-import 'package:flutter/services.dart';
+import 'package:dribbbledanimation/styles.dart';
 
 class SuccessScreen extends StatefulWidget {
   const SuccessScreen({Key key}) : super(key: key);

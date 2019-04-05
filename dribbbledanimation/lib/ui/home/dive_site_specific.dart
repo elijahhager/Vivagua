@@ -4,12 +4,12 @@ import 'package:dribbbledanimation/ui/common/spec_summary.dart';
 import 'package:dribbbledanimation/Components/WhiteTick.dart';
 import 'package:dribbbledanimation/styles.dart';
 
-class HomePageBody extends StatelessWidget {
+class DiveSiteSpecificBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-            title: Tick(image: home, width: 100.0, height: 30.0),
+            title: Tick(image: divesite, width: 100.0, height: 30.0),
             centerTitle: true,
             backgroundColor: Colors.white,
             iconTheme: IconThemeData(

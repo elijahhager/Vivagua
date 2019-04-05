@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'styles.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:async';
 import '../../Components/WhiteTick.dart';
@@ -8,6 +7,8 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import '../../Components/SiteCard.dart';
 import 'data.dart';
 import 'package:dribbbledanimation/Routes.dart';
+import 'package:dribbbledanimation/styles.dart';
+
 
 class ChooseDiveSiteScreen extends StatefulWidget {
   const ChooseDiveSiteScreen({Key key}) : super(key: key);

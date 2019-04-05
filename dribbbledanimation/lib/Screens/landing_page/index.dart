@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'styles.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:async';
 import '../../Components/LogDiveButton.dart';
 import '../../Components/WhiteTick.dart';
 import 'package:dribbbledanimation/Routes.dart';
 import '../choose_dive_site/index.dart';
-import '../Map_Page/index.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import '../../globals.dart' as globals;
-import 'package:dribbbledanimation/Routes.dart';
+import 'package:dribbbledanimation/styles.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key key}) : super(key: key);

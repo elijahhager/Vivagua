@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/globals.dart';
 import 'home_page_body.dart';
-import 'package:dribbbledanimation/Components/WhiteTick.dart';
-import 'package:dribbbledanimation/ui/home/styles.dart';
-import 'package:dribbbledanimation/Screens/choose_dive_site/index.dart';
 import 'package:dribbbledanimation/Screens/Map_Page/index.dart';
 
 class HomePage extends StatefulWidget {

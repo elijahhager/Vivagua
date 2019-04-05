@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'data.dart';
 import 'dummyCard.dart';
 import 'activeCard.dart';
 
@@ -12,7 +11,6 @@ import 'species.dart';
 import 'matchpage.dart';
 import 'styles.dart';
 import 'package:dribbbledanimation/Routes.dart';
-import '../success_page/index.dart';
 
 class CardDemo extends StatefulWidget {
   @override
@@ -28,11 +26,18 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   int flag = 0;
 
   SpeciesMatch match = new SpeciesMatch();
-  List data = imageData;
+  List data = [species7, species6, species5, species3, species4, species2, species1];
   List selectedData = [];
 
   void initState() {
+
+    
     super.initState();
+
+    if (data.length < 7) {
+      data = [species7, species6, species5, species3, species4, species2, species1];
+    }
+
     match = new SpeciesMatch();
 
     _buttonController = new AnimationController(
@@ -63,7 +68,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
           _buttonController.reset();
 
-          if (data.length == 0) { Routes.navigateTo(context, 'landing', clear: true);}
+          if (data.length == 0) { Routes.navigateTo(context, 'landing');}
         }
       });
     });
@@ -129,7 +134,6 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
       });
     match.yes();
     _swipeAnimation();
-    if (data.length == 0) { Routes.navigateTo(context, 'landing', clear: true);}
 
   }
 
@@ -140,17 +144,15 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
       });
     match.nope();
     _swipeAnimation();
-    if (data.length == 0) { Routes.navigateTo(context, 'landing', clear: true);}
   }
 
   @override
   Widget build(BuildContext context) {
+
     timeDilation = 0.4;
 
     double initialBottom = 15.0;
-    var dataLength = data.length;
-    if (dataLength <= 0) {Routes.navigateTo(context, "landing", clear: true);}
-    double backCardPosition = initialBottom + (dataLength - 1) * 10 + 10;
+    double backCardPosition = initialBottom + (data.length - 1) * 10 + 10;
     double backCardWidth = -10.0;
     return (new Scaffold(
         appBar: AppBar(
@@ -163,13 +165,20 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
               )),
         
       body: new Container(
-        color: new Color(0xffffffff),
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new AssetImage("assets/underwater.jpg"),
+            fit: BoxFit.cover,
+            colorFilter: new ColorFilter.mode(Colors.white.withOpacity(0.4), BlendMode.dstATop),
+
+          ),
+        ),
         alignment: Alignment.center,
-        child: dataLength > 0
+        child: data.length > 0
             ? new Stack(
                 alignment: AlignmentDirectional.center,
                 children: data.map((item) {
-                  if (data.indexOf(item) == dataLength - 1) {
+                  if (data.indexOf(item) == data.length - 1) {
                     return cardDemo(
                         item,
                         item.image,
