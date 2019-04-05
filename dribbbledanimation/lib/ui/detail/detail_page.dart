@@ -69,6 +69,14 @@ class DetailPage extends StatelessWidget {
           ),
           // summary block
           new Container(
+            decoration: new BoxDecoration(
+              gradient: new LinearGradient(
+                colors: <Color>[new Color(0xFFFFFFFF), new Color(0xFFFFFFFF)],
+                stops: [0.9, 0.1],
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(0.0, 1.0),
+              ),
+            ),
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,6 +92,9 @@ class DetailPage extends StatelessWidget {
           ),
           // statistics block
           new Container(
+            decoration: new BoxDecoration(
+              color: Colors.white,
+            ),
             margin: EdgeInsets.only(top: 25.0),
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
@@ -243,6 +254,9 @@ class DetailPage extends StatelessWidget {
           ),
           // trends block
           new Container(
+            decoration: new BoxDecoration(
+              color: Colors.white,
+            ),
             margin: EdgeInsets.only(top: 25.0),
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
