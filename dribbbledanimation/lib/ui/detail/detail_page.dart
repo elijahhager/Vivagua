@@ -84,7 +84,7 @@ class DetailPage extends StatelessWidget {
           ),
           // statistics block
           new Container(
-            margin: EdgeInsets.only(top: 20.0),
+            margin: EdgeInsets.only(top: 25.0),
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,7 +243,7 @@ class DetailPage extends StatelessWidget {
           ),
           // trends block
           new Container(
-            margin: EdgeInsets.only(top: 20.0),
+            margin: EdgeInsets.only(top: 25.0),
             padding: new EdgeInsets.symmetric(horizontal: 32.0),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,14 +253,10 @@ class DetailPage extends StatelessWidget {
                   style: Style.headerTextStyle,
                 ),
                 new Separator(),
-                new SimpleTimeSeriesChart.withSampleData(),
-                // new Row(
-                //   children: <Widget>[
-                //     new Text("23%", style: Style.increaseTextStyle),
-                //     new Icon(Icons.arrow_drop_up,
-                //         color: Colors.green, size: 40.0),
-                //   ],
-                // )
+                new Container(
+                  height: 200,
+                  child: new SimpleTimeSeriesChart.withSampleData(),
+                ),
               ],
             ),
           ),

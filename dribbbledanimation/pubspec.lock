@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
-  async:
-    dependency: transitive
-    description:
-      name: async
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.8"
   autocomplete_textfield:
     dependency: "direct main"
     description:
@@ -22,20 +15,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.4"
-  boolean_selector:
-    dependency: transitive
+  charts_common:
+    dependency: "direct main"
     description:
-      name: boolean_selector
+      name: charts_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
-  charcode:
-    dependency: transitive
+    version: "0.5.0"
+  charts_flutter:
+    dependency: "direct main"
     description:
-      name: charcode
+      name: charts_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.2"
+    version: "0.5.0"
   collection:
     dependency: transitive
     description:
@@ -76,11 +69,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.4"
-  flutter_test:
-    dependency: "direct dev"
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   intl:
     dependency: "direct main"
     description:
@@ -135,13 +123,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  source_span:
-    dependency: transitive
-    description:
-      name: source_span
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.1"
   stack_trace:
     dependency: transitive
     description:
@@ -149,34 +130,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.3"
-  stream_channel:
-    dependency: transitive
-    description:
-      name: stream_channel
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.6.8"
-  string_scanner:
-    dependency: transitive
-    description:
-      name: string_scanner
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4"
-  term_glyph:
-    dependency: transitive
-    description:
-      name: term_glyph
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
-  test_api:
-    dependency: transitive
-    description:
-      name: test_api
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.1"
   transparent_image:
     dependency: transitive
     description:
