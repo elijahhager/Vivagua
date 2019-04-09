@@ -4,9 +4,7 @@ import 'package:latlong/latlong.dart';
 import 'package:dribbbledanimation/Routes.dart';
 import 'package:dribbbledanimation/Components/WhiteTick.dart';
 import 'package:dribbbledanimation/Screens/Map_page/styles.dart';
-import 'DiveSite.dart';
-//import 'styles.dart';
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+
 
 class MapPage extends StatefulWidget {
   @override
@@ -19,17 +17,6 @@ class _MapPageState extends State<MapPage> {
   LatLng curr = new LatLng(16.269053, -86.603612);
   TextEditingController controller = new TextEditingController();
   String filter;
-
-  // AutoCompleteTextField searchTextField;
-  // GlobalKey<AutoCompleteTextFieldState<DiveSite>> key = new GlobalKey();
-  // static List<DiveSite> divesites = [new DiveSite('Black Rock', 16.269053, -86.603612),
-  //   new DiveSite('Turtles Crossing', 16.284706, -86.603121),
-  //   new DiveSite('The Bight', 16.297822, -86.600038),
-  //   new DiveSite('Blue Channel', 16.299490, -86.599759),
-  //   new DiveSite('LightHouse Reef', 16.305757, -86.597909),
-  //   new DiveSite('DiveMasters Choice', 16.311148, -86.595091),
-  //   new DiveSite('Church Reef', 16.287661, -86.573854),];
-  // bool loading = false;
 
   @override
   initState() {
@@ -212,18 +199,6 @@ class _MapPageState extends State<MapPage> {
             ]))));
   }
 
-  // Widget row(DiveSite divesite) {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //     children: <Widget>[
-  //       Text(
-  //         divesite.name,
-  //         style: TextStyle(fontSize: 16.0),
-  //       ),
-  //     ],
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -234,6 +209,25 @@ class _MapPageState extends State<MapPage> {
           iconTheme: IconThemeData(
             color: Colors.blue, //change your color here
           ),
+        ),
+        floatingActionButton: Container(
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          boxShadow: [BoxShadow(
+            color: Colors.black12,
+            blurRadius: 5.0,
+            spreadRadius: 1.0
+          )],
+        ),
+        width: 100.0,
+        height: 40.0,
+        child: new RawMaterialButton(
+          shape: new CircleBorder(),
+          elevation: 1.0,
+          child: Text("EXPORT", style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400)),
+          onPressed: () {},
+        ),
         ),
         body: new Stack(
           alignment: const Alignment(0, -1.0),
@@ -258,44 +252,6 @@ class _MapPageState extends State<MapPage> {
                   new MarkerLayerOptions(markers: items),
                 ])),
             new Container(
-              // child: loading
-              // ? CircularProgressIndicator()
-              // : searchTextField = AutoCompleteTextField<DiveSite>(
-              //     key: key,
-              //     clearOnSubmit: false,
-              //     suggestions: divesites,
-              //     style: TextStyle(color: Colors.black, fontSize: 16.0),
-              //     decoration: InputDecoration(
-              //       contentPadding: EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 20.0),
-              //       hintText: "Search...",
-              //       hintStyle: TextStyle(color: Colors.black),
-              //     ),
-              //     itemFilter: (item, query) {
-              //       return item.name
-              //           .toLowerCase()
-              //           .startsWith(query.toLowerCase());
-              //     },
-              //     itemSorter: (a, b) {
-              //       return a.name.compareTo(b.name);
-              //     },
-              //     itemSubmitted: (item) {
-              //       setState(() {
-              //         searchTextField.textField.controller.text = item.name;
-              //       });
-              //     },
-              //     itemBuilder: (context, item) {
-              //       // ui for the autocompelete row
-              //       return Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: <Widget>[
-              //           Text(
-              //           item.name,
-              //           style: TextStyle(fontSize: 16.0),
-              //           ),
-              //           ],
-              //         );
-              //     },
-              //   ),
               child: new TextField(
                 decoration: new InputDecoration(
                     hintText: "Search...",

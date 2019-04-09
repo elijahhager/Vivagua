@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'dart:async';
 import '../../Components/WhiteTick.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import '../../Components/SiteCard.dart';
 import 'data.dart';
-import 'package:dribbbledanimation/Routes.dart';
 import 'package:dribbbledanimation/styles.dart';
 
 

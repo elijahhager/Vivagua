@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dummyCard.dart';
 import 'activeCard.dart';
-
-//import 'package:animation_exp/PageReveal/page_main.dart';
 import '../../Components/WhiteTick.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
