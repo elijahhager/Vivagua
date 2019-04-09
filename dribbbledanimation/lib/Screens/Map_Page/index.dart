@@ -199,6 +199,30 @@ class _MapPageState extends State<MapPage> {
             ]))));
   }
 
+  void _showDialog(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Add Dive Site"),
+          content: new Text("Where do you want to add a divesite?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Submit"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -210,25 +234,14 @@ class _MapPageState extends State<MapPage> {
             color: Colors.blue, //change your color here
           ),
         ),
-        floatingActionButton: Container(
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          boxShadow: [BoxShadow(
-            color: Colors.black12,
-            blurRadius: 5.0,
-            spreadRadius: 1.0
-          )],
-        ),
-        width: 100.0,
-        height: 40.0,
-        child: new RawMaterialButton(
-          shape: new CircleBorder(),
-          elevation: 1.0,
-          child: Text("EXPORT", style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400)),
-          onPressed: () {},
-        ),
-        ),
+        floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff2298f2),
+        tooltip: "Add Divesite",
+        onPressed: () {
+          _showDialog(context);
+        },
+        child: Icon(Icons.add),
+      ),
         body: new Stack(
           alignment: const Alignment(0, -1.0),
           children: <Widget>[

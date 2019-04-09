@@ -10,6 +10,34 @@ class DetailPage extends StatelessWidget {
 
   DetailPage(this.spec);
 
+  void _showDialog(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Export Data"),
+          content: new Text("Do you want to export data and send it to your email?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Yes"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("No"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -29,7 +57,9 @@ class DetailPage extends StatelessWidget {
           shape: new CircleBorder(),
           elevation: 1.0,
           child: Text("EXPORT", style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400)),
-          onPressed: () {},
+          onPressed: () {
+            _showDialog(context);
+          },
         ),
       ),
       body: new Container(

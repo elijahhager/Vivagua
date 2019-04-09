@@ -53,14 +53,7 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
           color: Colors.blue, //change your color here
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xff2298f2),
-        tooltip: "Add Divesite",
-        onPressed: () {
-          print("test");
-        },
-        child: Icon(Icons.add),
-      ),
+  
       body: new Container(
         child: new Center(
           child: new Padding(
