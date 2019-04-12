@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import '../../Components/WhiteTick.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import '../../Components/SiteCard.dart';
 import 'data.dart';
 import 'package:dribbbledanimation/styles.dart';
-
 
 class ChooseDiveSiteScreen extends StatefulWidget {
   const ChooseDiveSiteScreen({Key key}) : super(key: key);
@@ -53,7 +53,6 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
           color: Colors.blue, //change your color here
         ),
       ),
-  
       body: new Container(
         child: new Center(
           child: new Padding(
@@ -71,25 +70,32 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
                   controller: controller,
                 ),
                 new Expanded(
-                  child: ListView.builder(
-                    padding: EdgeInsets.only(top: 20.0),
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: diveItems.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return filter == null || filter == ""
-                          ? new SiteCard(
-                              site_name: diveItems[index],
-                              site_location: " 64 Oak River")
-                          : diveItems[index]
-                                  .toLowerCase()
-                                  .contains(filter.toLowerCase())
-                              ? new SiteCard(
-                                  site_name: diveItems[index],
-                                  site_location: " 54 Oak Lane")
-                              : new Container();
-                    },
-                  ),
+                  child: StreamBuilder(
+                      stream: Firestore.instance
+                          .collection('divesites')
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) return const Text('Loading...');
+                        return ListView.builder(
+                          padding: EdgeInsets.only(top: 20.0),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: snapshot.data.documents.length,
+                          itemBuilder: (context, index) {
+                            return filter == null || filter == ""
+                                ? new SiteCard(
+                                    site: snapshot.data.documents[index],
+                                    )
+                                : snapshot.data.documents[index]
+                                        .toLowerCase()
+                                        .contains(filter.toLowerCase())
+                                    ? new SiteCard(
+                                        site: snapshot.data.documents[index],
+                                        )
+                                    : new Container();
+                          },
+                        );
+                      }),
                 ),
               ],
             ),
