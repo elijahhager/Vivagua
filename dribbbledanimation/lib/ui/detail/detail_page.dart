@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:dribbbledanimation/model/specs.dart';
 import 'package:dribbbledanimation/ui/common/spec_summary.dart';
@@ -6,7 +7,7 @@ import 'package:dribbbledanimation/styles.dart';
 import 'package:dribbbledanimation/Components/SimpleTimeSeriesChart.dart';
 
 class DetailPage extends StatelessWidget {
-  final Spec spec;
+  final DocumentSnapshot spec;
 
   DetailPage(this.spec);
 
@@ -135,7 +136,7 @@ class DetailPage extends StatelessWidget {
                   style: Style.headerTextStyle,
                 ),
                 new Separator(),
-                new Text(spec.description, style: Style.commonTextStyle),
+                new Text(spec['description'], style: Style.commonTextStyle),
               ],
             ),
           ),
