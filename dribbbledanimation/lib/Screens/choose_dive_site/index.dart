@@ -86,7 +86,7 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
                                 ? new SiteCard(
                                     site: snapshot.data.documents[index],
                                     )
-                                : snapshot.data.documents[index]
+                                : snapshot.data.documents[index]['name']
                                         .toLowerCase()
                                         .contains(filter.toLowerCase())
                                     ? new SiteCard(
