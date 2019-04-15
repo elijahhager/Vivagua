@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'data.dart';
 import 'package:flutter/material.dart';
 import 'styles.dart';
@@ -7,7 +9,7 @@ import 'counter.dart';
 import 'package:flutter/cupertino.dart';
 import '../../Components/LogDiveButton.dart';
 import '../../Screens/landing_page/index.dart';
- 
+import 'package:dribbbledanimation/globals.dart' as globals;
 
 //typedef void CounterChangeCallback(num value);
 
@@ -15,9 +17,16 @@ class MatchPage extends StatefulWidget {
   final DecorationImage type;
   final Species spe;
   //final CounterChangeCallback onChanged;
-  const MatchPage({Key key, this.type, this.spe,}) : super(key: key);
+  const MatchPage({
+    Key key,
+    this.type,
+    this.spe,
+  }) : super(key: key);
   @override
-  _MatchPageState createState() => new _MatchPageState(type: type, spe: spe,);
+  _MatchPageState createState() => new _MatchPageState(
+        type: type,
+        spe: spe,
+      );
 }
 
 enum AppBarBehavior { normal, pinned, floating, snapping }
@@ -28,16 +37,13 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
   Animation<double> heigth;
   DecorationImage type;
   Species spe;
-  // CounterChangeCallback onChanged = (value) {
-  //               setState(() {
-  //                 _defaultValue = value;
-  //                 _counter = value;
-  //               });
+
   _MatchPageState({this.type, this.spe});
   List data = permData;
   num _counter = 0;
   num _defaultValue = 0;
   double _appBarHeight = 350;
+  int submitValue = 0;
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
   void initState() {
@@ -177,48 +183,64 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
-                                             new Text("How many did you see?", style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.w400),),
-
+                                        new Text(
+                                          "How many did you see?",
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ],
                                     ),
                                   ),
                                   new Container(
-                                   // padding: new EdgeInsets.only(bottom: 20.0),
-                                    alignment: Alignment.center,
-                                    child: new Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[ 
-                                            new Container(
+                                      // padding: new EdgeInsets.only(bottom: 20.0),
+                                      alignment: Alignment.center,
+                                      child: new Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Container(
                                             alignment: Alignment.center,
                                             child: Counter(
-                                                      initialValue: _defaultValue,
-                                                      minValue: 0,
-                                                      maxValue: 10,
-                                                      step: 1,
-                                                      decimalPlaces: 0,
-                                                      onChanged: (value) {
-                                                        setState(() {
-                                                          _defaultValue = value;
-                                                          _counter = value;
-                                                        });
-                                                      },
-                                                  ),     
+                                              initialValue: _defaultValue,
+                                              minValue: 0,
+                                              maxValue: 10,
+                                              step: 1,
+                                              decimalPlaces: 0,
+                                              onChanged: (value) {
+                                                submitValue = value;
+                                                print(value);
+                                                setState(() {
+                                                  _defaultValue = value;
+                                                  _counter = value;
+                                                });
+                                              },
                                             ),
-                                      ],
-                                    )
-                                  ),
+                                          ),
+                                        ],
+                                      )),
                                   new Center(
                                     child: new KOutlineButton(
-                                      minWidth: 150.0,
-                                      radius: 50.0,
-                                      borderColor: Colors.blue,
-                                      text: 'Submit',
-                                      textColor: Colors.blue,
-                                      textFontWeight: FontWeight.bold,
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      }
-                                    ),
+                                        minWidth: 150.0,
+                                        radius: 50.0,
+                                        borderColor: Colors.blue,
+                                        text: 'Submit',
+                                        textColor: Colors.blue,
+                                        textFontWeight: FontWeight.bold,
+                                        onPressed: () {
+                                          Firestore.instance
+                                              .collection('sightings')
+                                              .document()
+                                              .setData({
+                                            'divesite':
+                                                globals.selectedDivesite,
+                                            'number': submitValue,
+                                            'species': this.spe.name,
+                                            'timestamp': Timestamp.now()
+                                          });
+                                          Navigator.of(context).pop();
+                                        }),
                                   )
                                 ],
                               ),
@@ -228,7 +250,6 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                       ),
                     ],
                   ),
-
                 ],
               ),
             ),
