@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'dummyCard.dart';
 import 'activeCard.dart';
 import '../../Components/WhiteTick.dart';
@@ -22,19 +24,35 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   Animation<double> bottom;
   Animation<double> width;
   int flag = 0;
+  bool completed = false;
 
   SpeciesMatch match = new SpeciesMatch();
-  List data = [species7, species6, species5, species3, species4, species2, species1];
+  List data = [];
+
   List selectedData = [];
 
-  void initState() {
+  static _buildSpecs(QuerySnapshot querySnapshot) {
+    List<Species> specs = [];
 
-    
-    super.initState();
+    for (var doc in querySnapshot.documents) {
+      Species newSpec = Species(
+          DecorationImage(
+            image: new ExactAssetImage(doc['card_image']),
+            fit: BoxFit.fill,
+          ),
+          doc['name'],
+          doc['description'],
+          doc['status'],
+          Color(0xff24ba1f));
 
-    if (data.length < 7) {
-      data = [species7, species6, species5, species3, species4, species2, species1];
+      specs.add(newSpec);
     }
+
+    return specs;
+  }
+
+  void initState() {
+    super.initState();
 
     match = new SpeciesMatch();
 
@@ -57,16 +75,18 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           var i = data.removeLast();
           //data.insert(0, i);
           //print();
-          if (match.decision == Decision.yes){
+          if (match.decision == Decision.yes) {
             selectedData.insert(0, i);
             Navigator.of(context).push(new PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => new MatchPage(type: i.image, spe: i),
-                    ));
+              pageBuilder: (_, __, ___) => new MatchPage(type: i.image, spe: i),
+            ));
           }
 
           _buttonController.reset();
 
-          if (data.length == 0) { Routes.navigateTo(context, 'landing');}
+          if (data.length == 0) {
+            Routes.navigateTo(context, 'landing');
+          }
         }
       });
     });
@@ -132,7 +152,6 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
       });
     match.yes();
     _swipeAnimation();
-
   }
 
   swipeLeft() {
@@ -146,63 +165,71 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
     timeDilation = 0.4;
 
     double initialBottom = 15.0;
     double backCardPosition = initialBottom + (data.length - 1) * 10 + 10;
     double backCardWidth = -10.0;
-    return (new Scaffold(
-        appBar: AppBar(
 
-              title: Tick(image: which, width: 250.0, height: 30.0),
-              centerTitle: true,
-              backgroundColor: Colors.white,
-              iconTheme: IconThemeData(
-                color: Colors.blue, //change your color here
-              )),
-        
+    print(data.length);
+
+    return (new Scaffold(
+      appBar: AppBar(
+          title: Tick(image: which, width: 250.0, height: 30.0),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(
+            color: Colors.blue, //change your color here
+          )),
       body: new Container(
         decoration: new BoxDecoration(
           image: new DecorationImage(
             image: new AssetImage("assets/underwater.jpg"),
             fit: BoxFit.cover,
-            colorFilter: new ColorFilter.mode(Colors.white.withOpacity(0.4), BlendMode.dstATop),
-
+            colorFilter: new ColorFilter.mode(
+                Colors.white.withOpacity(0.4), BlendMode.dstATop),
           ),
         ),
         alignment: Alignment.center,
-        child: data.length > 0
-            ? new Stack(
-                alignment: AlignmentDirectional.center,
-                children: data.map((item) {
-                  if (data.indexOf(item) == data.length - 1) {
-                    return cardDemo(
-                        item,
-                        item.image,
-                        bottom.value,
-                        right.value,
-                        0.0,
-                        backCardWidth + 10,
-                        rotate.value,
-                        rotate.value < -10 ? 0.1 : 0.0,
-                        context,
-                        dismissImg,
-                        flag,
-                        addImg,
-                        swipeRight,
-                        swipeLeft);
-                  } else {
-                    backCardPosition = backCardPosition - 10;
-                    backCardWidth = backCardWidth + 10;
+        child: StreamBuilder(
+            stream: Firestore.instance.collection("species").snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return Text("Loading...");
 
-                    return cardDemoDummy(item.image, backCardPosition, 0.0, 0.0,
-                        backCardWidth, 0.0, 0.0, context);
-                  }
-                }).toList())
-            : new Text("Thank You for the Log!",
-                style: new TextStyle(color: Color(0xff2298f2), fontSize: 40.0)),
-      )));
+              if (data.length == 0 && !completed) {
+                data = _buildSpecs(snapshot.data);        
+              }
 
+              completed = true;
+              return new Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: data.map((item) {
+                    if (data.indexOf(item) == data.length - 1) {
+                      return cardDemo(
+                          item,
+                          item.image,
+                          bottom.value,
+                          right.value,
+                          0.0,
+                          backCardWidth + 10,
+                          rotate.value,
+                          rotate.value < -10 ? 0.1 : 0.0,
+                          context,
+                          dismissImg,
+                          flag,
+                          addImg,
+                          swipeRight,
+                          swipeLeft);
+                    } else {
+                      backCardPosition = backCardPosition - 10;
+                      backCardWidth = backCardWidth + 10;
+
+                      return cardDemoDummy(item.image, backCardPosition, 0.0,
+                          0.0, backCardWidth, 0.0, 0.0, context);
+                    }
+                  }).toList());
+            }),
+      ),
+    ));
   }
 }

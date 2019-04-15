@@ -1,7 +1,7 @@
 library globals;
 import 'package:flutter/material.dart';
 
-String selected_dive_site = "Howdy";
+String selectedDivesite = "Howdy";
 Color vivaguaBlue = Color.fromRGBO(36, 155, 240, 1);
 
 Color lightPageBackground = Color.fromRGBO(90, 170, 255, 0.5);

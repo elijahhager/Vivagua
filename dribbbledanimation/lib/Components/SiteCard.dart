@@ -25,7 +25,7 @@ class SiteCard extends StatelessWidget {
           decoration: BoxDecoration(color: Color.fromRGBO(244, 244, 244, .3)),
           child: new InkWell(
             onTap: () {
-              globals.selected_dive_site = this.site['name'];
+              globals.selectedDivesite = this.site['name'];
               
               Navigator.push(
                     context,
