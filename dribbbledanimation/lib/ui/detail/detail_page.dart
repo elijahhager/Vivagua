@@ -81,7 +81,7 @@ class DetailPage extends StatelessWidget {
   Container _getBackground() {
     return new Container(
       child: new Image.asset(
-        'assets/hawksbill_turtle.jpg',
+        'assets/water_brim.jpg',
         fit: BoxFit.cover,
         height: 300.0,
       ),

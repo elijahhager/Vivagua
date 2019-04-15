@@ -16,16 +16,19 @@ import 'package:dribbbledanimation/globals.dart' as globals;
 class MatchPage extends StatefulWidget {
   final DecorationImage type;
   final Species spe;
+  final List<Species> data;
   //final CounterChangeCallback onChanged;
   const MatchPage({
     Key key,
     this.type,
     this.spe,
+    this.data
   }) : super(key: key);
   @override
   _MatchPageState createState() => new _MatchPageState(
         type: type,
         spe: spe,
+        data: data
       );
 }
 
@@ -37,9 +40,9 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
   Animation<double> heigth;
   DecorationImage type;
   Species spe;
+  List<Species> data;
 
-  _MatchPageState({this.type, this.spe});
-  List data = permData;
+  _MatchPageState({this.type, this.spe, this.data});
   num _counter = 0;
   num _defaultValue = 0;
   double _appBarHeight = 350;
@@ -155,7 +158,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                 width: width.value,
                                 height: _appBarHeight,
                                 decoration: new BoxDecoration(
-                                  image: data[img].image,
+                                  image: this.type,
                                 ),
                               ),
                             ],
@@ -233,8 +236,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                               .collection('sightings')
                                               .document()
                                               .setData({
-                                            'divesite':
-                                                globals.selectedDivesite,
+                                            'divesite': globals.selectedDivesite,
                                             'number': submitValue,
                                             'species': this.spe.name,
                                             'timestamp': Timestamp.now()

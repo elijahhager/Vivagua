@@ -19,7 +19,8 @@ Positioned cardDemo(
     int flag,
     Function addImg,
     Function swipeRight,
-    Function swipeLeft) {
+    Function swipeLeft,
+    List<Species> data) {
   Size screenSize = MediaQuery.of(context).size;
   // print("Card");
   return new Positioned(
@@ -62,7 +63,7 @@ Positioned cardDemo(
             child: new GestureDetector(
               onTap: () {
                 Navigator.of(context).push(new PageRouteBuilder(
-                      pageBuilder: (_, __, ___) => new DetailPage(type: img, spe: sp),
+                      pageBuilder: (_, __, ___) => new DetailPage(type: img, spe: sp, data: data),
                     ));
               },
               child: new Card(

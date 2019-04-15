@@ -27,7 +27,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   bool completed = false;
 
   SpeciesMatch match = new SpeciesMatch();
-  List data = [];
+  List<Species> data = [];
 
   List selectedData = [];
 
@@ -78,7 +78,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           if (match.decision == Decision.yes) {
             selectedData.insert(0, i);
             Navigator.of(context).push(new PageRouteBuilder(
-              pageBuilder: (_, __, ___) => new MatchPage(type: i.image, spe: i),
+              pageBuilder: (_, __, ___) => new MatchPage(type: i.image, spe: i, data: data),
             ));
           }
 
@@ -219,7 +219,8 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                           flag,
                           addImg,
                           swipeRight,
-                          swipeLeft);
+                          swipeLeft,
+                          data);
                     } else {
                       backCardPosition = backCardPosition - 10;
                       backCardWidth = backCardWidth + 10;
