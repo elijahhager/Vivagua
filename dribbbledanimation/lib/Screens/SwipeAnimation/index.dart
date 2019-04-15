@@ -84,8 +84,8 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
           _buttonController.reset();
 
-          if (data.length == 0) {
-            Routes.navigateTo(context, 'landing');
+          if (data.length == 0 && match.decision != Decision.yes) {
+            Routes.navigateTo(context, 'landing', clear: true);
           }
         }
       });

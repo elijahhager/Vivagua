@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import '../../Components/LogDiveButton.dart';
 import '../../Screens/landing_page/index.dart';
 import 'package:dribbbledanimation/globals.dart' as globals;
+import 'package:dribbbledanimation/Routes.dart';
 
 //typedef void CounterChangeCallback(num value);
 
@@ -136,7 +137,8 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                         forceElevated: true,
                         leading: new IconButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
+                            if (data.length == 0) Routes.navigateTo(context, 'landing', clear: true);
+                            else Navigator.of(context).pop();
                           },
                           icon: new Icon(
                             Icons.arrow_back,
@@ -241,7 +243,9 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                             'species': this.spe.name,
                                             'timestamp': Timestamp.now()
                                           });
-                                          Navigator.of(context).pop();
+                                          if (data.length == 0) Routes.navigateTo(context, 'landing', clear: true);
+                                          else Navigator.of(context).pop();
+                                         
                                         }),
                                   )
                                 ],
