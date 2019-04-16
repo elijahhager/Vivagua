@@ -18,7 +18,7 @@ class MatchPage extends StatefulWidget {
   final DecorationImage type;
   final Species spe;
   final List<Species> data;
-  final Map<String, String> userLog;
+  final Map userLog;
   //final CounterChangeCallback onChanged;
   const MatchPage({Key key, this.type, this.spe, this.data, this.userLog})
       : super(key: key);
@@ -36,7 +36,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
   DecorationImage type;
   Species spe;
   List<Species> data;
-  Map<String, String> userLog;
+  Map userLog;
 
   _MatchPageState({this.type, this.spe, this.data, this.userLog});
   num _counter = 0;
@@ -134,11 +134,11 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                           onPressed: () {
                             if (data.length == 0) {
                               // writing entire log to database
-                              userLog['timestamp'] = Timestamp.now().toString();
+                              userLog['timestamp'] = Timestamp.now();
                               Firestore.instance
                                   .collection('sightings')
                                   .document()
-                                  .setData(userLog);
+                                  .setData(Map<String, dynamic>.from(userLog));
                               Routes.navigateTo(context, 'landing',
                                   clear: true);
                             } else
@@ -239,16 +239,16 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                         textFontWeight: FontWeight.bold,
                                         onPressed: () {
                                           userLog[this.spe.name] =
-                                              submitValue.toString();
+                                              submitValue;
 
                                           if (data.length == 0) {
                                             // writing entire log to database
                                             userLog['timestamp'] =
-                                                Timestamp.now().toString();
+                                                Timestamp.now();
                                             Firestore.instance
                                                 .collection('sightings')
                                                 .document()
-                                                .setData(userLog);
+                                                .setData(Map<String, dynamic>.from(userLog));
 
                                             Routes.navigateTo(
                                                 context, 'landing',

@@ -27,7 +27,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   int flag = 0;
   bool completed = false;
 
-  var userLog = {"divesite": globals.selectedDivesite};
+  Map userLog = {"divesite": globals.selectedDivesite};
 
   SpeciesMatch match = new SpeciesMatch();
   List<Species> data = [];
@@ -90,11 +90,11 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
           if (data.length == 0 && match.decision != Decision.yes) {
             // writing entire log to database
-            userLog['timestamp'] = Timestamp.now().toString();
+            userLog['timestamp'] = Timestamp.now();
             Firestore.instance
                 .collection('sightings')
                 .document()
-                .setData(userLog);
+                .setData(Map<String, dynamic>.from(userLog));
             Routes.navigateTo(context, 'landing', clear: true);
           }
         }
@@ -210,7 +210,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                 data = _buildSpecs(snapshot.data);
 
                 // initialize all to 0
-                for (var d in data) userLog[d.name] = (0).toString();
+                for (var d in data) userLog[d.name] = 0;
               }
 
               completed = true;

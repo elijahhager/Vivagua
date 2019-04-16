@@ -81,6 +81,8 @@ class _MapPageState extends State<MapPage> {
               // This button results in adding the contact to the database
               new FlatButton(
                   onPressed: () {
+
+                    // cloud function being called here. Will this persist offline?
                     CloudFunctions.instance
                         .call(functionName: "addDivesite", parameters: {
                       "name": _nameTextController.text,
