@@ -5,6 +5,7 @@ import 'package:latlong/latlong.dart';
 import 'package:dribbbledanimation/Routes.dart';
 import 'package:dribbbledanimation/Components/WhiteTick.dart';
 import 'package:dribbbledanimation/Screens/Map_page/styles.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -17,55 +18,109 @@ class _MapPageState extends State<MapPage> {
   TextEditingController controller = new TextEditingController();
   String filter;
 
-  // new Marker(
-  //       width: 94.0,
-  //       height: 94.0,
-  //       point: new LatLng(16.269053, -86.603612),
-  //       builder: (context) => new Container(
-  //               child: Column(children: <Widget>[
-  //             IconButton(
-  //               icon: Icon(Icons.location_on),
-  //               color: Colors.red,
-  //               iconSize: 45.0,
-  //               onPressed: () => Routes.navigateTo(context, 'species_page'),
-  //             ),
-  //             Text(
-  //               "Black Rock",
-  //               textAlign: TextAlign.center,
-  //               style: new TextStyle(
-  //                 color: Colors.red,
-  //                 fontSize: 14,
-  //                 fontWeight: FontWeight.bold,
-  //               ),
-  //             ),
-  //           ]))));
+  void _showSuccessDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Success!"),
+          content: new Text("Divesite successfully added."),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<Null> _showDialog(BuildContext context) {
+    TextEditingController _nameTextController = new TextEditingController();
+    TextEditingController _latitudeTextController = new TextEditingController();
+    TextEditingController _longitudeTextController =
+        new TextEditingController();
+
+    return showDialog<Null>(
+        context: context,
+        builder: (BuildContext context) {
+          return new AlertDialog(
+            title: const Text("Add a divesite"),
+            content: Container(
+              height: 180.0,
+              width: 100.0,
+              child: ListView(
+                children: <Widget>[
+                  new TextField(
+                    controller: _nameTextController,
+                    decoration: const InputDecoration(labelText: "Name: "),
+                  ),
+                  new TextField(
+                    controller: _latitudeTextController,
+                    decoration: const InputDecoration(labelText: "Latitude: "),
+                  ),
+                  new TextField(
+                    controller: _longitudeTextController,
+                    decoration: const InputDecoration(labelText: "Longitude: "),
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Cancel")),
+              // This button results in adding the contact to the database
+              new FlatButton(
+                  onPressed: () {
+                    CloudFunctions.instance
+                        .call(functionName: "addDivesite", parameters: {
+                      "name": _nameTextController.text,
+                      "longitude": double.parse(_longitudeTextController.text),
+                      "latitude": double.parse(_latitudeTextController.text)
+                    });
+                    Navigator.of(context).pop();
+                    _showSuccessDialog();
+                  },
+                  child: const Text("Confirm"))
+            ],
+          );
+        });
+  }
 
   _buildMarkers(QuerySnapshot querySnapshot) {
     List<Marker> items = [];
-    for (var d in querySnapshot.documents){
+    for (var d in querySnapshot.documents) {
       items.add(new Marker(
-        width: 94.0,
-        height: 94.0,
-        point: new LatLng(d['location'].latitude, d['location'].longitude),
-        builder: (context) => new Container(
-                child: Column(children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.location_on),
-                color: Colors.blue,
-                iconSize: 45.0,
-                onPressed: () => Routes.navigateTo(context, 'species_page'),
-              ),
-              Text(
-                d['name'],
-                textAlign: TextAlign.center,
-                style: new TextStyle(
+          width: 94.0,
+          height: 94.0,
+          point: new LatLng(d['location'].latitude, d['location'].longitude),
+          builder: (context) => new Container(
+                  child: Column(children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.location_on),
                   color: Colors.blue,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  iconSize: 45.0,
+                  onPressed: () => Routes.navigateTo(context, 'species_page'),
                 ),
-              ),
-            ])))
-      );
+                Text(
+                  d['name'],
+                  textAlign: TextAlign.center,
+                  style: new TextStyle(
+                    color: Colors.blue,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ]))));
     }
     return items;
   }
@@ -94,29 +149,6 @@ class _MapPageState extends State<MapPage> {
         mpcontroller.move(curr, 18);
       });
     });
-  }
-
-  void _showDialog(BuildContext context) {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text("Add Dive Site"),
-          content: new Text("Where do you want to add a divesite?"),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("Submit"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -164,7 +196,8 @@ class _MapPageState extends State<MapPage> {
                                 'id': 'mapbox.streets',
                               },
                             ),
-                            new MarkerLayerOptions(markers: _buildMarkers(snapshot.data)),
+                            new MarkerLayerOptions(
+                                markers: _buildMarkers(snapshot.data)),
                           ]);
                     })
                 //
