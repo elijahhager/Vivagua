@@ -11,6 +11,7 @@ import 'species.dart';
 import 'matchpage.dart';
 import 'styles.dart';
 import 'package:dribbbledanimation/Routes.dart';
+import 'package:dribbbledanimation/globals.dart' as globals;
 
 class CardDemo extends StatefulWidget {
   @override
@@ -25,6 +26,8 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   Animation<double> width;
   int flag = 0;
   bool completed = false;
+
+  var userLog = {"divesite": globals.selectedDivesite};
 
   SpeciesMatch match = new SpeciesMatch();
   List<Species> data = [];
@@ -78,13 +81,20 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           if (match.decision == Decision.yes) {
             selectedData.insert(0, i);
             Navigator.of(context).push(new PageRouteBuilder(
-              pageBuilder: (_, __, ___) => new MatchPage(type: i.image, spe: i, data: data),
+              pageBuilder: (_, __, ___) => new MatchPage(
+                  type: i.image, spe: i, data: data, userLog: userLog),
             ));
           }
 
           _buttonController.reset();
 
           if (data.length == 0 && match.decision != Decision.yes) {
+            // writing entire log to database
+            userLog['timestamp'] = Timestamp.now().toString();
+            Firestore.instance
+                .collection('sightings')
+                .document()
+                .setData(userLog);
             Routes.navigateTo(context, 'landing', clear: true);
           }
         }
@@ -197,7 +207,10 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
               if (!snapshot.hasData) return Text("Loading...");
 
               if (data.length == 0 && !completed) {
-                data = _buildSpecs(snapshot.data);        
+                data = _buildSpecs(snapshot.data);
+
+                // initialize all to 0
+                for (var d in data) userLog[d.name] = (0).toString();
               }
 
               completed = true;

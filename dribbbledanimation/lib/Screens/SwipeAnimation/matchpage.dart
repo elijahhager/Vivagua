@@ -18,19 +18,13 @@ class MatchPage extends StatefulWidget {
   final DecorationImage type;
   final Species spe;
   final List<Species> data;
+  final Map<String, String> userLog;
   //final CounterChangeCallback onChanged;
-  const MatchPage({
-    Key key,
-    this.type,
-    this.spe,
-    this.data
-  }) : super(key: key);
+  const MatchPage({Key key, this.type, this.spe, this.data, this.userLog})
+      : super(key: key);
   @override
-  _MatchPageState createState() => new _MatchPageState(
-        type: type,
-        spe: spe,
-        data: data
-      );
+  _MatchPageState createState() =>
+      new _MatchPageState(type: type, spe: spe, data: data, userLog: userLog);
 }
 
 enum AppBarBehavior { normal, pinned, floating, snapping }
@@ -42,8 +36,9 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
   DecorationImage type;
   Species spe;
   List<Species> data;
+  Map<String, String> userLog;
 
-  _MatchPageState({this.type, this.spe, this.data});
+  _MatchPageState({this.type, this.spe, this.data, this.userLog});
   num _counter = 0;
   num _defaultValue = 0;
   double _appBarHeight = 350;
@@ -137,8 +132,17 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                         forceElevated: true,
                         leading: new IconButton(
                           onPressed: () {
-                            if (data.length == 0) Routes.navigateTo(context, 'landing', clear: true);
-                            else Navigator.of(context).pop();
+                            if (data.length == 0) {
+                              // writing entire log to database
+                              userLog['timestamp'] = Timestamp.now().toString();
+                              Firestore.instance
+                                  .collection('sightings')
+                                  .document()
+                                  .setData(userLog);
+                              Routes.navigateTo(context, 'landing',
+                                  clear: true);
+                            } else
+                              Navigator.of(context).pop();
                           },
                           icon: new Icon(
                             Icons.arrow_back,
@@ -234,18 +238,23 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                         textColor: Colors.blue,
                                         textFontWeight: FontWeight.bold,
                                         onPressed: () {
-                                          Firestore.instance
-                                              .collection('sightings')
-                                              .document()
-                                              .setData({
-                                            'divesite': globals.selectedDivesite,
-                                            'number': submitValue,
-                                            'species': this.spe.name,
-                                            'timestamp': Timestamp.now()
-                                          });
-                                          if (data.length == 0) Routes.navigateTo(context, 'landing', clear: true);
-                                          else Navigator.of(context).pop();
-                                         
+                                          userLog[this.spe.name] =
+                                              submitValue.toString();
+
+                                          if (data.length == 0) {
+                                            // writing entire log to database
+                                            userLog['timestamp'] =
+                                                Timestamp.now().toString();
+                                            Firestore.instance
+                                                .collection('sightings')
+                                                .document()
+                                                .setData(userLog);
+
+                                            Routes.navigateTo(
+                                                context, 'landing',
+                                                clear: true);
+                                          } else
+                                            Navigator.of(context).pop();
                                         }),
                                   )
                                 ],
