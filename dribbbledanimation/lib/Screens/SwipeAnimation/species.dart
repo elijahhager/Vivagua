@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Species {
+  
   DecorationImage image;
   String name;
   String about;

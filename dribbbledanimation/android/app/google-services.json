@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1094342445429",
+    "firebase_url": "https://vivagua-backend.firebaseio.com",
+    "project_id": "vivagua-backend",
+    "storage_bucket": "vivagua-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094342445429:android:83a90c333639d89f",
+        "android_client_info": {
+          "package_name": "com.example.dribbledanimation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1094342445429-3k9rr0at7kefn3q3dbvj0e6svgbhldni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdDIhy99cwh-oN7MIeq36jhgDSbQ45JLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094342445429-3k9rr0at7kefn3q3dbvj0e6svgbhldni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

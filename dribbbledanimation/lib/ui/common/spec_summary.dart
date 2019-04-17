@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:dribbbledanimation/model/specs.dart';
 import 'package:dribbbledanimation/ui/common/separator.dart';
@@ -7,7 +8,7 @@ import 'package:dribbbledanimation/globals.dart';
 
 class SpecSummary extends StatelessWidget {
 
-  final Spec spec;
+  final DocumentSnapshot spec;
   final bool horizontal;
 
   SpecSummary(this.spec, {this.horizontal = true});
@@ -34,10 +35,10 @@ class SpecSummary extends StatelessWidget {
         ),
         child: new Hero(
         
-          tag: "spec-hero-${spec.id}",
+          tag: "spec-hero-${spec['id']}",
           child: new Image(
             
-            image: new AssetImage(spec.image),      
+            image: new AssetImage(spec['image']),      
             height: 91.0,
             width: 91.0,
           ),
@@ -67,9 +68,9 @@ class SpecSummary extends StatelessWidget {
         crossAxisAlignment: horizontal ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: <Widget>[
           new Container(height: 4.0),
-          new Text(spec.name, style: Style.titleTextStyle),
+          new Text(spec['name'], style: Style.titleTextStyle),
           new Container(height: 10.0),
-          new Text(spec.location, style: Style.commonTextStyle),
+          new Text(spec['location'], style: Style.commonTextStyle),
           new Separator(),
           new Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -77,7 +78,7 @@ class SpecSummary extends StatelessWidget {
               new Expanded(
                 flex: horizontal ? 1 : 0,
                 child: _specValue(
-                  value: spec.status,
+                  value: spec['status'],
                   image: 'assets/img/ic_gravity.png')
 
               ),
@@ -87,7 +88,7 @@ class SpecSummary extends StatelessWidget {
               new Expanded(
                   flex: horizontal ? 1 : 0,
                   child: _specValue(
-                  value: spec.nativity,
+                  value: spec['nativity'],
                   image: 'assets/img/ic_distance.png')
               )
             ],

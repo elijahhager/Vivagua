@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:dribbbledanimation/Routes.dart';
 import 'package:dribbbledanimation/Components/WhiteTick.dart';
 import 'package:dribbbledanimation/Screens/Map_page/styles.dart';
-
+import 'package:cloud_functions/cloud_functions.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -12,11 +13,119 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  List<Marker> items = [];
   MapController mpcontroller = new MapController();
   LatLng curr = new LatLng(16.269053, -86.603612);
   TextEditingController controller = new TextEditingController();
   String filter;
+
+  void _showSuccessDialog() {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Success!"),
+          content: new Text("Divesite successfully added."),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<Null> _showDialog(BuildContext context) {
+    TextEditingController _nameTextController = new TextEditingController();
+    TextEditingController _latitudeTextController = new TextEditingController();
+    TextEditingController _longitudeTextController =
+        new TextEditingController();
+
+    return showDialog<Null>(
+        context: context,
+        builder: (BuildContext context) {
+          return new AlertDialog(
+            title: const Text("Add a divesite"),
+            content: Container(
+              height: 180.0,
+              width: 100.0,
+              child: ListView(
+                children: <Widget>[
+                  new TextField(
+                    controller: _nameTextController,
+                    decoration: const InputDecoration(labelText: "Name: "),
+                  ),
+                  new TextField(
+                    controller: _latitudeTextController,
+                    decoration: const InputDecoration(labelText: "Latitude: "),
+                  ),
+                  new TextField(
+                    controller: _longitudeTextController,
+                    decoration: const InputDecoration(labelText: "Longitude: "),
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("Cancel")),
+              // This button results in adding the contact to the database
+              new FlatButton(
+                  onPressed: () {
+
+                    // cloud function being called here. Will this persist offline?
+                    CloudFunctions.instance
+                        .call(functionName: "addDivesite", parameters: {
+                      "name": _nameTextController.text,
+                      "longitude": double.parse(_longitudeTextController.text),
+                      "latitude": double.parse(_latitudeTextController.text)
+                    });
+                    Navigator.of(context).pop();
+                    _showSuccessDialog();
+                  },
+                  child: const Text("Confirm"))
+            ],
+          );
+        });
+  }
+
+  _buildMarkers(QuerySnapshot querySnapshot) {
+    List<Marker> items = [];
+    for (var d in querySnapshot.documents) {
+      items.add(new Marker(
+          width: 94.0,
+          height: 94.0,
+          point: new LatLng(d['location'].latitude, d['location'].longitude),
+          builder: (context) => new Container(
+                  child: Column(children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.location_on),
+                  color: Colors.blue,
+                  iconSize: 45.0,
+                  onPressed: () => Routes.navigateTo(context, 'species_page'),
+                ),
+                Text(
+                  d['name'],
+                  textAlign: TextAlign.center,
+                  style: new TextStyle(
+                    color: Colors.blue,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ]))));
+    }
+    return items;
+  }
 
   @override
   initState() {
@@ -42,185 +151,6 @@ class _MapPageState extends State<MapPage> {
         mpcontroller.move(curr, 18);
       });
     });
-
-    items.add(new Marker(
-        width: 94.0,
-        height: 94.0,
-        point: new LatLng(16.269053, -86.603612),
-        builder: (context) => new Container(
-                child: Column(children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.location_on),
-                color: Colors.red,
-                iconSize: 45.0,
-                onPressed: () => Routes.navigateTo(context, 'species_page'),
-              ),
-              Text(
-                "Black Rock",
-                textAlign: TextAlign.center,
-                style: new TextStyle(
-                  color: Colors.red,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]))));
-    items.add(new Marker(
-        width: 94.0,
-        height: 94.0,
-        point: new LatLng(16.284706, -86.603121),
-        builder: (context) => new Container(
-                child: Column(children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.location_on),
-                color: Colors.red,
-                iconSize: 45.0,
-                onPressed: () => Routes.navigateTo(context, 'species_page'),
-              ),
-              Text(
-                "Turtles Crossing",
-                textAlign: TextAlign.center,
-                style: new TextStyle(
-                  color: Colors.red,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]))));
-    items.add(new Marker(
-        width: 94.0,
-        height: 94.0,
-        point: new LatLng(16.297822, -86.600038),
-        builder: (context) => new Container(
-                child: Column(children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.location_on),
-                color: Colors.red,
-                iconSize: 45.0,
-                onPressed: () => Routes.navigateTo(context, 'species_page'),
-              ),
-              Text(
-                "The Bight",
-                textAlign: TextAlign.center,
-                style: new TextStyle(
-                  color: Colors.red,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]))));
-    items.add(new Marker(
-        width: 94.0,
-        height: 94.0,
-        point: new LatLng(16.299490, -86.599759),
-        builder: (context) => new Container(
-                child: Column(children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.location_on),
-                color: Colors.red,
-                iconSize: 45.0,
-                onPressed: () => Routes.navigateTo(context, 'species_page'),
-              ),
-              Text(
-                "Blue Channel",
-                textAlign: TextAlign.center,
-                style: new TextStyle(
-                  color: Colors.red,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]))));
-    items.add(new Marker(
-        width: 94.0,
-        height: 94.0,
-        point: new LatLng(16.305757, -86.597909),
-        builder: (context) => new Container(
-                child: Column(children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.location_on),
-                color: Colors.red,
-                iconSize: 45.0,
-                onPressed: () => Routes.navigateTo(context, 'species_page'),
-              ),
-              Text(
-                "LightHouse Reef",
-                textAlign: TextAlign.center,
-                style: new TextStyle(
-                  color: Colors.red,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]))));
-    items.add(new Marker(
-        width: 94.0,
-        height: 94.0,
-        point: new LatLng(16.311148, -86.595091),
-        builder: (context) => new Container(
-                child: Column(children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.location_on),
-                color: Colors.red,
-                iconSize: 45.0,
-                onPressed: () => Routes.navigateTo(context, 'species_page'),
-              ),
-              Text(
-                "DiveMasters Choice",
-                textAlign: TextAlign.center,
-                style: new TextStyle(
-                  color: Colors.red,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]))));
-    items.add(new Marker(
-        width: 94.0,
-        height: 94.0,
-        point: new LatLng(16.287661, -86.573854),
-        builder: (context) => new Container(
-                child: Column(children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.location_on),
-                color: Colors.red,
-                iconSize: 45.0,
-                onPressed: () => Routes.navigateTo(context, 'species_page'),
-              ),
-              Text(
-                "Churchs Reef",
-                textAlign: TextAlign.center,
-                style: new TextStyle(
-                  color: Colors.red,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ]))));
-  }
-
-  void _showDialog(BuildContext context) {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text("Add Dive Site"),
-          content: new Text("Where do you want to add a divesite?"),
-          actions: <Widget>[
-            // usually buttons at the bottom of the dialog
-            new FlatButton(
-              child: new Text("Submit"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -235,35 +165,45 @@ class _MapPageState extends State<MapPage> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xff2298f2),
-        tooltip: "Add Divesite",
-        onPressed: () {
-          _showDialog(context);
-        },
-        child: Icon(Icons.add),
-      ),
+          backgroundColor: Color(0xff2298f2),
+          tooltip: "Add Divesite",
+          onPressed: () {
+            _showDialog(context);
+          },
+          child: Icon(Icons.add),
+        ),
         body: new Stack(
           alignment: const Alignment(0, -1.0),
           children: <Widget>[
             new Container(
-                child: new FlutterMap(
-                    mapController: mpcontroller,
-                    options: new MapOptions(
-                        center: new LatLng(16.269053, -86.603612),
-                        minZoom: 10.0),
-                    layers: [
-                  new TileLayerOptions(
-                    //urlTemplate: "https://api.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}",
-                    urlTemplate:
-                        "https://api.mapbox.com/styles/v1/vivagua/cju23i32k1vcl1fo1y50uw0u5/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoidml2YWd1YSIsImEiOiJjanUxcTE3bGswNGF2M3lwYWwydzh1OTF5In0.cVUTQYcE8GdhF8baIIhP_w",
-                    additionalOptions: {
-                      'accessToken':
-                          'pk.eyJ1Ijoidml2YWd1YSIsImEiOiJjanUxcTE3bGswNGF2M3lwYWwydzh1OTF5In0.cVUTQYcE8GdhF8baIIhP_w',
-                      'id': 'mapbox.streets',
-                    },
-                  ),
-                  new MarkerLayerOptions(markers: items),
-                ])),
+                child: StreamBuilder(
+                    stream:
+                        Firestore.instance.collection('divesites').snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) return Text("Loading...");
+                      //_buildMarkers(snapshot.data);
+                      return new FlutterMap(
+                          mapController: mpcontroller,
+                          options: new MapOptions(
+                              center: new LatLng(16.269053, -86.603612),
+                              minZoom: 10.0),
+                          layers: [
+                            new TileLayerOptions(
+                              //urlTemplate: "https://api.mapbox.com/v4/{id}/{z}/{x}/{y}@2x.png?access_token={accessToken}",
+                              urlTemplate:
+                                  "https://api.mapbox.com/styles/v1/vivagua/cju23i32k1vcl1fo1y50uw0u5/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoidml2YWd1YSIsImEiOiJjanUxcTE3bGswNGF2M3lwYWwydzh1OTF5In0.cVUTQYcE8GdhF8baIIhP_w",
+                              additionalOptions: {
+                                'accessToken':
+                                    'pk.eyJ1Ijoidml2YWd1YSIsImEiOiJjanUxcTE3bGswNGF2M3lwYWwydzh1OTF5In0.cVUTQYcE8GdhF8baIIhP_w',
+                                'id': 'mapbox.streets',
+                              },
+                            ),
+                            new MarkerLayerOptions(
+                                markers: _buildMarkers(snapshot.data)),
+                          ]);
+                    })
+                //
+                ),
             new Container(
               child: new TextField(
                 decoration: new InputDecoration(

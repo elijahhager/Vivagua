@@ -7,9 +7,10 @@ import 'species.dart';
 class DetailPage extends StatefulWidget {
   final DecorationImage type;
   final Species spe;
-  const DetailPage({Key key, this.type, this.spe}) : super(key: key);
+  final List<Species> data;
+  const DetailPage({Key key, this.type, this.spe, this.data}) : super(key: key);
   @override
-  _DetailPageState createState() => new _DetailPageState(type: type, spe: spe);
+  _DetailPageState createState() => new _DetailPageState(type: type, spe: spe, data: data);
 }
 
 enum AppBarBehavior { normal, pinned, floating, snapping }
@@ -20,8 +21,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   Animation<double> heigth;
   DecorationImage type;
   Species spe;
-  _DetailPageState({this.type, this.spe});
-  List data = imageData;
+  List<Species> data;
+  _DetailPageState({this.type, this.spe, this.data});
   double _appBarHeight = 350;
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 

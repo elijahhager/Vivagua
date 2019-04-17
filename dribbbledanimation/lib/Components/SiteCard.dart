@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../Screens/landing_page/index.dart';
@@ -6,13 +7,12 @@ import '../Screens/SwipeAnimation/index.dart';
 
 class SiteCard extends StatelessWidget {
   
-  final String site_name;
-  final String site_location;
+  final DocumentSnapshot site;
+
 
   SiteCard(
       {
-      @required this.site_name,
-      @required this.site_location,
+      @required this.site,
       });
 
   @override
@@ -25,7 +25,7 @@ class SiteCard extends StatelessWidget {
           decoration: BoxDecoration(color: Color.fromRGBO(244, 244, 244, .3)),
           child: new InkWell(
             onTap: () {
-              globals.selected_dive_site = this.site_name;
+              globals.selectedDivesite = this.site['name'];
               
               Navigator.push(
                     context,
@@ -42,13 +42,13 @@ class SiteCard extends StatelessWidget {
                 child: Icon(Icons.location_on, color: Colors.blue),
               ),
               title: Text(
-                site_name,
+                site['name'],
                 style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
               subtitle: Row(
                 children: <Widget>[
                   Icon(Icons.linear_scale, color: Colors.blue),
-                  Text(site_location, style: TextStyle(color: Colors.black))
+                  Text("", style: TextStyle(color: Colors.black))
                 ],
               ),
               trailing: Icon(Icons.keyboard_arrow_right, color: Colors.black, size: 30.0)
