@@ -48,7 +48,7 @@ class SiteCard extends StatelessWidget {
               subtitle: Row(
                 children: <Widget>[
                   Icon(Icons.linear_scale, color: Colors.blue),
-                  Text("", style: TextStyle(color: Colors.black))
+                  Text(site['distance'], style: TextStyle(color: Colors.black))
                 ],
               ),
               trailing: Icon(Icons.keyboard_arrow_right, color: Colors.black, size: 30.0)

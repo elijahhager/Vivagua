@@ -25,6 +25,14 @@ class LandingScreenState extends State<LandingScreen> {
     timeDilation = 0.4;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return new Scaffold(
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Color(0xff2298f2),
+          tooltip: "ADMIN",
+          onPressed: () {
+            Routes.navigateTo(context, 'admin_home');
+          },
+          child: Icon(Icons.book),
+        ),
       body: new Container(
         child: new Center(
           child: new Column(
@@ -34,7 +42,7 @@ class LandingScreenState extends State<LandingScreen> {
               new Tick(image: logo, width: 250.0, height: 250.0),
               new KOutlineButton(
                 minWidth: 150.0,
-                radius: 30.0,
+                radius: 0.0,
                 borderColor: Colors.blue,
                 text: 'Log a Dive',
                 textColor: Colors.blue,
@@ -50,17 +58,7 @@ class LandingScreenState extends State<LandingScreen> {
               new Container(
                 height: 10.0,
               ),
-              new KOutlineButton(
-                minWidth: 100.0,
-                radius: 30.0,
-                borderColor: Colors.blue,
-                text: 'Admin',
-                textColor: Colors.blue,
-                textFontWeight: FontWeight.bold,
-                onPressed: () {
-                  Routes.navigateTo(context, 'admin_home');
-                },
-              ),
+              
             ],
           ),
         ),

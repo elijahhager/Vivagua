@@ -111,7 +111,7 @@ class _MapPageState extends State<MapPage> {
                   icon: Icon(Icons.location_on),
                   color: Colors.blue,
                   iconSize: 45.0,
-                  onPressed: () => Routes.navigateTo(context, 'species_page'),
+                  onPressed: () => Routes.navigateTo(context, 'dive_site_specific'),
                 ),
                 Text(
                   d['name'],

@@ -6,7 +6,6 @@ dependencies:
     sdk: flutter
   flutter_map:
   fluro:
-  autocomplete_textfield:
   charts_flutter:
   charts_common:
   firebase_core:

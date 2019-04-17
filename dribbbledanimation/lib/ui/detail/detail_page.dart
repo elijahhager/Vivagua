@@ -18,18 +18,29 @@ class DetailPage extends StatelessWidget {
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
-          title: new Text("Export Data"),
-          content: new Text("Do you want to export data and send it to your email?"),
+          title: new Text("Export Data to Email"),
+          content: Container(
+            height: 100.0,
+            width: 60.0,
+            child: ListView(
+              children: <Widget>[
+                new Text("Enter your email to receive a PDF version of these statistics."),
+                new TextField(
+                  decoration: const InputDecoration(labelText: "Email: "),
+                ),
+              ],
+            ),
+          ),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
-              child: new Text("Yes"),
+              child: new Text("Cancel"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             new FlatButton(
-              child: new Text("No"),
+              child: new Text("Send"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -39,6 +50,7 @@ class DetailPage extends StatelessWidget {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -46,18 +58,20 @@ class DetailPage extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.all(Radius.circular(10)),
-          boxShadow: [BoxShadow(
-            color: Colors.black12,
-            blurRadius: 5.0,
-            spreadRadius: 1.0
-          )],
+          boxShadow: [
+            BoxShadow(color: Colors.black12, blurRadius: 5.0, spreadRadius: 1.0)
+          ],
         ),
         width: 100.0,
         height: 40.0,
         child: new RawMaterialButton(
           shape: new CircleBorder(),
           elevation: 1.0,
-          child: Text("EXPORT", style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w400)),
+          child: Text("EXPORT",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w400)),
           onPressed: () {
             _showDialog(context);
           },
@@ -136,7 +150,8 @@ class DetailPage extends StatelessWidget {
                   style: Style.headerTextStyle,
                 ),
                 new Separator(),
-                new Text(spec['description'], style: Style.commonTextStyle),
+                new Text(spec['description'],
+                    style: Style.commonTextStyle, textAlign: TextAlign.justify),
               ],
             ),
           ),
@@ -219,12 +234,12 @@ class DetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Text("23%", style: Style.increaseTextStyle),
-                              Icon(Icons.arrow_drop_up,
-                                  color: Colors.green, size: 40.0),
+                              Text("90%", style: Style.increaseTextStyle),
+                              Icon(Icons.bookmark,
+                                  color: Colors.green, size: 30.0),
                             ],
                           ),
-                          Text("increase since last week",
+                          Text("of divers saw a " + this.spec['name'],
                               style: Style.commonTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -260,12 +275,10 @@ class DetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Text("23%", style: Style.increaseTextStyle),
-                              Icon(Icons.arrow_drop_up,
-                                  color: Colors.green, size: 40.0),
+                              Text("12", style: Style.increaseTextStyle),
                             ],
                           ),
-                          Text("increase since last week",
+                          Text(this.spec['name'] + "s seen this week",
                               style: Style.commonTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -297,12 +310,12 @@ class DetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Text("23%", style: Style.increaseTextStyle),
+                              Text("54%", style: Style.increaseTextStyle),
                               Icon(Icons.arrow_drop_up,
                                   color: Colors.green, size: 40.0),
                             ],
                           ),
-                          Text("increase since last week",
+                          Text("increase in number of divers",
                               style: Style.commonTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -318,7 +331,8 @@ class DetailPage extends StatelessWidget {
             decoration: new BoxDecoration(
               color: Colors.white,
             ),
-            padding: new EdgeInsets.all(25),
+            padding:
+                new EdgeInsets.only(top: 25, left: 25, right: 25, bottom: 60),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
