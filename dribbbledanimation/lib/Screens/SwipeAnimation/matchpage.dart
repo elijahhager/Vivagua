@@ -11,6 +11,8 @@ import '../../Components/LogDiveButton.dart';
 import '../../Screens/landing_page/index.dart';
 import 'package:dribbbledanimation/globals.dart' as globals;
 import 'package:dribbbledanimation/Routes.dart';
+import 'package:dribbbledanimation/Components/UnrealButton.dart';
+
 
 //typedef void CounterChangeCallback(num value);
 
@@ -230,33 +232,36 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                         ],
                                       )),
                                   new Center(
-                                    child: new KOutlineButton(
-                                        minWidth: 150.0,
-                                        radius: 50.0,
-                                        borderColor: Colors.blue,
-                                        text: 'Submit',
-                                        textColor: Colors.blue,
-                                        textFontWeight: FontWeight.bold,
-                                        onPressed: () {
-                                          userLog[this.spe.name] =
-                                              submitValue;
+                                      child: new UnrealButton(
+                                          height: 72.0,
+                                          width: 120.0,
+                                          highlightColor: Colors.green[50],
+                                          shadowColor: Colors.green[200],
+                                          backgroundColor: Colors.white,
+                                          content: new Icon(Icons.done,
+                                              color: Colors.green, size: 40),
+                                          borderRadius: 20.0,
+                                          onPressed: () {
+                                            userLog[this.spe.name] =
+                                                submitValue;
 
-                                          if (data.length == 0) {
-                                            // writing entire log to database
-                                            userLog['timestamp'] =
-                                                Timestamp.now();
-                                            Firestore.instance
-                                                .collection('sightings')
-                                                .document()
-                                                .setData(Map<String, dynamic>.from(userLog));
+                                            if (data.length == 0) {
+                                              // writing entire log to database
+                                              userLog['timestamp'] =
+                                                  Timestamp.now();
+                                              Firestore.instance
+                                                  .collection('sightings')
+                                                  .document()
+                                                  .setData(
+                                                      Map<String, dynamic>.from(
+                                                          userLog));
 
-                                            Routes.navigateTo(
-                                                context, 'landing',
-                                                clear: true);
-                                          } else
-                                            Navigator.of(context).pop();
-                                        }),
-                                  )
+                                              Routes.navigateTo(
+                                                  context, 'landing',
+                                                  clear: true);
+                                            } else
+                                              Navigator.of(context).pop();
+                                          }))
                                 ],
                               ),
                             ),

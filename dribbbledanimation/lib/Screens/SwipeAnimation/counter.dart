@@ -8,7 +8,6 @@ import '../../Components/LogDiveButton.dart';
 typedef void CounterChangeCallback(num value);
 
 class Counter extends StatelessWidget {
-
   final CounterChangeCallback onChanged;
 
   Counter({
@@ -58,9 +57,10 @@ class Counter extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     color = color ?? themeData.accentColor;
-    textStyle = textStyle ?? new TextStyle(
-      fontSize: 65.0,
-    );
+    textStyle = textStyle ??
+        new TextStyle(
+          fontSize: 65.0,
+        );
 
     return new Container(
       padding: new EdgeInsets.all(4.0),
@@ -68,39 +68,74 @@ class Counter extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          new KOutlineButton(
-            radius: 200.0,
-            minWidth: 100.0,
-            borderColor: Colors.blue,
-            text: '-',
-            textColor: Colors.blue,
-            textFontWeight: FontWeight.bold,
-            onPressed: () {
-              if (selectedValue - step >= minValue) {
-                onChanged((selectedValue - step));
-              }
-            }
-          ),
+          new Container(
+              height: 62.0,
+              width: 100.0,
+              alignment: Alignment.center,
+              decoration: new BoxDecoration(
+                color: Colors.white, //Color.fromRGBO(10, 235, 10, 0.85),
+                borderRadius: new BorderRadius.circular(20.0),
+                boxShadow: [
+                  new BoxShadow(
+                    color: Colors.red[200],
+                    blurRadius: 2,
+                    offset: new Offset(0, 1.0),
+                  )
+                ],
+              ),
+              child: SizedBox.expand(
+                child: new FlatButton(
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(20.0)),
+                  highlightColor: Colors.red[50],
+                  padding: new EdgeInsets.all(0.0),
+                  onPressed: () {
+                    if (selectedValue - step >= minValue) {
+                      onChanged(selectedValue - step);
+                    }
+                  },
+                  child: new Icon(Icons.exposure_neg_1, color: Colors.red, size: 35),
+                ),
+              )),
           new Container(
             padding: EdgeInsets.all(36.0),
             child: new Text(
-                '${num.parse((selectedValue).toStringAsFixed(decimalPlaces))}',
-                style: TextStyle(fontSize: 36, color: Color(0xff2298f2), fontWeight: FontWeight.w300),
+              '${num.parse((selectedValue).toStringAsFixed(decimalPlaces))}',
+              style: TextStyle(
+                  fontSize: 36,
+                  color: Color(0xff2298f2),
+                  fontWeight: FontWeight.w300),
             ),
           ),
-          new KOutlineButton(
-            radius: 200.0,
-            minWidth: 100.0,
-            borderColor: Colors.blue,
-            text: '+',
-            textColor: Colors.blue,
-            textFontWeight: FontWeight.normal,
-            onPressed: () {
-              if (selectedValue + step <= maxValue) {
-                onChanged((selectedValue + step));
-              }
-            }
-          ),
+          new Container(
+              height: 62.0,
+              width: 100.0,
+              alignment: Alignment.center,
+              decoration: new BoxDecoration(
+                color: Colors.white, //Color.fromRGBO(10, 235, 10, 0.85),
+                borderRadius: new BorderRadius.circular(20.0),
+                boxShadow: [
+                  new BoxShadow(
+                    color: Colors.green[200],
+                    blurRadius: 2,
+                    offset: new Offset(0, 1.0),
+                  )
+                ],
+              ),
+              child: SizedBox.expand(
+                child: new FlatButton(
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(20.0)),
+                  highlightColor: Colors.green[50],
+                  padding: new EdgeInsets.all(0.0),
+                  onPressed: () {
+                    if (selectedValue + step <= maxValue) {
+                      onChanged((selectedValue + step));
+                    }
+                  },
+                  child: new Icon(Icons.exposure_plus_1, color: Colors.green, size: 35),
+                ),
+              )),
         ],
       ),
     );

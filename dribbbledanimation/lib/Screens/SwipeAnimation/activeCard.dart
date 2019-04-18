@@ -4,6 +4,7 @@ import 'detail.dart';
 import 'package:flutter/material.dart';
 import 'species.dart';
 import 'matchpage.dart';
+import 'package:dribbbledanimation/Components/UnrealButton.dart';
 
 Positioned cardDemo(
     Species sp,
@@ -22,24 +23,15 @@ Positioned cardDemo(
     Function swipeLeft,
     List<Species> data) {
   Size screenSize = MediaQuery.of(context).size;
-  // print("Card");
+
   return new Positioned(
-    bottom: 120.0,// + bottom,
+    bottom: 120.0,
     right: flag == 0 ? right != 0.0 ? right : null : null,
     left: flag == 1 ? right != 0.0 ? right : null : null,
     child: new Dismissible(
       key: new Key(new Random().toString()),
       crossAxisEndOffset: -0.3,
-      onResize: () {
-        //print("here");
-        // setState(() {
-        //   var i = data.removeLast();
-
-        //   data.insert(0, i);
-        // });
-      },
       onDismissed: (DismissDirection direction) {
-//          _swipeAnimation();
         if (direction == DismissDirection.endToStart) {
           dismissImg(sp);
         } else {
@@ -51,9 +43,7 @@ Positioned cardDemo(
       },
       child: new Transform(
         alignment: flag == 0 ? Alignment.bottomRight : Alignment.bottomLeft,
-        //transform: null,
         transform: new Matrix4.skewX(skew),
-        //..rotateX(-math.pi / rotation),
         child: new RotationTransition(
           turns: new AlwaysStoppedAnimation(
               flag == 0 ? rotation / 360 : -rotation / 360),
@@ -71,7 +61,7 @@ Positioned cardDemo(
                 elevation: 8.0,
                 child: new Container(
                   alignment: Alignment.center,
-                  width: screenSize.width / 1.14 + cardWidth - 10,
+                  width: screenSize.width / 1.14 + cardWidth,
                   height: screenSize.height / 1.5 - 40,
                   decoration: new BoxDecoration(
                     color: Color.fromRGBO(250, 250, 250, 1),
@@ -80,7 +70,7 @@ Positioned cardDemo(
                   child: new Column(
                     children: <Widget>[
                       new Container(
-                        width: screenSize.width / 1.14 + cardWidth - 10,
+                        width: screenSize.width / 1.14 + cardWidth,
                         height: screenSize.height / 1.9 - 40,
                         decoration: new BoxDecoration(
                           color: Colors.transparent,
@@ -88,10 +78,6 @@ Positioned cardDemo(
                               topLeft: new Radius.circular(12.0),
                               topRight: new Radius.circular(12.0)),
                           image: img,
-                          // border: Border.all(
-                          //         color: Color(0xff2298f2),
-                          //         width: 5.0,
-                          //  ),
                         ),
                       ),
                       new Container(
@@ -102,54 +88,30 @@ Positioned cardDemo(
                           child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              //new Text("Name Here"),
-                              new FlatButton(
-                                  padding: new EdgeInsets.all(0.0),
+                              new UnrealButton(
+                                  height: 82.0,
+                                  width: 165.0,
+                                  highlightColor: Colors.red[50],
+                                  shadowColor: Colors.red,
+                                  backgroundColor: Colors.grey[100],
+                                  content: new Icon(Icons.clear,
+                                      color: Colors.red, size: 61),
+                                  borderRadius: 20.0,
                                   onPressed: () {
                                     swipeLeft();
-                                  },
-                                  child: new Container(
-                                    height: 82.0,
-                                    width: 165.0,
-                                    alignment: Alignment.center,
-                                    decoration: new BoxDecoration(
-                                      color: Colors.grey[100],//Color.fromRGBO(255, 10, 10, 0.9),
-                                      borderRadius:
-                                          new BorderRadius.circular(20.0),
-                                      boxShadow: [new BoxShadow(color: Colors.red, blurRadius: 2, offset: new Offset(0, 2.0),)],
-                                    ),
-                                    child: new Icon(Icons.clear, color: Colors.red, size: 61),
-                                    // new Text(
-                                    //   "NO",
-                                    //   style: new TextStyle(
-                                    //       color: Colors.white,
-                                    //       fontSize: 26,
-                                    //       fontWeight: FontWeight.w400),
-                                    // ),
-                                  )),
-                              new FlatButton(
-                                  padding: new EdgeInsets.all(0.0),
+                                  }),
+                              new UnrealButton(
+                                  height: 82.0,
+                                  width: 165.0,
+                                  highlightColor: Colors.green[50],
+                                  shadowColor: Colors.green,
+                                  backgroundColor: Colors.grey[100],
+                                  content: new Icon(Icons.check,
+                                      color: Colors.green, size: 61),
+                                  borderRadius: 20.0,
                                   onPressed: () {
                                     swipeRight();
-                                  },
-                                  child: new Container(
-                                    height: 82.0,
-                                    width: 165.0,
-                                    alignment: Alignment.center,
-                                    decoration: new BoxDecoration(
-                                      color: Colors.grey[100],//Color.fromRGBO(10, 235, 10, 0.85),
-                                      borderRadius: new BorderRadius.circular(20.0),
-                                      boxShadow: [new BoxShadow(color: Colors.green, blurRadius: 2, offset: new Offset(0, 2.0),)],
-                                    ),
-                                    child: new Icon(Icons.check, color: Colors.green, size: 61),
-                                    // new Text(
-                                    //   "YES",
-                                    //   style: new TextStyle(
-                                    //       color: Colors.green,
-                                    //       fontSize: 26,
-                                    //       fontWeight: FontWeight.w600),
-                                    // ),
-                                  ))
+                                  }),
                             ],
                           ))
                     ],
