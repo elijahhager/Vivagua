@@ -40,11 +40,20 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     List<Species> specs = [];
 
     for (var doc in querySnapshot.documents) {
+      var namesImg = doc['other_images'];
+      List<String> otherImages = namesImg.split("#");
+      List<AssetImage> temp = [];
+      for (var img in otherImages) {
+        temp.add(
+          new AssetImage(img),
+        );
+      }
       Species newSpec = Species(
           DecorationImage(
             image: new ExactAssetImage(doc['card_image']),
             fit: BoxFit.fill,
           ),
+          temp,
           doc['name'],
           doc['description'],
           doc['status'],
@@ -182,7 +191,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     //double initialBottom = 80;
     //double backCardPosition = initialBottom + (data.length - 1) * 10 - 10;
     double backCardPosition = 10;
-   // print("This is the postion: " + backCardPosition.toString());
+    // print("This is the postion: " + backCardPosition.toString());
     double backCardWidth = -10.0;
 
     print(data.length);
@@ -243,18 +252,16 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                   } else {
                     backCardPosition = backCardPosition + 10;
                     backCardWidth = backCardWidth + 10;
-                    print("This is the postion: " + backCardPosition.toString());
+                    print(
+                        "This is the postion: " + backCardPosition.toString());
 
                     return cardDemoDummy(item.image, backCardPosition, 0.0, 0.0,
                         backCardWidth + 5, 0.0, 0.0, context);
                   }
                 }).toList(),
-                
               );
             }),
 
-
-        
         // new Container(
         //   alignment: Alignment.bottomCenter,
         //   decoration: new BoxDecoration(

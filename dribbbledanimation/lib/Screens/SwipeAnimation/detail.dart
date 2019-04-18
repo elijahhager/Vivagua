@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'styles.dart';
 import 'package:flutter/scheduler.dart';
 import 'species.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class DetailPage extends StatefulWidget {
   final DecorationImage type;
@@ -10,7 +11,8 @@ class DetailPage extends StatefulWidget {
   final List<Species> data;
   const DetailPage({Key key, this.type, this.spe, this.data}) : super(key: key);
   @override
-  _DetailPageState createState() => new _DetailPageState(type: type, spe: spe, data: data);
+  _DetailPageState createState() =>
+      new _DetailPageState(type: type, spe: spe, data: data);
 }
 
 enum AppBarBehavior { normal, pinned, floating, snapping }
@@ -64,8 +66,19 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 0.7;
     int img = data.indexOf(spe); // spe used to be type
+    Widget image_carousel = new Container(
+      height: _appBarHeight,
+      child: new Carousel(
+        boxFit: BoxFit.cover,
+        images: data[img].otherImages,
+        autoplay: false,
+        animationCurve: Curves.fastOutSlowIn,
+        animationDuration: Duration(milliseconds: 1000),
+      ),
+    );
+
+    timeDilation = 0.7;
     //print("detail");
     return new Theme(
       data: new ThemeData(
@@ -117,13 +130,14 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                           background: new Stack(
                             fit: StackFit.expand,
                             children: <Widget>[
-                              new Container(
-                                width: width.value,
-                                height: _appBarHeight,
-                                decoration: new BoxDecoration(
-                                  image: data[img].image,
-                                ),
-                              ),
+                              image_carousel,
+                              // new Container(
+                              //   width: width.value,
+                              //   height: _appBarHeight,
+                              //   decoration: new BoxDecoration(
+                              //     image: data[img].image,
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),
@@ -141,33 +155,32 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                     padding: new EdgeInsets.only(bottom: 20.0),
                                     alignment: Alignment.center,
                                     decoration: new BoxDecoration(
-                                      color: Colors.white,
-                                      border: new Border(
-                                        bottom: new BorderSide(
-                                        color: Colors.black12)
-                                      )
-                                    ),
+                                        color: Colors.white,
+                                        border: new Border(
+                                            bottom: new BorderSide(
+                                                color: Colors.black12))),
                                     child: new Row(
-                                      
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            new Text(
-                                              spe.name, 
-                                              style: TextStyle(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        new Text(spe.name,
+                                            style: TextStyle(
                                                 fontSize: 24,
-                                                fontWeight: FontWeight.bold
-                                              )
-                                            ),
-                                            new Row(children: <Widget>[new Icon(
+                                                fontWeight: FontWeight.bold)),
+                                        new Row(
+                                          children: <Widget>[
+                                            new Icon(
                                               Icons.brightness_1,
                                               color: spe.color,
                                             ),
                                             new Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: new Text(spe.status),
-                                            )],)
-                                            
+                                            )
                                           ],
+                                        )
+                                      ],
                                     ),
                                   ),
                                   new Padding(
@@ -183,7 +196,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.only(
                                         top: 16.0, bottom: 8.0),
                                     child: new Text(
-                                      spe.about, 
+                                      spe.about,
                                       style: new TextStyle(
                                         fontSize: 16,
                                       ),
@@ -225,7 +238,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                             new CircleAvatar(
                                               backgroundImage: avatar3,
                                             ),
-                                            
                                           ],
                                         )
                                       ],
@@ -242,7 +254,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       ),
                     ],
                   ),
-
                 ],
               ),
             ),
