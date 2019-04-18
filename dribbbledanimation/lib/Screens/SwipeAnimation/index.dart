@@ -34,6 +34,8 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
   List selectedData = [];
 
+  List<Widget> screenWidgets = [];
+
   static _buildSpecs(QuerySnapshot querySnapshot) {
     List<Species> specs = [];
 
@@ -177,14 +179,17 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     timeDilation = 0.4;
 
-    double initialBottom = 15.0;
-    double backCardPosition = initialBottom + (data.length - 1) * 10 + 10;
+    //double initialBottom = 80;
+    //double backCardPosition = initialBottom + (data.length - 1) * 10 - 10;
+    double backCardPosition = 10;
+   // print("This is the postion: " + backCardPosition.toString());
     double backCardWidth = -10.0;
 
     print(data.length);
 
     return (new Scaffold(
       appBar: AppBar(
+          elevation: 0.9,
           title: Tick(image: which, width: 250.0, height: 30.0),
           centerTitle: true,
           backgroundColor: Colors.white,
@@ -193,6 +198,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           )),
       body: new Container(
         decoration: new BoxDecoration(
+          //color: Colors.grey[50],
           image: new DecorationImage(
             image: new AssetImage("assets/underwater.jpg"),
             fit: BoxFit.cover,
@@ -215,34 +221,101 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
               completed = true;
               return new Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: data.map((item) {
-                    if (data.indexOf(item) == data.length - 1) {
-                      return cardDemo(
-                          item,
-                          item.image,
-                          bottom.value,
-                          right.value,
-                          0.0,
-                          backCardWidth + 10,
-                          rotate.value,
-                          rotate.value < -10 ? 0.1 : 0.0,
-                          context,
-                          dismissImg,
-                          flag,
-                          addImg,
-                          swipeRight,
-                          swipeLeft,
-                          data);
-                    } else {
-                      backCardPosition = backCardPosition - 10;
-                      backCardWidth = backCardWidth + 10;
+                alignment: AlignmentDirectional.center,
+                children: data.map((item) {
+                  if (data.indexOf(item) == data.length - 1) {
+                    return cardDemo(
+                        item,
+                        item.image,
+                        bottom.value,
+                        right.value,
+                        0.0,
+                        backCardWidth + 10,
+                        rotate.value,
+                        rotate.value < -10 ? 0.1 : 0.0,
+                        context,
+                        dismissImg,
+                        flag,
+                        addImg,
+                        swipeRight,
+                        swipeLeft,
+                        data);
+                  } else {
+                    backCardPosition = backCardPosition + 10;
+                    backCardWidth = backCardWidth + 10;
+                    print("This is the postion: " + backCardPosition.toString());
 
-                      return cardDemoDummy(item.image, backCardPosition, 0.0,
-                          0.0, backCardWidth, 0.0, 0.0, context);
-                    }
-                  }).toList());
+                    return cardDemoDummy(item.image, backCardPosition, 0.0, 0.0,
+                        backCardWidth + 5, 0.0, 0.0, context);
+                  }
+                }).toList(),
+                
+              );
             }),
+
+
+        
+        // new Container(
+        //   alignment: Alignment.bottomCenter,
+        //   decoration: new BoxDecoration(
+        //     color: Color.fromRGBO(250, 250, 250, 1),
+        //   ),
+        //   width: MediaQuery.of(context).size.width,
+        //   height: 100,
+        //   child: new Row(
+        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //     children: <Widget>[
+        //       new FlatButton(
+        //           padding: new EdgeInsets.all(0.0),
+        //           onPressed: () {
+        //             swipeLeft();
+        //           },
+        //           child: new Container(
+        //             height: 82.0,
+        //             width: 130.0,
+        //             alignment: Alignment.center,
+        //             decoration: new BoxDecoration(
+        //               color: Colors
+        //                   .grey[100], //Color.fromRGBO(255, 10, 10, 0.9),
+        //               borderRadius: new BorderRadius.circular(12.0),
+        //               boxShadow: [
+        //                 new BoxShadow(
+        //                   color: Colors.grey,
+        //                   blurRadius: 2,
+        //                   offset: new Offset(0, 2.0),
+        //                 )
+        //               ],
+        //             ),
+        //             child: new Icon(Icons.clear,
+        //                 color: Colors.red, size: 61),
+        //           )),
+        //       new FlatButton(
+        //           padding: new EdgeInsets.all(0.0),
+        //           onPressed: () {
+        //             swipeRight();
+        //           },
+        //           child: new Container(
+        //             height: 82.0,
+        //             width: 130.0,
+        //             alignment: Alignment.center,
+        //             decoration: new BoxDecoration(
+        //               color: Colors
+        //                   .grey[100], //Color.fromRGBO(10, 235, 10, 0.85),
+        //               borderRadius: new BorderRadius.circular(12.0),
+        //               boxShadow: [
+        //                 new BoxShadow(
+        //                   color: Colors.grey,
+        //                   blurRadius: 2,
+        //                   offset: new Offset(0, 2.0),
+        //                 )
+        //               ],
+        //             ),
+        //             child: new Icon(Icons.check,
+        //                 color: Colors.green, size: 61),
+        //           ))
+        //     ],
+        //   ),
+        // ),
       ),
     ));
   }

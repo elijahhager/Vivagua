@@ -39,18 +39,18 @@ class SiteCard extends StatelessWidget {
                 decoration: new BoxDecoration(
                     border: new Border(
                         right: new BorderSide(width: 1.0, color: Colors.black))),
-                child: Icon(Icons.location_on, color: Colors.blue),
+                child: Icon(Icons.location_on, color: Colors.blue, size: 36,),
               ),
               title: Text(
                 site['name'],
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24.0),
               ),
-              subtitle: Row(
-                children: <Widget>[
-                  Icon(Icons.linear_scale, color: Colors.blue),
-                  Text(site['distance'], style: TextStyle(color: Colors.black))
-                ],
-              ),
+              // subtitle: Row(
+              //   children: <Widget>[
+              //     Icon(Icons.linear_scale, color: Colors.blue),
+              //     Text(site['distance'], style: TextStyle(color: Colors.black))
+              //   ],
+              // ),
               trailing: Icon(Icons.keyboard_arrow_right, color: Colors.black, size: 30.0)
             ),
         ),
