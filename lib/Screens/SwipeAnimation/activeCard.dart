@@ -71,49 +71,87 @@ Positioned cardDemo(
                     children: <Widget>[
                       new Container(
                         width: screenSize.width / 1.14 + cardWidth,
-                        height: screenSize.height / 1.9 - 40,
+                        height: screenSize.height / 1.5 - 40,
                         decoration: new BoxDecoration(
                           color: Colors.transparent,
-                          borderRadius: new BorderRadius.only(
-                              topLeft: new Radius.circular(12.0),
-                              topRight: new Radius.circular(12.0)),
+                          borderRadius: new BorderRadius.circular(12.0),
                           image: img,
                         ),
+                        alignment: Alignment.bottomLeft,
+                        padding: new EdgeInsets.only(left: 24.0),
+                        child: new Container(
+                          alignment: Alignment.centerLeft,
+                          padding: new EdgeInsets.only(left: 16.0),
+                          width: (screenSize.width / 1.14 + cardWidth),
+                          height: (screenSize.height / 1.5 - 40) / 7,
+                          // decoration: new BoxDecoration(
+                          //   color: Color.fromRGBO(0, 0, 0, 0.44),
+                          //   borderRadius: new BorderRadius.only(
+                          //       bottomLeft: Radius.circular(30.0),
+                          //       bottomRight: Radius.circular(30.0)),
+                          // ),
+                          child: new Text(
+                            sp.name,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 56.0,
+                                shadows: [
+                                  Shadow(
+                                      // bottomLeft
+                                      offset: Offset(-1.5, -1.5),
+                                      color: Colors.grey[800]),
+                                  Shadow(
+                                      // bottomRight
+                                      offset: Offset(1.5, -1.5),
+                                      color: Colors.grey[800]),
+                                  Shadow(
+                                      // topRight
+                                      offset: Offset(1.5, 1.5),
+                                      color: Colors.grey[800]),
+                                  Shadow(
+                                      // topLeft
+                                      offset: Offset(-1.5, 1.5),
+                                      color: Colors.grey[800]),
+                                ]),
+                          ),
+                          
+                        ),
                       ),
-                      new Container(
-                          width: screenSize.width / 1.2 + cardWidth,
-                          height:
-                              screenSize.height / 1.7 - screenSize.height / 2.2,
-                          alignment: Alignment.center,
-                          child: new Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              new UnrealButton(
-                                  height: 82.0,
-                                  width: 165.0,
-                                  highlightColor: Colors.red[50],
-                                  shadowColor: Colors.red,
-                                  backgroundColor: Colors.grey[100],
-                                  content: new Icon(Icons.clear,
-                                      color: Colors.red, size: 61),
-                                  borderRadius: 20.0,
-                                  onPressed: () {
-                                    swipeLeft();
-                                  }),
-                              new UnrealButton(
-                                  height: 82.0,
-                                  width: 165.0,
-                                  highlightColor: Colors.green[50],
-                                  shadowColor: Colors.green,
-                                  backgroundColor: Colors.grey[100],
-                                  content: new Icon(Icons.check,
-                                      color: Colors.green, size: 61),
-                                  borderRadius: 20.0,
-                                  onPressed: () {
-                                    swipeRight();
-                                  }),
-                            ],
-                          ))
+                      // new Container(
+                      //     width: screenSize.width / 1.2 + cardWidth,
+                      //     height:
+                      //         screenSize.height / 1.7 - screenSize.height / 2.2,
+                      //     alignment: Alignment.center,
+                      //     child: new Row(
+                      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //       children: <Widget>[
+                      //         // new UnrealButton(
+                      //         //     height: 82.0,
+                      //         //     width: 165.0,
+                      //         //     highlightColor: Colors.red[50],
+                      //         //     shadowColor: Colors.red,
+                      //         //     backgroundColor: Colors.grey[100],
+                      //         //     content: new Icon(Icons.clear,
+                      //         //         color: Colors.red, size: 61),
+                      //         //     borderRadius: 20.0,
+                      //         //     onPressed: () {
+                      //         //       swipeLeft();
+                      //         //     }),
+                      //         // new UnrealButton(
+                      //         //     height: 82.0,
+                      //         //     width: 165.0,
+                      //         //     highlightColor: Colors.green[50],
+                      //         //     shadowColor: Colors.green,
+                      //         //     backgroundColor: Colors.grey[100],
+                      //         //     content: new Icon(Icons.check,
+                      //         //         color: Colors.green, size: 61),
+                      //         //     borderRadius: 20.0,
+                      //         //     onPressed: () {
+                      //         //       swipeRight();
+                      //         //     }),
+                      //       ],
+                      //     ))
                     ],
                   ),
                 ),

@@ -34,6 +34,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   List<Species> data = [];
 
   List selectedData = [];
+  
 
   List<Widget> screenWidgets = [];
 
@@ -186,6 +187,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   }
 
   Widget _buildBottomBar() {
+    Size screenSize = MediaQuery.of(context).size;
     return BottomAppBar(
       color: Colors.transparent,
       elevation: 0.0,
@@ -195,23 +197,23 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             new UnrealButton(
-                height: 82.0,
-                width: 165.0,
+                height: screenSize.height * 0.085,
+                width: screenSize.width * 0.45,
                 highlightColor: Colors.red[50],
                 shadowColor: Colors.red,
                 backgroundColor: Colors.grey[100],
-                content: new Icon(Icons.clear, color: Colors.red, size: 61),
+                content: new Icon(Icons.clear, color: Colors.red, size: 81),
                 borderRadius: 20.0,
                 onPressed: () {
                   swipeLeft();
                 }),
             new UnrealButton(
-                height: 82.0,
-                width: 165.0,
+                height: screenSize.height * 0.085,
+                width: screenSize.width * 0.45,
                 highlightColor: Colors.green[50],
                 shadowColor: Colors.green,
                 backgroundColor: Colors.grey[100],
-                content: new Icon(Icons.check, color: Colors.green, size: 61),
+                content: new Icon(Icons.check, color: Colors.green, size: 81),
                 borderRadius: 20.0,
                 onPressed: () {
                   swipeRight();
@@ -243,7 +245,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           iconTheme: IconThemeData(
             color: Colors.blue, //change your color here
           )),
-      //bottomNavigationBar: _buildBottomBar(),
+      bottomNavigationBar: _buildBottomBar(),
       body: new Container(
         decoration: new BoxDecoration(
           color: Colors.grey[50],
