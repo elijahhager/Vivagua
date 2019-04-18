@@ -198,13 +198,13 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           )),
       body: new Container(
         decoration: new BoxDecoration(
-          //color: Colors.grey[50],
-          image: new DecorationImage(
-            image: new AssetImage("assets/underwater.jpg"),
-            fit: BoxFit.cover,
-            colorFilter: new ColorFilter.mode(
-                Colors.white.withOpacity(0.4), BlendMode.dstATop),
-          ),
+          color: Colors.grey[50],
+          // image: new DecorationImage(
+          //   image: new AssetImage("assets/underwater.jpg"),
+          //   fit: BoxFit.cover,
+          //   colorFilter: new ColorFilter.mode(
+          //       Colors.white.withOpacity(0.4), BlendMode.dstATop),
+          // ),
         ),
         alignment: Alignment.center,
         child: StreamBuilder(
