@@ -82,6 +82,8 @@ class _MapPageState extends State<MapPage> {
               new FlatButton(
                   onPressed: () {
 
+                    CloudFunctions.instance.call(functionName: "computeStats");
+
                     // cloud function being called here. Will this persist offline?
                     CloudFunctions.instance
                         .call(functionName: "addDivesite", parameters: {
