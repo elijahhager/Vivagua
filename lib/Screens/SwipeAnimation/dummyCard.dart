@@ -38,13 +38,6 @@ Positioned cardDemoDummy(
               ),
               alignment: Alignment.bottomLeft,
               padding: new EdgeInsets.only(left: 16.0, bottom: 8.0),
-              child: new Text(
-                "Holder",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.0),
-              ),
             ),
             // new Container(
             //   width: screenSize.width / 1.2 + cardWidth,

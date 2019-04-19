@@ -13,7 +13,6 @@ import 'package:dribbbledanimation/globals.dart' as globals;
 import 'package:dribbbledanimation/Routes.dart';
 import 'package:dribbbledanimation/Components/UnrealButton.dart';
 
-
 //typedef void CounterChangeCallback(num value);
 
 class MatchPage extends StatefulWidget {
@@ -101,6 +100,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     timeDilation = 0.7;
     int img = data.indexOf(spe); // spe used to be type
+    Size screenSize = MediaQuery.of(context).size;
     return new Theme(
       data: new ThemeData(
         brightness: Brightness.light,
@@ -152,22 +152,46 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                             size: 45.0,
                           ),
                         ),
-                        expandedHeight: _appBarHeight,
+                        expandedHeight: screenSize.height / 2.2,
                         pinned: _appBarBehavior == AppBarBehavior.pinned,
                         floating: _appBarBehavior == AppBarBehavior.floating ||
                             _appBarBehavior == AppBarBehavior.snapping,
                         snap: _appBarBehavior == AppBarBehavior.snapping,
                         flexibleSpace: new FlexibleSpaceBar(
-                          title: new Text(spe.name),
+                          //title: new Text(spe.name),
                           background: new Stack(
                             fit: StackFit.expand,
                             children: <Widget>[
                               new Container(
                                 width: width.value,
-                                height: _appBarHeight,
+                                height: screenSize.height / 2.2,
                                 decoration: new BoxDecoration(
                                   image: this.type,
                                 ),
+                                alignment: Alignment.bottomLeft,
+                                child: new Container(
+                                    padding: new EdgeInsets.only(
+                                        left: 20.0, right: 30.0, top: 15.0),
+                                    width: screenSize.width,
+                                    height: (screenSize.height / 2.2) / 5.4,
+                                    decoration: new BoxDecoration(
+                                      gradient: new LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Colors.transparent,
+                                          Colors.black.withOpacity(0.75),
+                                        ],
+                                      ),
+                                    ),
+                                    child: new Text(
+                                      spe.name,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 56.0,
+                                      ),
+                                    )),
                               ),
                             ],
                           ),
@@ -205,7 +229,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   new Container(
-                                      // padding: new EdgeInsets.only(bottom: 20.0),
+                                      padding: new EdgeInsets.only(top: 26.0),
                                       alignment: Alignment.center,
                                       child: new Row(
                                         mainAxisAlignment:
@@ -234,12 +258,12 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                   new Center(
                                       child: new UnrealButton(
                                           height: 72.0,
-                                          width: 120.0,
-                                          highlightColor: Colors.green[50],
-                                          shadowColor: Colors.green[200],
+                                          width: 180.0,
+                                          highlightColor: Colors.blue[50],
+                                          shadowColor: Colors.blue[200],
                                           backgroundColor: Colors.white,
                                           content: new Icon(Icons.done,
-                                              color: Colors.green, size: 40),
+                                              color: Colors.blue, size: 40),
                                           borderRadius: 20.0,
                                           onPressed: () {
                                             userLog[this.spe.name] =
