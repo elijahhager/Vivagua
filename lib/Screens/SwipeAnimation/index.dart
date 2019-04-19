@@ -310,68 +310,6 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                 }).toList(),
               );
             }),
-
-        // new Container(
-        //   alignment: Alignment.bottomCenter,
-        //   decoration: new BoxDecoration(
-        //     color: Color.fromRGBO(250, 250, 250, 1),
-        //   ),
-        //   width: MediaQuery.of(context).size.width,
-        //   height: 100,
-        //   child: new Row(
-        //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //     children: <Widget>[
-        //       new FlatButton(
-        //           padding: new EdgeInsets.all(0.0),
-        //           onPressed: () {
-        //             swipeLeft();
-        //           },
-        //           child: new Container(
-        //             height: 82.0,
-        //             width: 130.0,
-        //             alignment: Alignment.center,
-        //             decoration: new BoxDecoration(
-        //               color: Colors
-        //                   .grey[100], //Color.fromRGBO(255, 10, 10, 0.9),
-        //               borderRadius: new BorderRadius.circular(12.0),
-        //               boxShadow: [
-        //                 new BoxShadow(
-        //                   color: Colors.grey,
-        //                   blurRadius: 2,
-        //                   offset: new Offset(0, 2.0),
-        //                 )
-        //               ],
-        //             ),
-        //             child: new Icon(Icons.clear,
-        //                 color: Colors.red, size: 61),
-        //           )),
-        //       new FlatButton(
-        //           padding: new EdgeInsets.all(0.0),
-        //           onPressed: () {
-        //             swipeRight();
-        //           },
-        //           child: new Container(
-        //             height: 82.0,
-        //             width: 130.0,
-        //             alignment: Alignment.center,
-        //             decoration: new BoxDecoration(
-        //               color: Colors
-        //                   .grey[100], //Color.fromRGBO(10, 235, 10, 0.85),
-        //               borderRadius: new BorderRadius.circular(12.0),
-        //               boxShadow: [
-        //                 new BoxShadow(
-        //                   color: Colors.grey,
-        //                   blurRadius: 2,
-        //                   offset: new Offset(0, 2.0),
-        //                 )
-        //               ],
-        //             ),
-        //             child: new Icon(Icons.check,
-        //                 color: Colors.green, size: 61),
-        //           ))
-        //     ],
-        //   ),
-        // ),
       ),
     ));
   }
