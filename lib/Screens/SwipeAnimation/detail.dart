@@ -26,6 +26,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   List<Species> data;
   _DetailPageState({this.type, this.spe, this.data});
   double _appBarHeight = 350;
+  
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
   void initState() {
@@ -67,8 +68,9 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     int img = data.indexOf(spe); // spe used to be type
+    Size screenSize = MediaQuery.of(context).size;
     Widget image_carousel = new Container(
-      height: _appBarHeight,
+      height: screenSize.height / 2.7,//_appBarHeight,
       child: new Carousel(
         boxFit: BoxFit.cover,
         images: data[img].otherImages,
@@ -121,7 +123,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                             size: 45.0,
                           ),
                         ),
-                        expandedHeight: _appBarHeight,
+                        expandedHeight: screenSize.height / 2.7,//_appBarHeight,
                         pinned: _appBarBehavior == AppBarBehavior.pinned,
                         floating: _appBarBehavior == AppBarBehavior.floating ||
                             _appBarBehavior == AppBarBehavior.snapping,

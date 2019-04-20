@@ -78,44 +78,59 @@ Positioned cardDemo(
                           image: img,
                         ),
                         alignment: Alignment.bottomLeft,
-                        padding: new EdgeInsets.only(left: 24.0),
+                        //padding: new EdgeInsets.only(left: 24.0),
                         child: new Container(
                           alignment: Alignment.centerLeft,
-                          padding: new EdgeInsets.only(left: 16.0),
+                          padding: new EdgeInsets.only(left: 20.0, right: 30.0, top: 15.0),
                           width: (screenSize.width / 1.14 + cardWidth),
-                          height: (screenSize.height / 1.5 - 40) / 7,
-                          // decoration: new BoxDecoration(
-                          //   color: Color.fromRGBO(0, 0, 0, 0.44),
-                          //   borderRadius: new BorderRadius.only(
-                          //       bottomLeft: Radius.circular(30.0),
-                          //       bottomRight: Radius.circular(30.0)),
-                          // ),
-                          child: new Text(
-                            sp.name,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 56.0,
-                                shadows: [
-                                  Shadow(
-                                      // bottomLeft
-                                      offset: Offset(-1.5, -1.5),
-                                      color: Colors.grey[800]),
-                                  Shadow(
-                                      // bottomRight
-                                      offset: Offset(1.5, -1.5),
-                                      color: Colors.grey[800]),
-                                  Shadow(
-                                      // topRight
-                                      offset: Offset(1.5, 1.5),
-                                      color: Colors.grey[800]),
-                                  Shadow(
-                                      // topLeft
-                                      offset: Offset(-1.5, 1.5),
-                                      color: Colors.grey[800]),
-                                ]),
+                          height: (screenSize.height / 1.5 - 40) / 5.4,
+                          decoration: new BoxDecoration(
+                            borderRadius: new BorderRadius.circular(12.0),
+                            gradient: new LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.transparent,
+                                Colors.black.withOpacity(0.75),
+                              ],
+                            ),
                           ),
-                          
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              new Text(
+                                sp.name,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 56.0,
+                                    // shadows: [
+                                    //   Shadow(
+                                    //       // bottomLeft
+                                    //       offset: Offset(-1.5, -1.5),
+                                    //       color: Colors.grey[800]),
+                                    //   Shadow(
+                                    //       // bottomRight
+                                    //       offset: Offset(1.5, -1.5),
+                                    //       color: Colors.grey[800]),
+                                    //   Shadow(
+                                    //       // topRight
+                                    //       offset: Offset(1.5, 1.5),
+                                    //       color: Colors.grey[800]),
+                                    //   Shadow(
+                                    //       // topLeft
+                                    //       offset: Offset(-1.5, 1.5),
+                                    //       color: Colors.grey[800]),
+                                    // ]
+                                    ),
+                              ),
+                              new Icon(
+                                Icons.info,
+                                color: Colors.white,
+                                size: 38,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       // new Container(

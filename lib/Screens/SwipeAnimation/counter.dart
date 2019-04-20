@@ -69,8 +69,8 @@ class Counter extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           new Container(
-              height: 62.0,
-              width: 100.0,
+              height: 122.0,
+              width: 175.0,
               alignment: Alignment.center,
               decoration: new BoxDecoration(
                 color: Colors.white, //Color.fromRGBO(10, 235, 10, 0.85),
@@ -94,22 +94,22 @@ class Counter extends StatelessWidget {
                       onChanged(selectedValue - step);
                     }
                   },
-                  child: new Icon(Icons.exposure_neg_1, color: Colors.red, size: 35),
+                  child: new Icon(Icons.exposure_neg_1, color: Colors.red, size: 48),
                 ),
               )),
           new Container(
-            padding: EdgeInsets.all(36.0),
+            padding: EdgeInsets.all(66.0),
             child: new Text(
               '${num.parse((selectedValue).toStringAsFixed(decimalPlaces))}',
               style: TextStyle(
-                  fontSize: 36,
+                  fontSize: 56,
                   color: Color(0xff2298f2),
                   fontWeight: FontWeight.w300),
             ),
           ),
           new Container(
-              height: 62.0,
-              width: 100.0,
+              height: 122.0,
+              width: 175.0,
               alignment: Alignment.center,
               decoration: new BoxDecoration(
                 color: Colors.white, //Color.fromRGBO(10, 235, 10, 0.85),
@@ -133,7 +133,7 @@ class Counter extends StatelessWidget {
                       onChanged((selectedValue + step));
                     }
                   },
-                  child: new Icon(Icons.exposure_plus_1, color: Colors.green, size: 35),
+                  child: new Icon(Icons.exposure_plus_1, color: Colors.green, size: 48),
                 ),
               )),
         ],

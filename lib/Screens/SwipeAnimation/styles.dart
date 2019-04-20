@@ -120,6 +120,10 @@ DecorationImage which = new DecorationImage(
   image: new ExactAssetImage('assets/which.png'),
   fit: BoxFit.fill,
 );
+DecorationImage tinyLogo = new DecorationImage(
+  image: new ExactAssetImage('assets/logo.png'),
+  fit: BoxFit.fill,
+);
 ImageProvider avatar1 = new ExactAssetImage('assets/avatars/avatar-1.jpg');
 ImageProvider avatar2 = new ExactAssetImage('assets/avatars/avatar-2.jpg');
 ImageProvider avatar3 = new ExactAssetImage('assets/avatars/avatar-3.jpg');
