@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_page_body.dart';
-import 'package:dribbbledanimation/Screens/Map_Page/index.dart';
+import 'package:vivagua/Screens/Map_Page/index.dart';
 
 class HomePage extends StatefulWidget {
   HomePageState createState() => new HomePageState();

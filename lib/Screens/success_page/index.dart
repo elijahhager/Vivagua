@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:async';
 import '../../Components/WhiteTick.dart';
-import 'package:dribbbledanimation/styles.dart';
+import 'package:vivagua/styles.dart';
 
 class SuccessScreen extends StatefulWidget {
   const SuccessScreen({Key key}) : super(key: key);

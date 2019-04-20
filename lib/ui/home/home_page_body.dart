@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/model/specs.dart';
-import 'package:dribbbledanimation/ui/common/spec_summary.dart';
-import 'package:dribbbledanimation/Components/WhiteTick.dart';
-import 'package:dribbbledanimation/styles.dart';
+import 'package:vivagua/model/specs.dart';
+import 'package:vivagua/ui/common/spec_summary.dart';
+import 'package:vivagua/Components/WhiteTick.dart';
+import 'package:vivagua/styles.dart';
 
 class HomePageBody extends StatelessWidget {
   @override

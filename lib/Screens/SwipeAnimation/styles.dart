@@ -4,6 +4,11 @@ List<AssetImage> tempList = [
   new AssetImage('assets/green_turtle.jpg')
 ];
 
+DecorationImage lil_whale = new DecorationImage(
+  image: new ExactAssetImage('assets/lil_whale.png'),
+  fit: BoxFit.fill,
+);
+
 Species species1 = new Species(
   new DecorationImage(
   image: new ExactAssetImage('assets/green_turtle.jpg'),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/globals.dart';
+import 'package:vivagua/globals.dart';
 
 class Style {
 

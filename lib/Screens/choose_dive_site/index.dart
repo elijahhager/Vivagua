@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import '../../Components/SiteCard.dart';
 import 'data.dart';
-import 'package:dribbbledanimation/styles.dart';
+import 'package:vivagua/styles.dart';
 
 class ChooseDiveSiteScreen extends StatefulWidget {
   const ChooseDiveSiteScreen({Key key}) : super(key: key);

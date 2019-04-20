@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/Screens/landing_page/index.dart';
-import 'package:dribbbledanimation/Screens/choose_dive_site/index.dart';
+import 'package:vivagua/Screens/landing_page/index.dart';
+import 'package:vivagua/Screens/choose_dive_site/index.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/ui/home/home_page.dart';
-import 'package:dribbbledanimation/ui/home/home_page_body.dart';
-import 'package:dribbbledanimation/ui/home/dive_site_specific.dart';
+import 'package:vivagua/ui/home/home_page.dart';
+import 'package:vivagua/ui/home/home_page_body.dart';
+import 'package:vivagua/ui/home/dive_site_specific.dart';
 
 
 

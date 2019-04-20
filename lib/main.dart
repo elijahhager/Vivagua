@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/Screens/landing_page/index.dart';
-import 'package:dribbbledanimation/Routes.dart';
+import 'package:vivagua/Screens/landing_page/index.dart';
+import 'package:vivagua/Routes.dart';
 
 void main() {
   Routes.initRoutes();

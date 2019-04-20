@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:dribbbledanimation/model/specs.dart';
-import 'package:dribbbledanimation/ui/common/separator.dart';
-import 'package:dribbbledanimation/ui/detail/detail_page.dart';
-import 'package:dribbbledanimation/styles.dart';
-import 'package:dribbbledanimation/globals.dart';
+import 'package:vivagua/model/specs.dart';
+import 'package:vivagua/ui/common/separator.dart';
+import 'package:vivagua/ui/detail/detail_page.dart';
+import 'package:vivagua/styles.dart';
+import 'package:vivagua/globals.dart';
 
 class SpecSummary extends StatelessWidget {
 

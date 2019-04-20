@@ -4,7 +4,7 @@ import 'detail.dart';
 import 'package:flutter/material.dart';
 import 'species.dart';
 import 'matchpage.dart';
-import 'package:dribbbledanimation/Components/UnrealButton.dart';
+import 'package:vivagua/Components/UnrealButton.dart';
 
 Positioned cardDemo(
     Species sp,
@@ -81,7 +81,8 @@ Positioned cardDemo(
                         //padding: new EdgeInsets.only(left: 24.0),
                         child: new Container(
                           alignment: Alignment.centerLeft,
-                          padding: new EdgeInsets.only(left: 20.0, right: 30.0, top: 15.0),
+                          padding: new EdgeInsets.only(
+                              left: 20.0, right: 30.0, top: 15.0),
                           width: (screenSize.width / 1.14 + cardWidth),
                           height: (screenSize.height / 1.5 - 40) / 5.4,
                           decoration: new BoxDecoration(
@@ -101,28 +102,10 @@ Positioned cardDemo(
                               new Text(
                                 sp.name,
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 56.0,
-                                    // shadows: [
-                                    //   Shadow(
-                                    //       // bottomLeft
-                                    //       offset: Offset(-1.5, -1.5),
-                                    //       color: Colors.grey[800]),
-                                    //   Shadow(
-                                    //       // bottomRight
-                                    //       offset: Offset(1.5, -1.5),
-                                    //       color: Colors.grey[800]),
-                                    //   Shadow(
-                                    //       // topRight
-                                    //       offset: Offset(1.5, 1.5),
-                                    //       color: Colors.grey[800]),
-                                    //   Shadow(
-                                    //       // topLeft
-                                    //       offset: Offset(-1.5, 1.5),
-                                    //       color: Colors.grey[800]),
-                                    // ]
-                                    ),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: screenSize.width * 0.07,
+                                ),
                               ),
                               new Icon(
                                 Icons.info,
@@ -133,40 +116,6 @@ Positioned cardDemo(
                           ),
                         ),
                       ),
-                      // new Container(
-                      //     width: screenSize.width / 1.2 + cardWidth,
-                      //     height:
-                      //         screenSize.height / 1.7 - screenSize.height / 2.2,
-                      //     alignment: Alignment.center,
-                      //     child: new Row(
-                      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //       children: <Widget>[
-                      //         // new UnrealButton(
-                      //         //     height: 82.0,
-                      //         //     width: 165.0,
-                      //         //     highlightColor: Colors.red[50],
-                      //         //     shadowColor: Colors.red,
-                      //         //     backgroundColor: Colors.grey[100],
-                      //         //     content: new Icon(Icons.clear,
-                      //         //         color: Colors.red, size: 61),
-                      //         //     borderRadius: 20.0,
-                      //         //     onPressed: () {
-                      //         //       swipeLeft();
-                      //         //     }),
-                      //         // new UnrealButton(
-                      //         //     height: 82.0,
-                      //         //     width: 165.0,
-                      //         //     highlightColor: Colors.green[50],
-                      //         //     shadowColor: Colors.green,
-                      //         //     backgroundColor: Colors.grey[100],
-                      //         //     content: new Icon(Icons.check,
-                      //         //         color: Colors.green, size: 61),
-                      //         //     borderRadius: 20.0,
-                      //         //     onPressed: () {
-                      //         //       swipeRight();
-                      //         //     }),
-                      //       ],
-                      //     ))
                     ],
                   ),
                 ),

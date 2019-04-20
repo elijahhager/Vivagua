@@ -10,9 +10,9 @@ import 'matches.dart';
 import 'species.dart';
 import 'matchpage.dart';
 import 'styles.dart';
-import 'package:dribbbledanimation/Components/UnrealButton.dart';
-import 'package:dribbbledanimation/Routes.dart';
-import 'package:dribbbledanimation/globals.dart' as globals;
+import 'package:vivagua/Components/UnrealButton.dart';
+import 'package:vivagua/Routes.dart';
+import 'package:vivagua/globals.dart' as globals;
 
 class CardDemo extends StatefulWidget {
   @override
@@ -34,7 +34,6 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   List<Species> data = [];
 
   List selectedData = [];
-  
 
   List<Widget> screenWidgets = [];
 
@@ -197,23 +196,25 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             new UnrealButton(
-                height: screenSize.height * 0.085,
+                height: screenSize.height * 0.095,
                 width: screenSize.width * 0.45,
                 highlightColor: Colors.red[50],
                 shadowColor: Colors.red,
                 backgroundColor: Colors.grey[100],
-                content: new Icon(Icons.clear, color: Colors.red, size: 81),
+                content: new Icon(Icons.clear,
+                    color: Colors.red, size: screenSize.width * 0.15),
                 borderRadius: 20.0,
                 onPressed: () {
                   swipeLeft();
                 }),
             new UnrealButton(
-                height: screenSize.height * 0.085,
+                height: screenSize.height * 0.095,
                 width: screenSize.width * 0.45,
                 highlightColor: Colors.green[50],
                 shadowColor: Colors.green,
                 backgroundColor: Colors.grey[100],
-                content: new Icon(Icons.check, color: Colors.green, size: 81),
+                content: new Icon(Icons.check,
+                    color: Colors.green, size: screenSize.width * 0.15),
                 borderRadius: 20.0,
                 onPressed: () {
                   swipeRight();
@@ -238,21 +239,16 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
     return (new Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
+        preferredSize: Size.fromHeight(60),
         child: AppBar(
-          elevation: 0.9,
-          title: new Container(
-            width: 140,
-            height: 100,
-            decoration: BoxDecoration(
-              image: new DecorationImage(image: new ExactAssetImage('assets/logo.png'),),
-            ),
-          ),//Tick(image: tinyLogo, width: 140.0, height: 140.0),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(
-            color: Colors.blue, //change your color here
-          )),),
+            elevation: 0.9,
+            title: Tick(image: lil_whale, height: 40, width: 45),
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            iconTheme: IconThemeData(
+              color: Colors.blue, //change your color here
+            )),
+      ),
       bottomNavigationBar: _buildBottomBar(),
       body: new Container(
         decoration: new BoxDecoration(

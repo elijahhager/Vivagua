@@ -9,9 +9,9 @@ import 'counter.dart';
 import 'package:flutter/cupertino.dart';
 import '../../Components/LogDiveButton.dart';
 import '../../Screens/landing_page/index.dart';
-import 'package:dribbbledanimation/globals.dart' as globals;
-import 'package:dribbbledanimation/Routes.dart';
-import 'package:dribbbledanimation/Components/UnrealButton.dart';
+import 'package:vivagua/globals.dart' as globals;
+import 'package:vivagua/Routes.dart';
+import 'package:vivagua/Components/UnrealButton.dart';
 
 //typedef void CounterChangeCallback(num value);
 
