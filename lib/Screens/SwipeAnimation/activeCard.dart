@@ -107,8 +107,9 @@ Positioned cardDemo(
                                 sp.name,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: screenSize.width * 0.07,
+                                  fontFamily: 'Overpass SemiBold',
+                                  //fontWeight: FontWeight.bold,
+                                  fontSize: screenSize.width * 0.08,
                                 ),
                               ),
                               new Icon(
