@@ -4,7 +4,6 @@ import 'detail.dart';
 import 'package:flutter/material.dart';
 import 'species.dart';
 import 'matchpage.dart';
-import 'package:vivagua/Components/UnrealButton.dart';
 
 Positioned cardDemo(
     Species sp,
@@ -61,7 +60,7 @@ Positioned cardDemo(
                 elevation: 8.0,
                 child: new Container(
                   alignment: Alignment.center,
-                  width: screenSize.width / 1.14 + cardWidth,
+                  width: screenSize.width * 0.8 + cardWidth,
                   height: screenSize.height / 1.5 - 40,
                   decoration: new BoxDecoration(
                     color: Color.fromRGBO(250, 250, 250, 1),
