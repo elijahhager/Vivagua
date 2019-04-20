@@ -4,20 +4,30 @@ admin.initializeApp(functions.config().firebase);
 
 exports.addDivesite = functions.https.onCall((data, context) => {
     const divesites = admin.firestore().collection('divesites');
+    console.log("Dive site added.")
     return divesites.add({
         name: data["name"],
         location: new admin.firestore.GeoPoint(data["latitude"], data["longitude"])
     });
+
 });
 
-exports.computeStats = functions.https.onCall((context) => {
+exports.computeStats = functions.https.onCall((data, context) => {
 
-    const divesites = admin.firestore().collection('divesites');
-    const sightings = admin.firestore().collection('sightings');
+    const statistics = admin.firestore().collection('statistics');
 
-    console.log(sightings);
-
-    return 0;
+    admin.firestore().collection('divesites').get().then(snapshot => {
+        snapshot.forEach(doc => {
+            console.log(doc);
+            statistics.add({
+                name: "nameme"
+            });
+        });
+        console.log("Tried to add.");
+        return "";
+    }).catch(reason => {
+        console.log(reason);
+    });
 
 });
 

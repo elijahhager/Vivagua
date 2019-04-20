@@ -81,16 +81,17 @@ class _MapPageState extends State<MapPage> {
               // This button results in adding the contact to the database
               new FlatButton(
                   onPressed: () {
+                    CloudFunctions.instance.call(
+                        functionName: "computeStats",
+                        parameters: {"name": "jeepers"});
 
-                    CloudFunctions.instance.call(functionName: "computeStats");
-
-                    // cloud function being called here. Will this persist offline?
                     CloudFunctions.instance
                         .call(functionName: "addDivesite", parameters: {
                       "name": _nameTextController.text,
                       "longitude": double.parse(_longitudeTextController.text),
                       "latitude": double.parse(_latitudeTextController.text)
                     });
+
                     Navigator.of(context).pop();
                     _showSuccessDialog();
                   },
@@ -110,10 +111,13 @@ class _MapPageState extends State<MapPage> {
           builder: (context) => new Container(
                   child: Column(children: <Widget>[
                 IconButton(
+                  
                   icon: Icon(Icons.location_on),
                   color: Colors.blue,
                   iconSize: 45.0,
-                  onPressed: () => Routes.navigateTo(context, 'dive_site_specific'),
+                  splashColor: Colors.lightBlue,
+                  onPressed: () =>
+                      Routes.navigateTo(context, 'dive_site_specific'),
                 ),
                 Text(
                   d['name'],
