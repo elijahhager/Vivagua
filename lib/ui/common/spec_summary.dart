@@ -47,12 +47,12 @@ class SpecSummary extends StatelessWidget {
 
 
 
-    Widget _specValue({String value, String image}) {
+    Widget _specValue({String value, Icon icon}) {
       return new Container(
         child: new Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            new Image.asset(image, height: 12.0),
+            icon,
             new Container(width: 8.0),
             new Text(value, style: Style.smallTextStyle),
           ]
@@ -79,7 +79,7 @@ class SpecSummary extends StatelessWidget {
                 flex: horizontal ? 1 : 0,
                 child: _specValue(
                   value: spec['status'],
-                  image: 'assets/img/ic_gravity.png')
+                  icon: Icon(Icons.alarm, size: 14, color: Colors.blue))
 
               ),
               new Container(
@@ -89,7 +89,7 @@ class SpecSummary extends StatelessWidget {
                   flex: horizontal ? 1 : 0,
                   child: _specValue(
                   value: spec['nativity'],
-                  image: 'assets/img/ic_distance.png')
+                  icon: Icon(Icons.location_on, size: 14, color: Colors.blue))
               )
             ],
           ),

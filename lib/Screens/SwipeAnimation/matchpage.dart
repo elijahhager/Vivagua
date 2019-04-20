@@ -99,7 +99,6 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     timeDilation = 0.7;
-    int img = data.indexOf(spe); // spe used to be type
     Size screenSize = MediaQuery.of(context).size;
     return new Theme(
       data: new ThemeData(
@@ -134,7 +133,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                         forceElevated: true,
                         leading: new IconButton(
                           onPressed: () {
-                            if (data.length == 0) {
+                            if (this.data.length == 0) {
                               // writing entire log to database
                               userLog['timestamp'] = Timestamp.now();
                               Firestore.instance
@@ -189,7 +188,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 56.0,
+                                        fontSize: screenSize.width * 0.07,
                                       ),
                                     )),
                               ),
@@ -257,19 +256,19 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                       )),
                                   new Center(
                                       child: new UnrealButton(
-                                          height: 72.0,
-                                          width: 180.0,
+                                          height: screenSize.height * 0.1,
+                                          width: screenSize.width * 0.4,
                                           highlightColor: Colors.blue[50],
                                           shadowColor: Colors.blue[200],
                                           backgroundColor: Colors.white,
                                           content: new Icon(Icons.done,
-                                              color: Colors.blue, size: 40),
+                                              color: Colors.blue, size: screenSize.width * 0.1),
                                           borderRadius: 20.0,
                                           onPressed: () {
                                             userLog[this.spe.name] =
                                                 submitValue;
 
-                                            if (data.length == 0) {
+                                            if (this.data.length == 0) {
                                               // writing entire log to database
                                               userLog['timestamp'] =
                                                   Timestamp.now();

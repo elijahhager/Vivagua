@@ -20,14 +20,17 @@ Positioned cardDemo(
     Function addImg,
     Function swipeRight,
     Function swipeLeft,
-    List<Species> data) {
+    List<Species> data,
+    Map userLog) {
   Size screenSize = MediaQuery.of(context).size;
 
   return new Positioned(
-    bottom: 120.0,
+    
+    // bottom: 120.0,   // autocenters if we don't specify this
     right: flag == 0 ? right != 0.0 ? right : null : null,
     left: flag == 1 ? right != 0.0 ? right : null : null,
     child: new Dismissible(
+      
       key: new Key(new Random().toString()),
       crossAxisEndOffset: -0.3,
       onDismissed: (DismissDirection direction) {
@@ -35,12 +38,13 @@ Positioned cardDemo(
           dismissImg(sp);
         } else {
           Navigator.of(context).push(new PageRouteBuilder(
-            pageBuilder: (_, __, ___) => new MatchPage(type: img, spe: sp),
+            pageBuilder: (_, __, ___) => new MatchPage(type: img, spe: sp, data: data, userLog: userLog),
           ));
           addImg(sp);
         }
       },
       child: new Transform(
+        
         alignment: flag == 0 ? Alignment.bottomRight : Alignment.bottomLeft,
         transform: new Matrix4.skewX(skew),
         child: new RotationTransition(
@@ -59,8 +63,9 @@ Positioned cardDemo(
                 color: Colors.transparent,
                 elevation: 8.0,
                 child: new Container(
+                  
                   alignment: Alignment.center,
-                  width: screenSize.width * 0.8 + cardWidth,
+                  width: screenSize.width / 1.14 + cardWidth,
                   height: screenSize.height / 1.5 - 40,
                   decoration: new BoxDecoration(
                     color: Color.fromRGBO(250, 250, 250, 1),

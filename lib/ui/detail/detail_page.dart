@@ -197,7 +197,14 @@ class DetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Text("23%", style: Style.increaseTextStyle),
+                              StreamBuilder<DocumentSnapshot>(
+                                stream: Firestore.instance.collection("statistics").document(this.spec.documentID).snapshots(),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData) return const Text('...');
+                                  var percentage = snapshot.data["seenThisWeek"] / (snapshot.data["seenLastWeek"] + 0.00001);
+                                  return new Text( ((percentage*100).round()).toString() + "%", style: Style.increaseTextStyle);
+                                },
+                              ),
                               Icon(Icons.arrow_drop_up,
                                   color: Colors.green, size: 40.0),
                             ],
@@ -234,7 +241,14 @@ class DetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Text("90%", style: Style.increaseTextStyle),
+                              StreamBuilder<DocumentSnapshot>(
+                                stream: Firestore.instance.collection("statistics").document(this.spec.documentID).snapshots(),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData) return const Text('...');
+                                  var percentage = snapshot.data["diversWhoSaw"] / (snapshot.data["diversWhoSaw"] + snapshot.data["diversWhoDidNotSee"] + 0.00001);
+                                  return new Text( ((percentage*100).round()).toString() + "%", style: Style.increaseTextStyle);
+                                },
+                              ),
                               Icon(Icons.bookmark,
                                   color: Colors.green, size: 30.0),
                             ],
@@ -275,7 +289,14 @@ class DetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Text("12", style: Style.increaseTextStyle),
+                              StreamBuilder<DocumentSnapshot>(
+                                stream: Firestore.instance.collection("statistics").document(this.spec.documentID).snapshots(),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData) return const Text('...');
+                                  var numberSeen = snapshot.data["seenThisWeek"];
+                                  return new Text( (numberSeen).toString() + "%", style: Style.increaseTextStyle);
+                                },
+                              ),
                             ],
                           ),
                           Text(this.spec['name'] + "s seen this week",

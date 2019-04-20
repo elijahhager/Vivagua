@@ -92,6 +92,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           //print();
           if (match.decision == Decision.yes) {
             selectedData.insert(0, i);
+            print("ran this");
             Navigator.of(context).push(new PageRouteBuilder(
               pageBuilder: (_, __, ___) => new MatchPage(
                   type: i.image, spe: i, data: data, userLog: userLog),
@@ -202,7 +203,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                 shadowColor: Colors.red,
                 backgroundColor: Colors.grey[100],
                 content: new Icon(Icons.clear,
-                    color: Colors.red, size: screenSize.width * 0.15),
+                    color: Colors.red, size: screenSize.width * 0.11),
                 borderRadius: 20.0,
                 onPressed: () {
                   swipeLeft();
@@ -214,7 +215,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                 shadowColor: Colors.green,
                 backgroundColor: Colors.grey[100],
                 content: new Icon(Icons.check,
-                    color: Colors.green, size: screenSize.width * 0.15),
+                    color: Colors.green, size: screenSize.width * 0.11),
                 borderRadius: 20.0,
                 onPressed: () {
                   swipeRight();
@@ -227,6 +228,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     timeDilation = 0.4;
 
     double backCardPosition = 10;
@@ -235,28 +237,16 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     print(data.length);
 
     return (new Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: AppBar(
-            elevation: 0.9,
-            title: Tick(image: lil_whale, height: 40, width: 45),
-            centerTitle: true,
-            backgroundColor: Colors.white,
-            iconTheme: IconThemeData(
-              color: Colors.blue, //change your color here
-            )),
-      ),
+      appBar: AppBar(
+          elevation: 0.9,
+          title: Tick(image: lil_whale, height: 40, width: 45),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(
+            color: Colors.blue, //change your color here
+          )),
       bottomNavigationBar: _buildBottomBar(),
       body: new Container(
-        decoration: new BoxDecoration(
-          color: Colors.grey[50],
-          // image: new DecorationImage(
-          //   image: new AssetImage("assets/underwater.jpg"),
-          //   fit: BoxFit.cover,
-          //   colorFilter: new ColorFilter.mode(
-          //       Colors.white.withOpacity(0.4), BlendMode.dstATop),
-          // ),
-        ),
         alignment: Alignment.center,
         child: StreamBuilder(
             stream: Firestore.instance.collection("species").snapshots(),
@@ -290,7 +280,8 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                         addImg,
                         swipeRight,
                         swipeLeft,
-                        data);
+                        data,
+                        userLog);
                   } else {
                     backCardPosition = backCardPosition + 10;
                     backCardWidth = backCardWidth + 10;

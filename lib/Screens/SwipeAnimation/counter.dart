@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../Components/LogDiveButton.dart';
+import 'package:vivagua/Components/UnrealButton.dart';
 
 typedef void CounterChangeCallback(num value);
 
@@ -55,6 +56,7 @@ class Counter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     final ThemeData themeData = Theme.of(context);
     color = color ?? themeData.accentColor;
     textStyle = textStyle ??
@@ -68,74 +70,51 @@ class Counter extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          new Container(
-              height: 122.0,
-              width: 175.0,
-              alignment: Alignment.center,
-              decoration: new BoxDecoration(
-                color: Colors.white, //Color.fromRGBO(10, 235, 10, 0.85),
-                borderRadius: new BorderRadius.circular(20.0),
-                boxShadow: [
-                  new BoxShadow(
-                    color: Colors.red[200],
-                    blurRadius: 2,
-                    offset: new Offset(0, 1.0),
-                  )
-                ],
-              ),
-              child: SizedBox.expand(
-                child: new FlatButton(
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0)),
-                  highlightColor: Colors.red[50],
-                  padding: new EdgeInsets.all(0.0),
-                  onPressed: () {
-                    if (selectedValue - step >= minValue) {
-                      onChanged(selectedValue - step);
-                    }
-                  },
-                  child: new Icon(Icons.exposure_neg_1, color: Colors.red, size: 48),
-                ),
-              )),
-          new Container(
-            padding: EdgeInsets.all(66.0),
-            child: new Text(
-              '${num.parse((selectedValue).toStringAsFixed(decimalPlaces))}',
-              style: TextStyle(
-                  fontSize: 56,
-                  color: Color(0xff2298f2),
-                  fontWeight: FontWeight.w300),
-            ),
+          new UnrealButton(
+              height: screenSize.height * 0.1,
+              width: screenSize.width * 0.25,
+              highlightColor: Colors.red[50],
+              shadowColor: Colors.red[200],
+              backgroundColor: Colors.white,
+              content: Icon(Icons.exposure_neg_1,
+                  color: Colors.red, size: screenSize.width * 0.07),
+              borderRadius: 20.0,
+              onPressed: () {
+                if (selectedValue - step >= minValue) {
+                  onChanged(selectedValue - step);
+                }
+              }),
+          new Padding(
+            padding: EdgeInsets.all(26.0),
+            child: new UnrealButton(
+              height: screenSize.height * 0.1,
+              width: screenSize.width * 0.15,
+              highlightColor: Colors.black12,
+              shadowColor: Colors.white,
+              backgroundColor: Colors.white,
+              content:  Text('${num.parse((selectedValue).toStringAsFixed(decimalPlaces))}', style: TextStyle(color: Colors.blue, fontSize: 30.0),),
+              borderRadius: 100.0,
+              onPressed: () {
+                if (selectedValue + step <= maxValue) {
+                  onChanged((selectedValue + step));
+                }
+              }),
           ),
-          new Container(
-              height: 122.0,
-              width: 175.0,
-              alignment: Alignment.center,
-              decoration: new BoxDecoration(
-                color: Colors.white, //Color.fromRGBO(10, 235, 10, 0.85),
-                borderRadius: new BorderRadius.circular(20.0),
-                boxShadow: [
-                  new BoxShadow(
-                    color: Colors.green[200],
-                    blurRadius: 2,
-                    offset: new Offset(0, 1.0),
-                  )
-                ],
-              ),
-              child: SizedBox.expand(
-                child: new FlatButton(
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(20.0)),
-                  highlightColor: Colors.green[50],
-                  padding: new EdgeInsets.all(0.0),
-                  onPressed: () {
-                    if (selectedValue + step <= maxValue) {
-                      onChanged((selectedValue + step));
-                    }
-                  },
-                  child: new Icon(Icons.exposure_plus_1, color: Colors.green, size: 48),
-                ),
-              )),
+          
+          new UnrealButton(
+              height: screenSize.height * 0.1,
+              width: screenSize.width * 0.25,
+              highlightColor: Colors.green[50],
+              shadowColor: Colors.green[200],
+              backgroundColor: Colors.white,
+              content: Icon(Icons.exposure_plus_1,
+                  color: Colors.green, size: screenSize.width * 0.07),
+              borderRadius: 20.0,
+              onPressed: () {
+                if (selectedValue + step <= maxValue) {
+                  onChanged((selectedValue + step));
+                }
+              }),
         ],
       ),
     );
