@@ -3,8 +3,7 @@ library counter;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../../Components/LogDiveButton.dart';
-import 'package:vivagua/Components/UnrealButton.dart';
+import 'package:vivagua/components/UnrealButton.dart';
 
 typedef void CounterChangeCallback(num value);
 

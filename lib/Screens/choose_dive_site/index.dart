@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import '../../Components/WhiteTick.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
-import '../../Components/SiteCard.dart';
+import 'package:vivagua/components/SiteCard.dart';
 import 'data.dart';
 import 'package:vivagua/styles.dart';
 
@@ -15,18 +15,12 @@ class ChooseDiveSiteScreen extends StatefulWidget {
 }
 
 class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
-  // List<String> items = diveItems;
+
   TextEditingController controller = new TextEditingController();
   String filter;
 
   @override
   initState() {
-    diveItems.add("Turtle Crossing");
-    diveItems.add("Hager Boardwalk");
-    diveItems.add("Moran Drawstring");
-    diveItems.add("Mancuso Waterway");
-    diveItems.add("Razzano Ripcurrent");
-
     controller.addListener(() {
       setState(() {
         filter = controller.text;

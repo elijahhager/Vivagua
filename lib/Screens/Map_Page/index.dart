@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
-import 'package:vivagua/Routes.dart';
-import 'package:vivagua/Components/WhiteTick.dart';
-import 'package:vivagua/Screens/Map_page/styles.dart';
+import 'package:vivagua/routes.dart';
+import 'package:vivagua/components/WhiteTick.dart';
+import 'package:vivagua/screens/map_page/styles.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 
 class MapPage extends StatefulWidget {

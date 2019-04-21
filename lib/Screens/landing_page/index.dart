@@ -2,16 +2,12 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'dart:async';
-import '../../Components/LogDiveButton.dart';
-import '../../Components/WhiteTick.dart';
-import 'package:vivagua/Routes.dart';
-import '../choose_dive_site/index.dart';
-import 'package:vivagua/Components/UnrealButton.dart';
+import 'package:vivagua/components/WhiteTick.dart';
+import 'package:vivagua/routes.dart';
+import 'package:vivagua/components/UnrealButton.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
-import '../../globals.dart' as globals;
 import 'package:vivagua/styles.dart';
 
 class LandingScreen extends StatefulWidget {

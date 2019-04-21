@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:vivagua/model/specs.dart';
 import 'package:vivagua/ui/common/separator.dart';
 import 'package:vivagua/ui/detail/detail_page.dart';
 import 'package:vivagua/styles.dart';

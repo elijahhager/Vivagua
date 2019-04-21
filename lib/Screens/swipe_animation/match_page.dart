@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'data.dart';
 import 'package:flutter/material.dart';
 import 'styles.dart';
@@ -7,11 +6,11 @@ import 'package:flutter/scheduler.dart';
 import 'species.dart';
 import 'counter.dart';
 import 'package:flutter/cupertino.dart';
-import '../../Components/LogDiveButton.dart';
-import '../../Screens/landing_page/index.dart';
+import 'package:vivagua/components/LogDiveButton.dart';
+import 'package:vivagua/screens/landing_page/index.dart';
 import 'package:vivagua/globals.dart' as globals;
-import 'package:vivagua/Routes.dart';
-import 'package:vivagua/Components/UnrealButton.dart';
+import 'package:vivagua/routes.dart';
+import 'package:vivagua/components/UnrealButton.dart';
 
 //typedef void CounterChangeCallback(num value);
 

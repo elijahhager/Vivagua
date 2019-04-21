@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:vivagua/Screens/landing_page/index.dart';
-import 'package:vivagua/Screens/choose_dive_site/index.dart';
+import 'package:vivagua/screens/landing_page/index.dart';
+import 'package:vivagua/screens/choose_dive_site/index.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/material.dart';
+import 'package:vivagua/screens/swipe_animation/index.dart';
 import 'package:vivagua/ui/home/home_page.dart';
 import 'package:vivagua/ui/home/home_page_body.dart';
 import 'package:vivagua/ui/home/dive_site_specific.dart';
-
-
-
 
 class Routes {
 
@@ -18,6 +15,10 @@ class Routes {
 
     _router.define('landing', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       return new LandingScreen();
+    }));
+
+    _router.define('card_demo', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new CardDemo();
     }));
 
     _router.define('choose_dive_site', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {

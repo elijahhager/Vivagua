@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'dummyCard.dart';
-import 'activeCard.dart';
-import '../../Components/WhiteTick.dart';
+import 'dummy_card.dart';
+import 'active_card.dart';
+import 'package:vivagua/components/WhiteTick.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'matches.dart';
 import 'species.dart';
-import 'matchpage.dart';
+import 'match_page.dart';
 import 'styles.dart';
-import 'package:vivagua/Components/UnrealButton.dart';
-import 'package:vivagua/Routes.dart';
+import 'package:vivagua/components/UnrealButton.dart';
+import 'package:vivagua/routes.dart';
 import 'package:vivagua/globals.dart' as globals;
 
 class CardDemo extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vivagua/model/specs.dart';
 import 'package:vivagua/ui/common/spec_summary.dart';
-import 'package:vivagua/Components/WhiteTick.dart';
+import 'package:vivagua/components/WhiteTick.dart';
 import 'package:vivagua/styles.dart';
 
 class DiveSiteSpecificBody extends StatelessWidget {

@@ -1,7 +1,7 @@
-class DiveSite {
+class Divesite {
   String name;
   double lat;
   double long;
 
-  DiveSite(String s, double lat, double long);
+  Divesite(String s, double lat, double long);
 }

@@ -1,9 +1,8 @@
 import 'dart:math';
-
 import 'detail.dart';
 import 'package:flutter/material.dart';
 import 'species.dart';
-import 'matchpage.dart';
+import 'match_page.dart';
 
 Positioned cardDemo(
     Species sp,

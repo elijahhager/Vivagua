@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vivagua/Screens/landing_page/index.dart';
-import 'package:vivagua/Routes.dart';
+import 'package:vivagua/screens/landing_page/index.dart';
+import 'package:vivagua/routes.dart';
 
 void main() {
   Routes.initRoutes();

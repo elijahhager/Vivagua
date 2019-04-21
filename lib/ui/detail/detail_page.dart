@@ -4,7 +4,7 @@ import 'package:vivagua/model/specs.dart';
 import 'package:vivagua/ui/common/spec_summary.dart';
 import 'package:vivagua/ui/common/separator.dart';
 import 'package:vivagua/styles.dart';
-import 'package:vivagua/Components/SimpleTimeSeriesChart.dart';
+import 'package:vivagua/components/SimpleTimeSeriesChart.dart';
 
 class DetailPage extends StatelessWidget {
   final DocumentSnapshot spec;
