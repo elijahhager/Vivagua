@@ -41,10 +41,14 @@ class SiteCard extends StatelessWidget {
               ),
               title: Text(
                 site['name'],
+<<<<<<< HEAD
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 24.0),
+=======
+                style: TextStyle(color: Colors.black, fontFamily: 'Overpass SemiBold', fontSize: 32.0),
+>>>>>>> a42e520ebf90e486ec8e65b09798140375c16273
               ),
               // subtitle: Row(
               //   children: <Widget>[

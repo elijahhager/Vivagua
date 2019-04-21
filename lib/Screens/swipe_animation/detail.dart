@@ -166,8 +166,10 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                       children: <Widget>[
                                         new Text(spe.name,
                                             style: TextStyle(
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold)),
+                                                fontFamily: 'Overpass SemiBold',
+                                                fontSize: 32,
+                                                //fontWeight: FontWeight.bold
+                                                )),
                                         new Row(
                                           children: <Widget>[
                                             new Icon(
@@ -190,7 +192,10 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                     child: new Text(
                                       "ABOUT",
                                       style: new TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                          fontFamily: 'Overpass SemiBold',
+                                          fontSize: 20,
+                                          //fontWeight: FontWeight.bold
+                                          ),
                                     ),
                                   ),
                                   new Padding(
@@ -199,7 +204,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                     child: new Text(
                                       spe.about,
                                       style: new TextStyle(
-                                        fontSize: 16,
+                                        fontFamily: 'Overpass Regular',
+                                        fontSize: 20,
                                       ),
                                       textAlign: TextAlign.justify,
                                     ),
@@ -223,7 +229,10 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                         new Text(
                                           "Unique Characteristics",
                                           style: new TextStyle(
-                                              fontWeight: FontWeight.bold),
+                                              fontFamily: 'Overpass SemiBold',
+                                              fontSize: 20,
+                                              //fontWeight: FontWeight.bold
+                                              ),
                                         ),
                                         new Row(
                                           mainAxisAlignment:
