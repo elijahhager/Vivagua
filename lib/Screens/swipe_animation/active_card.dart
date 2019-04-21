@@ -25,7 +25,7 @@ Positioned cardDemo(
 
   return new Positioned(
     
-    // bottom: 120.0,   // autocenters if we don't specify this
+    bottom: 60.0,   // autocenters if we don't specify this
     right: flag == 0 ? right != 0.0 ? right : null : null,
     left: flag == 1 ? right != 0.0 ? right : null : null,
     child: new Dismissible(

@@ -14,6 +14,7 @@ class SiteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return new Card(
       elevation: 3.0,
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
@@ -33,29 +34,16 @@ class SiteCard extends StatelessWidget {
                     border: new Border(
                         right:
                             new BorderSide(width: 1.0, color: Colors.black))),
-                child: Icon(
-                  Icons.location_on,
-                  color: Colors.blue,
-                  size: 36,
-                ),
+                child: Icon(Icons.location_on,
+                    color: Colors.blue, size: screenSize.width * 0.055),
               ),
               title: Text(
                 site['name'],
-<<<<<<< HEAD
                 style: TextStyle(
                     color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24.0),
-=======
-                style: TextStyle(color: Colors.black, fontFamily: 'Overpass SemiBold', fontSize: 32.0),
->>>>>>> a42e520ebf90e486ec8e65b09798140375c16273
+                    fontFamily: 'Overpass SemiBold',
+                    fontSize: screenSize.width * 0.05),
               ),
-              // subtitle: Row(
-              //   children: <Widget>[
-              //     Icon(Icons.linear_scale, color: Colors.blue),
-              //     Text(site['distance'], style: TextStyle(color: Colors.black))
-              //   ],
-              // ),
               trailing: Icon(Icons.keyboard_arrow_right,
                   color: Colors.black, size: 30.0)),
         ),

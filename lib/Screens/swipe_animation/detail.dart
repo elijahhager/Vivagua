@@ -25,7 +25,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   List<Species> data;
   _DetailPageState({this.type, this.spe, this.data});
   double _appBarHeight = 350;
-  
+
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
   void initState() {
@@ -69,7 +69,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
     int img = data.indexOf(spe); // spe used to be type
     Size screenSize = MediaQuery.of(context).size;
     Widget image_carousel = new Container(
-      height: screenSize.height / 2.7,//_appBarHeight,
+      height: screenSize.height / 2.7, //_appBarHeight,
       child: new Carousel(
         boxFit: BoxFit.cover,
         images: data[img].otherImages,
@@ -122,7 +122,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                             size: 45.0,
                           ),
                         ),
-                        expandedHeight: screenSize.height / 2.7,//_appBarHeight,
+                        expandedHeight:
+                            screenSize.height / 2.7, //_appBarHeight,
                         pinned: _appBarBehavior == AppBarBehavior.pinned,
                         floating: _appBarBehavior == AppBarBehavior.floating ||
                             _appBarBehavior == AppBarBehavior.snapping,
@@ -166,20 +167,27 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                       children: <Widget>[
                                         new Text(spe.name,
                                             style: TextStyle(
-                                                fontFamily: 'Overpass SemiBold',
-                                                fontSize: 32,
-                                                //fontWeight: FontWeight.bold
-                                                )),
+                                              fontFamily: 'Overpass SemiBold',
+                                              fontSize: screenSize.width * 0.06,
+                                              //fontWeight: FontWeight.bold
+                                            )),
                                         new Row(
                                           children: <Widget>[
                                             new Icon(
-                                              Icons.brightness_1,
+                                              Icons.alarm,
                                               color: spe.color,
                                             ),
                                             new Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: new Text(spe.status),
+                                              child: new Text(spe.status,
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                        'Overpass SemiBold',
+                                                    fontSize:
+                                                        screenSize.width * 0.03,
+                                                    //fontWeight: FontWeight.bold
+                                                  )),
                                             )
                                           ],
                                         )
@@ -190,12 +198,12 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                     padding: const EdgeInsets.only(
                                         top: 16.0, bottom: 8.0),
                                     child: new Text(
-                                      "ABOUT",
+                                      "About",
                                       style: new TextStyle(
-                                          fontFamily: 'Overpass SemiBold',
-                                          fontSize: 20,
-                                          //fontWeight: FontWeight.bold
-                                          ),
+                                        fontFamily: 'Overpass SemiBold',
+                                        fontSize: screenSize.width * 0.05,
+                                        //fontWeight: FontWeight.bold
+                                      ),
                                     ),
                                   ),
                                   new Padding(
@@ -205,7 +213,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                       spe.about,
                                       style: new TextStyle(
                                         fontFamily: 'Overpass Regular',
-                                        fontSize: 20,
+                                        fontSize: screenSize.width * 0.04,
                                       ),
                                       textAlign: TextAlign.justify,
                                     ),
@@ -229,10 +237,10 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                         new Text(
                                           "Unique Characteristics",
                                           style: new TextStyle(
-                                              fontFamily: 'Overpass SemiBold',
-                                              fontSize: 20,
-                                              //fontWeight: FontWeight.bold
-                                              ),
+                                            fontFamily: 'Overpass SemiBold',
+                                            fontSize: screenSize.width * 0.05,
+                                            //fontWeight: FontWeight.bold
+                                          ),
                                         ),
                                         new Row(
                                           mainAxisAlignment:

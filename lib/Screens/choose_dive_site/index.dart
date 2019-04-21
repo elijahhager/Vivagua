@@ -69,7 +69,7 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
                           .collection('divesites')
                           .snapshots(),
                       builder: (context, snapshot) {
-                        if (!snapshot.hasData) return const Text('Loading...');
+                        if (!snapshot.hasData) return Padding(padding: EdgeInsets.only(top: 40.0), child: Text('Loading...',));
                         return ListView.builder(
                           padding: EdgeInsets.only(top: 20.0),
                           scrollDirection: Axis.vertical,

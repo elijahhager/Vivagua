@@ -13,7 +13,7 @@ Positioned cardDemoDummy(
   // Size screenSize=(500.0,200.0);
   // print("dummyCard");
   return new Positioned(
-    // bottom: 50.0 + bottom,
+    bottom: bottom - 10,
     // right: flag == 0 ? right != 0.0 ? right : null : null,
     //left: flag == 1 ? right != 0.0 ? right : null : null,
     child: new Card(
