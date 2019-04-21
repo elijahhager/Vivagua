@@ -155,9 +155,17 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
         appBar: AppBar(
-          title: Tick(image: home, width: 100.0, height: 30.0),
+          title: Text(
+          "divesites",
+          style: TextStyle(
+              color: Colors.blue,
+              fontFamily: 'Overpass ExtraLight',
+              fontWeight: FontWeight.w500,
+              fontSize: screenSize.width * 0.07),
+        ),
           centerTitle: true,
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(

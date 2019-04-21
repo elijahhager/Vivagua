@@ -8,6 +8,7 @@ void main() {
     new MaterialApp(
       title: "vivagua",
       home: new LandingScreen(),
+      theme: ThemeData(fontFamily: 'Overpass SemiBold'),
     ),
   );
 }

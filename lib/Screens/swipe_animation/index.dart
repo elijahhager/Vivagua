@@ -257,7 +257,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                 data = _buildSpecs(snapshot.data);
 
                 // initialize all to 0
-                for (var d in data) userLog[d.name] = 0;
+                for (var d in data) userLog[d.name.replaceAll(new RegExp(r' '), '_').toLowerCase()] = 0;
               }
 
               completed = true;

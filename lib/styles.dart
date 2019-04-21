@@ -4,7 +4,7 @@ import 'package:vivagua/globals.dart';
 class Style {
 
   static final baseTextStyle = const TextStyle(
-    fontFamily: 'Poppins'
+    fontFamily: 'Overpass SemiBold'
   );
 
   static final smallTextStyle = commonTextStyle.copyWith(

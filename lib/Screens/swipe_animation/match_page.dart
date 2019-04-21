@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'data.dart';
 import 'package:flutter/material.dart';
 import 'styles.dart';
 import 'package:flutter/scheduler.dart';
@@ -11,8 +10,6 @@ import 'package:vivagua/screens/landing_page/index.dart';
 import 'package:vivagua/globals.dart' as globals;
 import 'package:vivagua/routes.dart';
 import 'package:vivagua/components/UnrealButton.dart';
-
-//typedef void CounterChangeCallback(num value);
 
 class MatchPage extends StatefulWidget {
   final DecorationImage type;
@@ -264,7 +261,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                               color: Colors.blue, size: screenSize.width * 0.1),
                                           borderRadius: 20.0,
                                           onPressed: () {
-                                            userLog[this.spe.name] =
+                                            userLog[this.spe.name.replaceAll(new RegExp(r' '), '_').toLowerCase()] =
                                                 submitValue;
 
                                             if (this.data.length == 0) {

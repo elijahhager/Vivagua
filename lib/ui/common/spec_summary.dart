@@ -17,6 +17,8 @@ class SpecSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    Size screenSize = MediaQuery.of(context).size;
+
     final specThumbnail = new Container(
       margin: new EdgeInsets.symmetric(
         vertical: 16.0
@@ -38,8 +40,8 @@ class SpecSummary extends StatelessWidget {
           child: new Image(
             
             image: new AssetImage(spec['image']),      
-            height: 91.0,
-            width: 91.0,
+            height: screenSize.width * 0.24,
+            width: screenSize.width * 0.24,
           ),
         ),
     ));
@@ -52,7 +54,7 @@ class SpecSummary extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             icon,
-            new Container(width: 8.0),
+            new Container(width: screenSize.width * 0.05),
             new Text(value, style: Style.smallTextStyle),
           ]
         ),
@@ -61,14 +63,14 @@ class SpecSummary extends StatelessWidget {
 
 
     final specCardContent = new Container(
-      margin: new EdgeInsets.fromLTRB(horizontal ? 76.0 : 16.0, horizontal ? 16.0 : 42.0, 16.0, 16.0),
+      margin: new EdgeInsets.fromLTRB(horizontal ? screenSize.width * 0.19 : screenSize.width * 0.1, horizontal ? screenSize.width * 0.035 : 42.0, screenSize.width * 0.035, screenSize.width * 0.035),
       constraints: new BoxConstraints.expand(),
       child: new Column(
         crossAxisAlignment: horizontal ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: <Widget>[
-          new Container(height: 4.0),
+          new Container(height: screenSize.width * 0.016),
           new Text(spec['name'], style: Style.titleTextStyle),
-          new Container(height: 10.0),
+          new Container(height: screenSize.width * 0.02),
           new Text(spec['location'], style: Style.commonTextStyle),
           new Separator(),
           new Row(
@@ -78,17 +80,17 @@ class SpecSummary extends StatelessWidget {
                 flex: horizontal ? 1 : 0,
                 child: _specValue(
                   value: spec['status'],
-                  icon: Icon(Icons.alarm, size: 14, color: Colors.blue))
+                  icon: Icon(Icons.alarm, size: screenSize.width * 0.035, color: Colors.blue))
 
               ),
               new Container(
-                width: horizontal ? 8.0 : 32.0,
+                width: horizontal ? screenSize.width * 0.017 : 32.0,
               ),
               new Expanded(
                   flex: horizontal ? 1 : 0,
                   child: _specValue(
                   value: spec['nativity'],
-                  icon: Icon(Icons.location_on, size: 14, color: Colors.blue))
+                  icon: Icon(Icons.location_on, size: screenSize.width * 0.035, color: Colors.blue))
               )
             ],
           ),
@@ -99,7 +101,7 @@ class SpecSummary extends StatelessWidget {
 
     final specCard = new Container(
       child: specCardContent,
-      height: horizontal ? 124.0 : 154.0,
+      height: horizontal ? screenSize.height * 0.18 : 154.0,
       margin: horizontal
         ? new EdgeInsets.only(left: 46.0)
         : new EdgeInsets.only(top: 65.0),

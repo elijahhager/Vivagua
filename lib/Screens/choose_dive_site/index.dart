@@ -5,7 +5,6 @@ import '../../Components/WhiteTick.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:vivagua/components/SiteCard.dart';
-import 'data.dart';
 import 'package:vivagua/styles.dart';
 
 class ChooseDiveSiteScreen extends StatefulWidget {
@@ -15,7 +14,6 @@ class ChooseDiveSiteScreen extends StatefulWidget {
 }
 
 class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
-
   TextEditingController controller = new TextEditingController();
   String filter;
 
@@ -36,11 +34,19 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     timeDilation = 0.4;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return new Scaffold(
       appBar: AppBar(
-        title: Tick(image: choose, width: 280.0, height: 40.0),
+        title: Text(
+          "choose divesite",
+          style: TextStyle(
+              color: Colors.blue,
+              fontFamily: 'Overpass ExtraLight',
+              fontWeight: FontWeight.w500,
+              fontSize: screenSize.width * 0.06),
+        ),
         centerTitle: true,
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
@@ -69,7 +75,12 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
                           .collection('divesites')
                           .snapshots(),
                       builder: (context, snapshot) {
-                        if (!snapshot.hasData) return Padding(padding: EdgeInsets.only(top: 40.0), child: Text('Loading...',));
+                        if (!snapshot.hasData)
+                          return Padding(
+                              padding: EdgeInsets.only(top: 40.0),
+                              child: Text(
+                                'Loading...',
+                              ));
                         return ListView.builder(
                           padding: EdgeInsets.only(top: 20.0),
                           scrollDirection: Axis.vertical,
@@ -79,13 +90,13 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
                             return filter == null || filter == ""
                                 ? new SiteCard(
                                     site: snapshot.data.documents[index],
-                                    )
+                                  )
                                 : snapshot.data.documents[index]['name']
                                         .toLowerCase()
                                         .contains(filter.toLowerCase())
                                     ? new SiteCard(
                                         site: snapshot.data.documents[index],
-                                        )
+                                      )
                                     : new Container();
                           },
                         );
