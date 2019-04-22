@@ -31,7 +31,7 @@ class Style {
   
   static final titleTextStyle = baseTextStyle.copyWith(
     color: vivaguaBlue,
-    fontSize: 25.0,
+    fontSize: 20,
     fontWeight: FontWeight.w600
   );
 
