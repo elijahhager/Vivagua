@@ -63,7 +63,7 @@ class SpecSummary extends StatelessWidget {
 
 
     final specCardContent = new Container(
-      margin: new EdgeInsets.fromLTRB(horizontal ? screenSize.width * 0.19 : screenSize.width * 0.1, horizontal ? screenSize.width * 0.035 : screenSize.height * 0.055, screenSize.width * 0.1, screenSize.width * 0.035),
+      margin: new EdgeInsets.fromLTRB(horizontal ? screenSize.width * 0.19 : screenSize.width * 0.1, horizontal ? screenSize.width * 0.025 : screenSize.height * 0.055, screenSize.width * 0.1, screenSize.width * 0.035),
       constraints: new BoxConstraints.expand(),
       child: new Column(
         crossAxisAlignment: horizontal ? CrossAxisAlignment.start : CrossAxisAlignment.center,
