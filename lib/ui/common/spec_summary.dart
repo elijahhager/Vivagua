@@ -40,8 +40,8 @@ class SpecSummary extends StatelessWidget {
           child: new Image(
             
             image: new AssetImage(spec['image']),      
-            height: screenSize.width * 0.24,
-            width: screenSize.width * 0.24,
+            height: screenSize.width * 0.23,
+            width: screenSize.width * 0.23,
           ),
         ),
     ));
@@ -63,17 +63,18 @@ class SpecSummary extends StatelessWidget {
 
 
     final specCardContent = new Container(
-      margin: new EdgeInsets.fromLTRB(horizontal ? screenSize.width * 0.19 : screenSize.width * 0.1, horizontal ? screenSize.width * 0.035 : 42.0, screenSize.width * 0.035, screenSize.width * 0.035),
+      margin: new EdgeInsets.fromLTRB(horizontal ? screenSize.width * 0.19 : screenSize.width * 0.1, horizontal ? screenSize.width * 0.035 : screenSize.height * 0.055, screenSize.width * 0.1, screenSize.width * 0.035),
       constraints: new BoxConstraints.expand(),
       child: new Column(
         crossAxisAlignment: horizontal ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: <Widget>[
-          new Container(height: screenSize.width * 0.016),
+          new Container(height: screenSize.height * 0.023),
           new Text(spec['name'], style: Style.titleTextStyle),
-          new Container(height: screenSize.width * 0.02),
+          new Container(height: screenSize.height * 0.0001),
           new Text(spec['location'], style: Style.commonTextStyle),
           new Separator(),
           new Row(
+            
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Expanded(
@@ -84,7 +85,7 @@ class SpecSummary extends StatelessWidget {
 
               ),
               new Container(
-                width: horizontal ? screenSize.width * 0.017 : 32.0,
+                width: horizontal ? screenSize.width * 0.017 : screenSize.width * 0.09,
               ),
               new Expanded(
                   flex: horizontal ? 1 : 0,
