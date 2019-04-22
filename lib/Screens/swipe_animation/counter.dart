@@ -84,7 +84,7 @@ class Counter extends StatelessWidget {
                 }
               }),
           new Padding(
-            padding: EdgeInsets.all(26.0),
+            padding: EdgeInsets.all(screenSize.width * 0.05),
             child: new UnrealButton(
               height: screenSize.height * 0.1,
               width: screenSize.width * 0.15,

@@ -216,7 +216,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                         new Text(
                                           "How many did you see?",
                                           style: TextStyle(
-                                              fontSize: 22,
+                                              fontSize: screenSize.width * 0.055,
                                               color: Colors.black,
                                               fontWeight: FontWeight.w400),
                                         ),

@@ -114,7 +114,7 @@ Positioned cardDemo(
                               new Icon(
                                 Icons.info,
                                 color: Colors.white,
-                                size: 38,
+                                size: screenSize.width * 0.06,
                               ),
                             ],
                           ),

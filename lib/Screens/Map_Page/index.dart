@@ -98,19 +98,20 @@ class _MapPageState extends State<MapPage> {
         });
   }
 
-  _buildMarkers(QuerySnapshot querySnapshot) {
+  _buildMarkers(QuerySnapshot querySnapshot, double zoomLevel) {
+    Size screenSize = MediaQuery.of(context).size;
     List<Marker> items = [];
     for (var d in querySnapshot.documents) {
       items.add(new Marker(
-          width: 94.0,
-          height: 94.0,
+          width: screenSize.width * 0.20,
+          height: screenSize.height * 0.20,
           point: new LatLng(d['location'].latitude, d['location'].longitude),
           builder: (context) => new Container(
                   child: Column(children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.location_on),
                   color: Colors.blue,
-                  iconSize: 45.0,
+                  iconSize: screenSize.width * 0.06,
                   onPressed: () => Routes.navigateTo(context, 'dive_site_specific'),
                 ),
                 Text(
@@ -118,7 +119,7 @@ class _MapPageState extends State<MapPage> {
                   textAlign: TextAlign.center,
                   style: new TextStyle(
                     color: Colors.blue,
-                    fontSize: 14,
+                    fontSize: screenSize.width * 0.04,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -207,7 +208,7 @@ class _MapPageState extends State<MapPage> {
                               },
                             ),
                             new MarkerLayerOptions(
-                                markers: _buildMarkers(snapshot.data)),
+                                markers: _buildMarkers(snapshot.data, mpcontroller.zoom)),
                           ]);
                     })
                 //
