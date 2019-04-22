@@ -175,7 +175,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                                           children: <Widget>[
                                             new Icon(
                                               Icons.alarm,
-                                              color: spe.color,
+                                              color: Colors.deepOrange,
                                             ),
                                             new Padding(
                                               padding:
