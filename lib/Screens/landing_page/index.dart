@@ -58,7 +58,10 @@ class LandingScreenState extends State<LandingScreen> {
                   content: new Text("Do not press"),
                   borderRadius: 20.0,
                   onPressed: () {
+                    CloudFunctions.instance.call(functionName: "diversWhoSawAndDidNotSee");
+                    CloudFunctions.instance.call(functionName: "diversWhoSawAndDidNotSeeDivesiteSpecific");
                     CloudFunctions.instance.call(functionName: "sightingsThisWeek");
+                    CloudFunctions.instance.call(functionName: "sightingsLastWeek");
                     print("Running cloud functions");
                   }),
               new Container(

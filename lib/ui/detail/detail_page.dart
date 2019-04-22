@@ -24,7 +24,8 @@ class DetailPage extends StatelessWidget {
             width: 60.0,
             child: ListView(
               children: <Widget>[
-                new Text("Enter your email to receive a PDF version of these statistics."),
+                new Text(
+                    "Enter your email to receive a PDF version of these statistics."),
                 new TextField(
                   decoration: const InputDecoration(labelText: "Email: "),
                 ),
@@ -198,18 +199,27 @@ class DetailPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               StreamBuilder<DocumentSnapshot>(
-                                stream: Firestore.instance.collection("statistics").document(this.spec.documentID).snapshots(),
+                                stream: Firestore.instance
+                                    .collection("statistics")
+                                    .document(this.spec.documentID)
+                                    .snapshots(),
                                 builder: (context, snapshot) {
-                                  if (!snapshot.hasData) return const Text('...');
-                                  var percentage = snapshot.data["seenThisWeek"] / (snapshot.data["seenLastWeek"] + 0.00001);
-                                  return new Text( ((percentage*100).round()).toString() + "%", style: Style.increaseTextStyle);
+                                  if (!snapshot.hasData)
+                                    return const Text('...');
+                                  var percentage = snapshot
+                                          .data["seenThisWeek"] /
+                                      (snapshot.data["seenLastWeek"] + 0.00001);
+                                  return new Text(
+                                      ((percentage * 100).round()).toString() +
+                                          "%",
+                                      style: Style.increaseTextStyle);
                                 },
                               ),
                               Icon(Icons.arrow_drop_up,
                                   color: Colors.green, size: 40.0),
                             ],
                           ),
-                          Text("increase since last week",
+                          Text("increase this week",
                               style: Style.commonTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -242,18 +252,29 @@ class DetailPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               StreamBuilder<DocumentSnapshot>(
-                                stream: Firestore.instance.collection("statistics").document(this.spec.documentID).snapshots(),
+                                stream: Firestore.instance
+                                    .collection("statistics")
+                                    .document(this.spec.documentID)
+                                    .snapshots(),
                                 builder: (context, snapshot) {
-                                  if (!snapshot.hasData) return const Text('...');
-                                  var percentage = snapshot.data["diversWhoSaw"] / (snapshot.data["diversWhoSaw"] + snapshot.data["diversWhoDidNotSee"] + 0.00001);
-                                  return new Text( ((percentage*100).round()).toString() + "%", style: Style.increaseTextStyle);
+                                  if (!snapshot.hasData)
+                                    return const Text('...');
+                                  var percentage = snapshot
+                                          .data["diversWhoSaw"] /
+                                      (snapshot.data["diversWhoSaw"] +
+                                          snapshot.data["diversWhoDidNotSee"] +
+                                          0.00001);
+                                  return new Text(
+                                      ((percentage * 100).round()).toString() +
+                                          "%",
+                                      style: Style.increaseTextStyle);
                                 },
                               ),
                               Icon(Icons.bookmark,
                                   color: Colors.green, size: 30.0),
                             ],
                           ),
-                          Text("of divers saw a " + this.spec['name'],
+                          Text("of divers saw this",
                               style: Style.commonTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -290,16 +311,22 @@ class DetailPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               StreamBuilder<DocumentSnapshot>(
-                                stream: Firestore.instance.collection("statistics").document(this.spec.documentID).snapshots(),
+                                stream: Firestore.instance
+                                    .collection("statistics")
+                                    .document(this.spec.documentID)
+                                    .snapshots(),
                                 builder: (context, snapshot) {
-                                  if (!snapshot.hasData) return const Text('...');
-                                  var numberSeen = snapshot.data["seenThisWeek"];
-                                  return new Text( (numberSeen).toString() + "%", style: Style.increaseTextStyle);
+                                  if (!snapshot.hasData)
+                                    return const Text('...');
+                                  var numberSeen =
+                                      snapshot.data["seenThisWeek"];
+                                  return new Text(numberSeen.toString(),
+                                      style: Style.increaseTextStyle);
                                 },
                               ),
                             ],
                           ),
-                          Text(this.spec['name'] + "s seen this week",
+                          Text("seen this week",
                               style: Style.commonTextStyle,
                               textAlign: TextAlign.center),
                         ],
@@ -331,12 +358,26 @@ class DetailPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Text("54%", style: Style.increaseTextStyle),
+                              StreamBuilder<DocumentSnapshot>(
+                                stream: Firestore.instance
+                                    .collection("statistics")
+                                    .document(this.spec.documentID)
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData)
+                                    return const Text('...');
+                                  var diversThisMonth =
+                                      snapshot.data["diversWhoSaw"] +
+                                          snapshot.data["diversWhoDidNotSee"];
+                                  return new Text(diversThisMonth.toString(),
+                                      style: Style.increaseTextStyle);
+                                },
+                              ),
                               Icon(Icons.arrow_drop_up,
                                   color: Colors.green, size: 40.0),
                             ],
                           ),
-                          Text("increase in number of divers",
+                          Text("divers this month",
                               style: Style.commonTextStyle,
                               textAlign: TextAlign.center),
                         ],
