@@ -98,7 +98,7 @@ class _MapPageState extends State<MapPage> {
         });
   }
 
-  _buildMarkers(QuerySnapshot querySnapshot, double zoomLevel) {
+  _buildMarkers(QuerySnapshot querySnapshot) {
     Size screenSize = MediaQuery.of(context).size;
     List<Marker> items = [];
     for (var d in querySnapshot.documents) {
@@ -208,7 +208,7 @@ class _MapPageState extends State<MapPage> {
                               },
                             ),
                             new MarkerLayerOptions(
-                                markers: _buildMarkers(snapshot.data, mpcontroller.zoom)),
+                                markers: _buildMarkers(snapshot.data)),
                           ]);
                     })
                 //
