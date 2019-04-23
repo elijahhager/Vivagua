@@ -4,13 +4,22 @@ import 'package:vivagua/model/specs.dart';
 import 'package:vivagua/ui/common/spec_summary.dart';
 import 'package:vivagua/components/WhiteTick.dart';
 import 'package:vivagua/styles.dart';
+import 'package:vivagua/globals.dart';
 
 class DiveSiteSpecificBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
       appBar: AppBar(
-            title: Tick(image: home, width: 100.0, height: 30.0),
+            title: Text(
+          mapDiveSite,
+          style: TextStyle(
+              color: Colors.blue,
+              fontFamily: 'Overpass ExtraLight',
+              fontWeight: FontWeight.w500,
+              fontSize: screenSize.width * 0.07),
+        ),
             centerTitle: true,
             backgroundColor: Colors.white,
             iconTheme: IconThemeData(

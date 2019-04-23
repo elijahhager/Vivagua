@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:vivagua/routes.dart';
 import 'DiveSite.dart';
+import 'package:vivagua/globals.dart';
 import 'package:vivagua/components/WhiteTick.dart';
 import 'package:vivagua/screens/map_page/styles.dart';
 import 'package:cloud_functions/cloud_functions.dart';
@@ -154,8 +155,8 @@ class _MapPageState extends State<MapPage> {
       //     d['name'], d['location'].latitude, d['location'].longitude));
 
       items.add(new Marker(
-          width: screenSize.width * 0.06,
-          height: screenSize.height * 0.06,
+          width: screenSize.width * 0.085,
+          height: screenSize.height * 0.085,
           point: new LatLng(d['location'].latitude, d['location'].longitude),
           builder: (context) => new Container(
                   child: Column(children: <Widget>[
@@ -163,8 +164,10 @@ class _MapPageState extends State<MapPage> {
                   icon: Icon(Icons.location_on),
                   color: Colors.blue,
                   iconSize: screenSize.width * 0.06,
-                  onPressed: () =>
-                      Routes.navigateTo(context, 'dive_site_specific'),
+                  onPressed: (){
+                    mapDiveSite = d['name'];
+                    Routes.navigateTo(context, 'dive_site_specific');
+                  } 
                 ),
                 // Text(
                 //   d['name'],
