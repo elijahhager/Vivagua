@@ -136,7 +136,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                   .collection('sightings')
                                   .document()
                                   .setData(Map<String, dynamic>.from(userLog));
-                              Routes.navigateTo(context, 'landing',
+                              Routes.navigateTo(context, 'success',
                                   clear: true);
                             } else
                               Navigator.of(context).pop();
@@ -276,7 +276,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                                                           userLog));
 
                                               Routes.navigateTo(
-                                                  context, 'landing',
+                                                  context, 'success',
                                                   clear: true);
                                             } else
                                               Navigator.of(context).pop();

@@ -49,21 +49,21 @@ class LandingScreenState extends State<LandingScreen> {
                   onPressed: () {
                     Routes.navigateTo(context, "choose_dive_site");
                   }),
-              new UnrealButton(
-                  height: 62.0,
-                  width: 125.0,
-                  highlightColor: Colors.blue[50],
-                  shadowColor: Colors.blue,
-                  backgroundColor: Colors.white,
-                  content: new Text("Do not press"),
-                  borderRadius: 20.0,
-                  onPressed: () {
-                    CloudFunctions.instance.call(functionName: "diversWhoSawAndDidNotSee");
-                    CloudFunctions.instance.call(functionName: "diversWhoSawAndDidNotSeeDivesiteSpecific");
-                    CloudFunctions.instance.call(functionName: "sightingsThisWeek");
-                    CloudFunctions.instance.call(functionName: "sightingsLastWeek");
-                    print("Running cloud functions");
-                  }),
+              // new UnrealButton(    DO NOT REMOVE THIS COMMENT
+              //     height: 62.0,
+              //     width: 125.0,
+              //     highlightColor: Colors.blue[50],
+              //     shadowColor: Colors.blue,
+              //     backgroundColor: Colors.white,
+              //     content: new Text("Do not press"),
+              //     borderRadius: 20.0,
+              //     onPressed: () {
+              //       // CloudFunctions.instance.call(functionName: "diversWhoSawAndDidNotSee");
+              //       // CloudFunctions.instance.call(functionName: "diversWhoSawAndDidNotSeeDivesiteSpecific");
+              //       // CloudFunctions.instance.call(functionName: "sightingsThisWeek");
+              //       // CloudFunctions.instance.call(functionName: "sightingsLastWeek");
+              //       print("I told you not to press it dammit.");
+              //     }),
               new Container(
                 height: 10.0,
               ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:vivagua/routes.dart';
 import 'dart:async';
-import '../../Components/WhiteTick.dart';
+import 'package:vivagua/components/WhiteTick.dart';
 import 'package:vivagua/styles.dart';
 
 class SuccessScreen extends StatefulWidget {
@@ -38,7 +39,7 @@ class SuccessScreenState extends State<SuccessScreen> {
   }
 
   void onClose() {
-    Navigator.of(context).pushNamedAndRemoveUntil('/landing', (Route<dynamic> route) => false);
+    Routes.navigateTo(context, "landing", clear: true);
   }
 
 }

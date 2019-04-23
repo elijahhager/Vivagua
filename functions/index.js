@@ -9,6 +9,7 @@ function databasify(str) {
 }
 
 exports.addDivesite = functions.https.onCall((data, context) => {
+
     const divesites = db.collection('divesites');
     console.log("Dive site added.")
     return divesites.add({
@@ -18,7 +19,7 @@ exports.addDivesite = functions.https.onCall((data, context) => {
 
 });
 
-exports.cleanSpecies = functions.https.onCall((data, context) => {
+function cleanSpecies() {
 
     const species = db.collection('species');
     return db.collection('species').get().then(snapshot => {
@@ -34,9 +35,9 @@ exports.cleanSpecies = functions.https.onCall((data, context) => {
         return 1;
     });
 
-});
+}
 
-exports.cleanDivesites = functions.https.onCall((data, context) => {
+function cleanDivesites() {
 
     const divesites = db.collection('divesites');
     return db.collection('divesites').get().then(snapshot => {
@@ -52,9 +53,9 @@ exports.cleanDivesites = functions.https.onCall((data, context) => {
         return 1;
     });
 
-});
+}
 
-exports.createStatStruct = functions.https.onCall((data, context) => {
+function createStatStruct() {
 
     const divesites = db.collection('divesites');
     const species = db.collection('species');
@@ -96,10 +97,11 @@ exports.createStatStruct = functions.https.onCall((data, context) => {
         return 1;
     });
 
-});
+}
 
-exports.sightingsThisWeek = functions.https.onCall((data, context) => {
+function sightingsThisWeek() {
 
+    console.log("Running sightings this week...");
     var today = new Date();
     var sevenDaysAgo = today.getDate() - 7;
 
@@ -144,10 +146,11 @@ exports.sightingsThisWeek = functions.https.onCall((data, context) => {
         return 1;
     });
 
-});
+}
 
-exports.sightingsLastWeek = functions.https.onCall((data, context) => {
+function sightingsLastWeek() {
 
+    console.log("Running sightings last week...");
     var today = new Date();
     var sevenDaysAgo = today.getDate() - 7;
     var fourteenDaysAgo = today.getDate() - 14;
@@ -192,10 +195,11 @@ exports.sightingsLastWeek = functions.https.onCall((data, context) => {
         return 1;
     });
 
-});
+}
 
-exports.diversWhoSawAndDidNotSee = functions.https.onCall((data, context) => {
+function diversWhoSawAndDidNotSee() {
 
+    console.log("diversWhoSaw, diversWhoDidNotSee...");
     var today = new Date();
     var thirtyDaysAgo = today.getDate() - 30;
 
@@ -248,10 +252,11 @@ exports.diversWhoSawAndDidNotSee = functions.https.onCall((data, context) => {
         return 1;
     });
 
-});
+}
 
-exports.countLogs = functions.https.onCall((data, context) => {
+function countLogs() {
 
+    console.log("Counting logs...");
     var today = new Date();
     var sevenDaysAgo = today.getDate() - 7;
 
@@ -264,6 +269,7 @@ exports.countLogs = functions.https.onCall((data, context) => {
 
         var totalLogs = 0;
         snapshot.forEach(sighting_doc => totalLogs += 1);
+        console.log("Total logs: " + totalLogs);
         return totalLogs;
 
     }).catch(reason => {
@@ -271,12 +277,13 @@ exports.countLogs = functions.https.onCall((data, context) => {
         return -1;
     });
 
-});
+}
 
 // DIVESITE SPECIFIC DATA ANALYSIS
 
-exports.diversWhoSawAndDidNotSeeDivesiteSpecific = functions.https.onCall((data, context) => {
+function diversWhoSawAndDidNotSeeDivesiteSpecific() {
 
+    console.log("diversWhoSaw-/diversWhoDidNotSee- DivesiteSpecific");
     var today = new Date();
     var thirtyDaysAgo = today.getDate() - 30;
 
@@ -333,10 +340,19 @@ exports.diversWhoSawAndDidNotSeeDivesiteSpecific = functions.https.onCall((data,
         return 1;
     });
 
-});
+}
 
-// we can do event based things here, like use onCreate, onDelete, 
-// which will event handle in the cloud
+exports.runAllStats = functions.firestore
+    .document('sightings/{log}')
+    .onWrite((change, context) => {
 
-// we can do event based things here, like use onCreate, onDelete, 
-// which will event handle in the cloud
+        console.log("Running all stats.");
+
+        diversWhoSawAndDidNotSee();
+        diversWhoSawAndDidNotSeeDivesiteSpecific();
+        sightingsThisWeek();
+        sightingsLastWeek();
+
+        return 0;
+
+    });

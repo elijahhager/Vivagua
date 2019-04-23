@@ -108,7 +108,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                 .collection('sightings')
                 .document()
                 .setData(Map<String, dynamic>.from(userLog));
-            Routes.navigateTo(context, 'landing', clear: true);
+            Routes.navigateTo(context, 'success', clear: true);
           }
         }
       });
