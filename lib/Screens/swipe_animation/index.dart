@@ -50,7 +50,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     Species newSpec = Species(
         DecorationImage(
           image: new ExactAssetImage("assets/other_card.png"),
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
         ),
         temp,
         "Other",
@@ -72,7 +72,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
       Species newSpec = Species(
           DecorationImage(
             image: new ExactAssetImage(doc['card_image']),
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
           temp,
           doc['name'],
