@@ -174,44 +174,16 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
     ];
     if (_counter > 0) {
       for (int i = 0; i < _counter; i++) {
-        children.add(
-          SickSlider(
-            height: screenSize.height * 0.10,
-            width: screenSize.height * 0.90,
-            max: 3,
-            min: 1,
-            val: 2,
-            divisions: 2,
-            activeColor: Colors.blue,
-            inactiveColor: Colors.grey,
-          )
-          // new Container(
-          //   height: screenSize.height * 0.10,
-          //   //width: screenSize.width * 0.7,
-          //   alignment: Alignment.center,
-          //   padding: EdgeInsets.only(top: 20),
-          //   child: Column(
-          //     children: <Widget>[
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: <Widget>[
-          //           Text("small", style: TextStyle(fontSize: 12),),
-          //           Text("Size", style: TextStyle(fontSize: 18),),
-          //           Text("large", style: TextStyle(fontSize: 12),),
-          //         ],
-          //       ),
-          //       Slider(
-          //         value: val,
-          //         onChanged: (double e) => changed(e),
-          //         activeColor: Colors.blue,
-          //         inactiveColor: Colors.grey,
-          //         divisions: 2,
-          //         max: 3,
-          //         min: 1.0,
-          //       ),
-          //     ],
-          //   ))
-            );
+        children.add(SickSlider(
+          height: screenSize.height * 0.10,
+          width: screenSize.height * 0.90,
+          max: 3,
+          min: 1,
+          val: 2,
+          divisions: 2,
+          activeColor: Colors.blue,
+          inactiveColor: Colors.grey,
+        ));
       }
     }
     return children;
@@ -332,88 +304,6 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                               child: new Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: _buildChildren(),
-                                // <Widget>[
-                                //   new Container(
-                                //     padding: new EdgeInsets.only(bottom: 40.0),
-                                //     alignment: Alignment.center,
-                                //     decoration: new BoxDecoration(
-                                //         color: Colors.white,
-                                //         border: new Border(
-                                //             bottom: new BorderSide(
-                                //                 color: Colors.black12))),
-                                //     child: new Row(
-                                //       mainAxisAlignment:
-                                //           MainAxisAlignment.center,
-                                //       children: <Widget>[
-                                //         new Text(
-                                //           "How many did you see?",
-                                //           style: TextStyle(
-                                //               fontSize: screenSize.width * 0.055,
-                                //               color: Colors.black,
-                                //               fontWeight: FontWeight.w400),
-                                //         ),
-                                //       ],
-                                //     ),
-                                //   ),
-                                //   new Container(
-                                //       padding: new EdgeInsets.only(top: 26.0),
-                                //       alignment: Alignment.center,
-                                //       child: new Row(
-                                //         mainAxisAlignment:
-                                //             MainAxisAlignment.center,
-                                //         children: <Widget>[
-                                //           new Container(
-                                //             alignment: Alignment.center,
-                                //             child: Counter(
-                                //               initialValue: _defaultValue,
-                                //               minValue: 0,
-                                //               maxValue: 10,
-                                //               step: 1,
-                                //               decimalPlaces: 0,
-                                //               onChanged: (value) {
-                                //                 submitValue = value;
-                                //                 print(value);
-                                //                 setState(() {
-                                //                   _defaultValue = value;
-                                //                   _counter = value;
-                                //                 });
-                                //               },
-                                //             ),
-                                //           ),
-                                //         ],
-                                //       )),
-                                //   new Center(
-                                //       child: new UnrealButton(
-                                //           height: screenSize.height * 0.1,
-                                //           width: screenSize.width * 0.4,
-                                //           highlightColor: Colors.blue[50],
-                                //           shadowColor: Colors.blue[200],
-                                //           backgroundColor: Colors.white,
-                                //           content: new Icon(Icons.done,
-                                //               color: Colors.blue, size: screenSize.width * 0.1),
-                                //           borderRadius: 20.0,
-                                //           onPressed: () {
-                                //             userLog[this.spe.name.replaceAll(new RegExp(r' '), '_').toLowerCase()] =
-                                //                 submitValue;
-
-                                //             if (this.data.length == 0) {
-                                //               // writing entire log to database
-                                //               userLog['timestamp'] =
-                                //                   Timestamp.now();
-                                //               Firestore.instance
-                                //                   .collection('sightings')
-                                //                   .document()
-                                //                   .setData(
-                                //                       Map<String, dynamic>.from(
-                                //                           userLog));
-
-                                //               Routes.navigateTo(
-                                //                   context, 'landing',
-                                //                   clear: true);
-                                //             } else
-                                //               Navigator.of(context).pop();
-                                //           }))
-                                // ],
                               ),
                             ),
                           ),
