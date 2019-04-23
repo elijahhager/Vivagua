@@ -21,7 +21,7 @@ class SpecSummary extends StatelessWidget {
 
     final specThumbnail = new Container(
       margin: new EdgeInsets.symmetric(
-        vertical: 16.0
+        vertical: screenSize.height * 0.025
       ),
       alignment: horizontal ? FractionalOffset.centerLeft : FractionalOffset.center,
       
@@ -104,8 +104,8 @@ class SpecSummary extends StatelessWidget {
       child: specCardContent,
       height: horizontal ? screenSize.height * 0.18 : 154.0,
       margin: horizontal
-        ? new EdgeInsets.only(left: 46.0)
-        : new EdgeInsets.only(top: 65.0),
+        ? new EdgeInsets.only(left: screenSize.width * 0.12)
+        : new EdgeInsets.only(top: screenSize.height * 0.09),
       decoration: new BoxDecoration(
         color: vivaguaWhite,
         shape: BoxShape.rectangle,

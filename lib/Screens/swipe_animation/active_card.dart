@@ -1,4 +1,8 @@
 import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:vivagua/routes.dart';
+import 'package:vivagua/screens/swipe_animation/matches.dart';
+
 import 'detail.dart';
 import 'package:flutter/material.dart';
 import 'species.dart';
@@ -35,6 +39,16 @@ Positioned cardDemo(
       onDismissed: (DismissDirection direction) {
         if (direction == DismissDirection.endToStart) {
           dismissImg(sp);
+          
+          if (data.length == 0) {
+            // writing entire log to database
+            userLog['timestamp'] = Timestamp.now();
+            Firestore.instance
+                .collection('sightings')
+                .document()
+                .setData(Map<String, dynamic>.from(userLog));
+            Routes.navigateTo(context, 'landing', clear: true);
+          }
         } else {
           Navigator.of(context).push(new PageRouteBuilder(
             pageBuilder: (_, __, ___) => new MatchPage(type: img, spe: sp, data: data, userLog: userLog),
