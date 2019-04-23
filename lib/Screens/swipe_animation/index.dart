@@ -40,7 +40,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   static _buildSpecs(QuerySnapshot querySnapshot) {
     List<Species> specs = [];
 
-    List<String> otherImages = ["assets/lil_whale.png"];
+    List<String> otherImages = ["assets/other_card.png"];
     List<AssetImage> temp = [];
     for (var img in otherImages) {
       temp.add(
@@ -49,7 +49,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
     }
     Species newSpec = Species(
         DecorationImage(
-          image: new ExactAssetImage("assets/lil_whale.png"),
+          image: new ExactAssetImage("assets/other_card.png"),
           fit: BoxFit.fill,
         ),
         temp,
