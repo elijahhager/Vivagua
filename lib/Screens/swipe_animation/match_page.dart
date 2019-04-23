@@ -174,7 +174,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
     ];
     if (_counter > 0) {
       for (int i = 0; i < _counter; i++) {
-        children.add(SickSlider(
+        children.insert(children.length - 1, SickSlider(
           height: screenSize.height * 0.10,
           width: screenSize.height * 0.90,
           max: 3,
