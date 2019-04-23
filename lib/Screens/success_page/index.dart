@@ -30,7 +30,7 @@ class SuccessScreenState extends State<SuccessScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  new Tick(image: logo_success, width: 250.0, height: 250.0), 
+                  new Tick(image: logo_success, width: 220.0, height: 220.0), 
                 ],
               ),
             ),
