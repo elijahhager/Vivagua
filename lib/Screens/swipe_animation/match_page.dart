@@ -10,6 +10,7 @@ import 'package:vivagua/screens/landing_page/index.dart';
 import 'package:vivagua/globals.dart' as globals;
 import 'package:vivagua/routes.dart';
 import 'package:vivagua/components/UnrealButton.dart';
+import 'package:vivagua/components/SickSlider.dart';
 
 class MatchPage extends StatefulWidget {
   final DecorationImage type;
@@ -166,22 +167,51 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                       .document()
                       .setData(Map<String, dynamic>.from(userLog));
 
-                  Routes.navigateTo(context, 'landing', clear: true);
+                  Routes.navigateTo(context, 'success', clear: true);
                 } else
                   Navigator.of(context).pop();
               }))
     ];
     if (_counter > 0) {
       for (int i = 0; i < _counter; i++) {
-        children.add(new Slider(
-          value: val,
-          onChanged: (double e) => changed(e),
-          activeColor: Colors.blue,
-          inactiveColor: Colors.grey,
-          divisions: 10,
-          max: 10.0,
-          min: 1.0,
-        ));
+        children.add(
+          SickSlider(
+            height: screenSize.height * 0.10,
+            width: screenSize.height * 0.90,
+            max: 3,
+            min: 1,
+            val: 2,
+            divisions: 2,
+            activeColor: Colors.blue,
+            inactiveColor: Colors.grey,
+          )
+          // new Container(
+          //   height: screenSize.height * 0.10,
+          //   //width: screenSize.width * 0.7,
+          //   alignment: Alignment.center,
+          //   padding: EdgeInsets.only(top: 20),
+          //   child: Column(
+          //     children: <Widget>[
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: <Widget>[
+          //           Text("small", style: TextStyle(fontSize: 12),),
+          //           Text("Size", style: TextStyle(fontSize: 18),),
+          //           Text("large", style: TextStyle(fontSize: 12),),
+          //         ],
+          //       ),
+          //       Slider(
+          //         value: val,
+          //         onChanged: (double e) => changed(e),
+          //         activeColor: Colors.blue,
+          //         inactiveColor: Colors.grey,
+          //         divisions: 2,
+          //         max: 3,
+          //         min: 1.0,
+          //       ),
+          //     ],
+          //   ))
+            );
       }
     }
     return children;
@@ -189,7 +219,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
 
   void changed(e) {
     setState(() {
-     val = e; 
+      val = e;
     });
   }
 
