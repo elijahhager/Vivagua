@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vivagua/screens/landing_page/index.dart';
 import 'package:vivagua/screens/choose_dive_site/index.dart';
 import 'package:fluro/fluro.dart';
+import 'package:vivagua/screens/success_page/index.dart';
 import 'package:vivagua/screens/swipe_animation/index.dart';
 import 'package:vivagua/ui/home/home_page.dart';
 import 'package:vivagua/ui/home/home_page_body.dart';
@@ -19,6 +20,10 @@ class Routes {
 
     _router.define('card_demo', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       return new CardDemo();
+    }));
+
+    _router.define('success', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
+      return new SuccessScreen();
     }));
 
     _router.define('choose_dive_site', handler: new Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {

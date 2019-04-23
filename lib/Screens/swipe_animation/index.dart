@@ -40,6 +40,26 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
   static _buildSpecs(QuerySnapshot querySnapshot) {
     List<Species> specs = [];
 
+    List<String> otherImages = ["assets/lil_whale.png"];
+    List<AssetImage> temp = [];
+    for (var img in otherImages) {
+      temp.add(
+        new AssetImage(img),
+      );
+    }
+    Species newSpec = Species(
+        DecorationImage(
+          image: new ExactAssetImage("assets/lil_whale.png"),
+          fit: BoxFit.fill,
+        ),
+        temp,
+        "Other",
+        "Describe what you saw!",
+        "?",
+        Color(0xff24ba1f));
+
+    specs.add(newSpec);
+
     for (var doc in querySnapshot.documents) {
       var namesImg = doc['other_images'];
       List<String> otherImages = namesImg.split("#");
@@ -108,7 +128,7 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                 .collection('sightings')
                 .document()
                 .setData(Map<String, dynamic>.from(userLog));
-            Routes.navigateTo(context, 'landing', clear: true);
+            Routes.navigateTo(context, 'success', clear: true);
           }
         }
       });
@@ -257,7 +277,10 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                 data = _buildSpecs(snapshot.data);
 
                 // initialize all to 0
-                for (var d in data) userLog[d.name.replaceAll(new RegExp(r' '), '_').toLowerCase()] = 0;
+                for (var d in data)
+                  userLog[d.name
+                      .replaceAll(new RegExp(r' '), '_')
+                      .toLowerCase()] = 0;
               }
 
               completed = true;
