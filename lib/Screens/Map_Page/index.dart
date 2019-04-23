@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:vivagua/routes.dart';
+import 'DiveSite.dart';
 import 'package:vivagua/components/WhiteTick.dart';
 import 'package:vivagua/screens/map_page/styles.dart';
 import 'package:cloud_functions/cloud_functions.dart';
@@ -17,6 +18,10 @@ class _MapPageState extends State<MapPage> {
   LatLng curr = new LatLng(16.269053, -86.603612);
   TextEditingController controller = new TextEditingController();
   String filter;
+
+  bool sitesToggle = false;
+  var currentSite;
+  List<Divesite> diveSites = [];
 
   void _showSuccessDialog() {
     // flutter defined function
@@ -81,7 +86,6 @@ class _MapPageState extends State<MapPage> {
               // This button results in adding the contact to the database
               new FlatButton(
                   onPressed: () {
-
                     // cloud function being called here. Will this persist offline?
                     CloudFunctions.instance
                         .call(functionName: "addDivesite", parameters: {
@@ -98,13 +102,60 @@ class _MapPageState extends State<MapPage> {
         });
   }
 
+  Widget siteCard(site) {
+    if (site != null) {
+      return Padding(
+          padding: EdgeInsets.only(left: 2.0, top: 10.0),
+          child: InkWell(
+              onTap: () {
+                setState(() {
+                  currentSite = site;
+                });
+                //zoomInMarker(site);
+                var loc = new LatLng(currentSite.lat, currentSite.long);
+                mpcontroller.move(loc, 17);
+              },
+              child: Material(
+                elevation: 4.0,
+                borderRadius: BorderRadius.circular(5.0),
+                child: Container(
+                    height: 100.0,
+                    width: 125.0,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.white),
+                    child: Center()),
+              )));
+    }else{
+      return Padding(
+          padding: EdgeInsets.only(left: 2.0, top: 10.0),
+          child: InkWell(
+              onTap: () {
+              },
+              child: Material(
+                elevation: 4.0,
+                borderRadius: BorderRadius.circular(5.0),
+                child: Container(
+                    height: 100.0,
+                    width: 125.0,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.white),
+                    child: Center()),
+              )));
+    }
+  }
+
   _buildMarkers(QuerySnapshot querySnapshot) {
     Size screenSize = MediaQuery.of(context).size;
     List<Marker> items = [];
     for (var d in querySnapshot.documents) {
+      // diveSites.add(new Divesite(
+      //     d['name'], d['location'].latitude, d['location'].longitude));
+
       items.add(new Marker(
-          width: screenSize.width * 0.20,
-          height: screenSize.height * 0.20,
+          width: screenSize.width * 0.06,
+          height: screenSize.height * 0.06,
           point: new LatLng(d['location'].latitude, d['location'].longitude),
           builder: (context) => new Container(
                   child: Column(children: <Widget>[
@@ -112,20 +163,41 @@ class _MapPageState extends State<MapPage> {
                   icon: Icon(Icons.location_on),
                   color: Colors.blue,
                   iconSize: screenSize.width * 0.06,
-                  onPressed: () => Routes.navigateTo(context, 'dive_site_specific'),
+                  onPressed: () =>
+                      Routes.navigateTo(context, 'dive_site_specific'),
                 ),
-                Text(
-                  d['name'],
-                  textAlign: TextAlign.center,
-                  style: new TextStyle(
-                    color: Colors.blue,
-                    fontSize: screenSize.width * 0.04,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                // Text(
+                //   d['name'],
+                //   textAlign: TextAlign.center,
+                //   style: new TextStyle(
+                //     color: Colors.blue,
+                //     fontSize: screenSize.width * 0.04,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
               ]))));
     }
+    //sitesToggle = true;
+
     return items;
+  }
+
+  populateSiteList() {
+    Firestore.instance.collection('divesites').getDocuments().then((docs) {
+      if (docs.documents.isNotEmpty) {
+        setState(() {
+          sitesToggle = true;
+        });
+        for (var d in docs.documents){
+          diveSites.add(new Divesite(
+          d['name'], d['location'].latitude, d['location'].longitude));
+        }
+      }
+    });
+
+    for (var s in diveSites){
+      print(s.toString());
+    }
   }
 
   @override
@@ -152,6 +224,8 @@ class _MapPageState extends State<MapPage> {
         mpcontroller.move(curr, 18);
       });
     });
+
+    populateSiteList();
   }
 
   @override
@@ -160,13 +234,13 @@ class _MapPageState extends State<MapPage> {
     return new Scaffold(
         appBar: AppBar(
           title: Text(
-          "divesites",
-          style: TextStyle(
-              color: Colors.blue,
-              fontFamily: 'Overpass ExtraLight',
-              fontWeight: FontWeight.w500,
-              fontSize: screenSize.width * 0.07),
-        ),
+            "divesites",
+            style: TextStyle(
+                color: Colors.blue,
+                fontFamily: 'Overpass ExtraLight',
+                fontWeight: FontWeight.w500,
+                fontSize: screenSize.width * 0.07),
+          ),
           centerTitle: true,
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(
@@ -224,6 +298,21 @@ class _MapPageState extends State<MapPage> {
                 textCapitalization: TextCapitalization.words,
               ),
             ),
+            // Positioned(
+            //     top: MediaQuery.of(context).size.height - 285.0,
+            //     left: 10.0,
+            //     child: Container(
+            //         height: 125.0,
+            //         width: MediaQuery.of(context).size.width,
+            //         child: sitesToggle
+            //             ? ListView(
+            //                 scrollDirection: Axis.horizontal,
+            //                 padding: EdgeInsets.all(8.0),
+            //                 children: diveSites.map((element) {
+            //                   return siteCard(element);
+            //                 }).toList(),
+            //               )
+            //             : Container(height: 1.0, width: 1.0))),
           ],
         ));
   }
