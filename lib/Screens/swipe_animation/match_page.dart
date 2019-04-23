@@ -40,6 +40,7 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
   num _defaultValue = 0;
   double _appBarHeight = 350;
   int submitValue = 0;
+  double val = 1;
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
 
   void initState() {
@@ -91,6 +92,106 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
   //     //count = (count - 1);
   //   }
   // }
+
+  _buildChildren() {
+    Size screenSize = MediaQuery.of(context).size;
+    List<Widget> children = <Widget>[
+      new Container(
+        padding: new EdgeInsets.only(bottom: 40.0),
+        alignment: Alignment.center,
+        decoration: new BoxDecoration(
+            color: Colors.white,
+            border: new Border(bottom: new BorderSide(color: Colors.black12))),
+        child: new Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Text(
+              "How many did you see?",
+              style: TextStyle(
+                  fontSize: screenSize.width * 0.055,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
+      ),
+      new Container(
+          padding: new EdgeInsets.only(top: 26.0),
+          alignment: Alignment.center,
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Container(
+                alignment: Alignment.center,
+                child: Counter(
+                  initialValue: _defaultValue,
+                  minValue: 0,
+                  maxValue: 10,
+                  step: 1,
+                  decimalPlaces: 0,
+                  onChanged: (value) {
+                    submitValue = value;
+                    print(value);
+                    setState(() {
+                      _defaultValue = value;
+                      _counter = value;
+                    });
+                  },
+                ),
+              ),
+            ],
+          )),
+      new Center(
+          child: new UnrealButton(
+              height: screenSize.height * 0.1,
+              width: screenSize.width * 0.4,
+              highlightColor: Colors.blue[50],
+              shadowColor: Colors.blue[200],
+              backgroundColor: Colors.white,
+              content: new Icon(Icons.done,
+                  color: Colors.blue, size: screenSize.width * 0.1),
+              borderRadius: 20.0,
+              onPressed: () {
+                userLog[this
+                    .spe
+                    .name
+                    .replaceAll(new RegExp(r' '), '_')
+                    .toLowerCase()] = submitValue;
+
+                if (this.data.length == 0) {
+                  // writing entire log to database
+                  userLog['timestamp'] = Timestamp.now();
+                  Firestore.instance
+                      .collection('sightings')
+                      .document()
+                      .setData(Map<String, dynamic>.from(userLog));
+
+                  Routes.navigateTo(context, 'landing', clear: true);
+                } else
+                  Navigator.of(context).pop();
+              }))
+    ];
+    if (_counter > 0) {
+      for (int i = 0; i < _counter; i++) {
+        children.add(new Slider(
+          value: val,
+          onChanged: (double e) => changed(e),
+          activeColor: Colors.blue,
+          inactiveColor: Colors.grey,
+          divisions: 10,
+          max: 10.0,
+          min: 1.0,
+        ));
+      }
+    }
+    return children;
+  }
+
+  void changed(e) {
+    setState(() {
+     val = e; 
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -200,88 +301,89 @@ class _MatchPageState extends State<MatchPage> with TickerProviderStateMixin {
                               padding: const EdgeInsets.all(35.0),
                               child: new Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  new Container(
-                                    padding: new EdgeInsets.only(bottom: 40.0),
-                                    alignment: Alignment.center,
-                                    decoration: new BoxDecoration(
-                                        color: Colors.white,
-                                        border: new Border(
-                                            bottom: new BorderSide(
-                                                color: Colors.black12))),
-                                    child: new Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        new Text(
-                                          "How many did you see?",
-                                          style: TextStyle(
-                                              fontSize: screenSize.width * 0.055,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  new Container(
-                                      padding: new EdgeInsets.only(top: 26.0),
-                                      alignment: Alignment.center,
-                                      child: new Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          new Container(
-                                            alignment: Alignment.center,
-                                            child: Counter(
-                                              initialValue: _defaultValue,
-                                              minValue: 0,
-                                              maxValue: 10,
-                                              step: 1,
-                                              decimalPlaces: 0,
-                                              onChanged: (value) {
-                                                submitValue = value;
-                                                print(value);
-                                                setState(() {
-                                                  _defaultValue = value;
-                                                  _counter = value;
-                                                });
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                  new Center(
-                                      child: new UnrealButton(
-                                          height: screenSize.height * 0.1,
-                                          width: screenSize.width * 0.4,
-                                          highlightColor: Colors.blue[50],
-                                          shadowColor: Colors.blue[200],
-                                          backgroundColor: Colors.white,
-                                          content: new Icon(Icons.done,
-                                              color: Colors.blue, size: screenSize.width * 0.1),
-                                          borderRadius: 20.0,
-                                          onPressed: () {
-                                            userLog[this.spe.name.replaceAll(new RegExp(r' '), '_').toLowerCase()] =
-                                                submitValue;
+                                children: _buildChildren(),
+                                // <Widget>[
+                                //   new Container(
+                                //     padding: new EdgeInsets.only(bottom: 40.0),
+                                //     alignment: Alignment.center,
+                                //     decoration: new BoxDecoration(
+                                //         color: Colors.white,
+                                //         border: new Border(
+                                //             bottom: new BorderSide(
+                                //                 color: Colors.black12))),
+                                //     child: new Row(
+                                //       mainAxisAlignment:
+                                //           MainAxisAlignment.center,
+                                //       children: <Widget>[
+                                //         new Text(
+                                //           "How many did you see?",
+                                //           style: TextStyle(
+                                //               fontSize: screenSize.width * 0.055,
+                                //               color: Colors.black,
+                                //               fontWeight: FontWeight.w400),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                //   new Container(
+                                //       padding: new EdgeInsets.only(top: 26.0),
+                                //       alignment: Alignment.center,
+                                //       child: new Row(
+                                //         mainAxisAlignment:
+                                //             MainAxisAlignment.center,
+                                //         children: <Widget>[
+                                //           new Container(
+                                //             alignment: Alignment.center,
+                                //             child: Counter(
+                                //               initialValue: _defaultValue,
+                                //               minValue: 0,
+                                //               maxValue: 10,
+                                //               step: 1,
+                                //               decimalPlaces: 0,
+                                //               onChanged: (value) {
+                                //                 submitValue = value;
+                                //                 print(value);
+                                //                 setState(() {
+                                //                   _defaultValue = value;
+                                //                   _counter = value;
+                                //                 });
+                                //               },
+                                //             ),
+                                //           ),
+                                //         ],
+                                //       )),
+                                //   new Center(
+                                //       child: new UnrealButton(
+                                //           height: screenSize.height * 0.1,
+                                //           width: screenSize.width * 0.4,
+                                //           highlightColor: Colors.blue[50],
+                                //           shadowColor: Colors.blue[200],
+                                //           backgroundColor: Colors.white,
+                                //           content: new Icon(Icons.done,
+                                //               color: Colors.blue, size: screenSize.width * 0.1),
+                                //           borderRadius: 20.0,
+                                //           onPressed: () {
+                                //             userLog[this.spe.name.replaceAll(new RegExp(r' '), '_').toLowerCase()] =
+                                //                 submitValue;
 
-                                            if (this.data.length == 0) {
-                                              // writing entire log to database
-                                              userLog['timestamp'] =
-                                                  Timestamp.now();
-                                              Firestore.instance
-                                                  .collection('sightings')
-                                                  .document()
-                                                  .setData(
-                                                      Map<String, dynamic>.from(
-                                                          userLog));
+                                //             if (this.data.length == 0) {
+                                //               // writing entire log to database
+                                //               userLog['timestamp'] =
+                                //                   Timestamp.now();
+                                //               Firestore.instance
+                                //                   .collection('sightings')
+                                //                   .document()
+                                //                   .setData(
+                                //                       Map<String, dynamic>.from(
+                                //                           userLog));
 
-                                              Routes.navigateTo(
-                                                  context, 'landing',
-                                                  clear: true);
-                                            } else
-                                              Navigator.of(context).pop();
-                                          }))
-                                ],
+                                //               Routes.navigateTo(
+                                //                   context, 'landing',
+                                //                   clear: true);
+                                //             } else
+                                //               Navigator.of(context).pop();
+                                //           }))
+                                // ],
                               ),
                             ),
                           ),
