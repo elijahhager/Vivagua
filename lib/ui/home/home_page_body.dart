@@ -25,14 +25,7 @@ class HomePageBody extends StatelessWidget {
         ),
       ),
       body: new Container(
-          // decoration: new BoxDecoration(
-          //   image: new DecorationImage(
-          //     image: new AssetImage("assets/underwater.jpg"),
-          //     fit: BoxFit.cover,
-          //     colorFilter: new ColorFilter.mode(
-          //         Colors.white.withOpacity(0.4), BlendMode.dstATop),
-          //   ),
-          // ),
+
           child: StreamBuilder(
               stream: Firestore.instance.collection('species').snapshots(),
               builder: (context, snapshot) {

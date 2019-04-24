@@ -24,7 +24,7 @@ const statistics = db.collection('statistics');
 // end constants
 
 function databasify(str) {
-    return str.replace(/\s+/g, '_').toLowerCase().replace(/\W/g, '');
+    return str.replaceAll(/\s+/g, '_').replaceAll(/\W/g, '').toLowerCase();
 }
 
 exports.addDivesite = functions.https.onCall((data, context) => {

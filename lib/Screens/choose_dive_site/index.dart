@@ -45,7 +45,7 @@ class ChooseDiveSiteScreenState extends State<ChooseDiveSiteScreen> {
               color: Colors.blue,
               fontFamily: 'Overpass ExtraLight',
               fontWeight: FontWeight.w500,
-              fontSize: screenSize.width * 0.06),
+              fontSize: screenSize.width * 0.07),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,

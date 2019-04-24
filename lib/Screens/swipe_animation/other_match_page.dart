@@ -113,8 +113,8 @@ class _OtherMatchPageState extends State<OtherMatchPage>
         padding: new EdgeInsets.only(bottom: 40.0),
         alignment: Alignment.center,
         decoration: new BoxDecoration(
-            color: Colors.white,
-        ), 
+          color: Colors.white,
+        ),
         child: Column(
           children: <Widget>[
             Row(
@@ -197,11 +197,11 @@ class _OtherMatchPageState extends State<OtherMatchPage>
                   color: Colors.blue, size: screenSize.width * 0.1),
               borderRadius: 20.0,
               onPressed: () {
-                userLog[this
-                    .spe
-                    .name
-                    .replaceAll(new RegExp(r' '), '_')
-                    .toLowerCase()] = submitValue;
+                userLog["other"] = {
+                  "species_name": globals.databasify(controller.text),
+                  "number_seen": submitValue,
+                  "size": 10 // this should fetch the size from the slider
+                };
 
                 if (this.data.length == 0) {
                   // writing entire log to database

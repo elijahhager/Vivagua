@@ -41,7 +41,7 @@ class _SickSliderState extends State<SickSlider> {
         height: this.height,
         width: this.width,
         alignment: Alignment.center,
-        padding: EdgeInsets.only(top: 24,),
+        padding: EdgeInsets.only(top: 0, bottom: 0),
         child: Column(
           children: <Widget>[
             Row(
