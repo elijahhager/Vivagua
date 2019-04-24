@@ -2,7 +2,26 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
+// commonly used constants
+
 const db = admin.firestore();
+var today = new Date();
+var thirtyDaysAgo = today.getDate() - 30;
+var sixtyDaysAgo = today.getDate() - 60;
+
+const sightingsThisMonth = db.collection('sightings', ref => ref
+    .where('timestamp', '>=', thirtyDaysAgo)
+    .where('timestamp', '<=', today)
+);
+
+const sightingsLastMonth = db.collection('sightings', ref => ref
+    .where('timestamp', '>=', sixtyDaysAgo)
+    .where('timestamp', '<=', thirtyDaysAgo)
+);
+
+const statistics = db.collection('statistics');
+
+// end constants
 
 function databasify(str) {
     return str.replace(/\s+/g, '_').toLowerCase().replace(/\W/g, '');
@@ -69,16 +88,16 @@ function createStatStruct() {
 
                 snapshot.forEach(divesite => {
                     statistics.doc(spec.id).collection(divesite.id).doc("stats").set({
-                        "seenThisWeek": 0,
-                        "seenLastWeek": 0,
+                        "seenThisMonth": 0,
+                        "seenLastMonth": 0,
                         "diversWhoSaw": 0,
                         "diversWhoDidNotSee": 0
                     });
 
                     // all dive sites combined
                     statistics.doc(spec.id).set({
-                        "seenThisWeek": 0,
-                        "seenLastWeek": 0,
+                        "seenThisMonth": 0,
+                        "seenLastMonth": 0,
                         "diversWhoSaw": 0,
                         "diversWhoDidNotSee": 0
                     });
@@ -99,20 +118,11 @@ function createStatStruct() {
 
 }
 
-function sightingsThisWeek() {
+function seenThisMonth() {
 
-    console.log("Running sightings this week...");
-    var today = new Date();
-    var sevenDaysAgo = today.getDate() - 7;
+    console.log("Running sightings this month...");
 
-    const statistics = db.collection('statistics');
-
-    const sightingsThisWeek = db.collection('sightings', ref => ref
-        .where('timestamp', '>=', sevenDaysAgo)
-        .where('timestamp', '<=', today)
-    );
-
-    sightingsThisWeek.get().then(snapshot => {
+    sightingsThisMonth.get().then(snapshot => {
 
         var sightingData = {}
 
@@ -133,7 +143,7 @@ function sightingsThisWeek() {
         for (const spec_id in sightingData) {
             console.log("Wrote something to DB");
             statistics.doc(spec_id).set({
-                "seenThisWeek": sightingData[spec_id]
+                "seenThisMonth": sightingData[spec_id]
             }, { merge: true });
         }
 
@@ -148,21 +158,11 @@ function sightingsThisWeek() {
 
 }
 
-function sightingsLastWeek() {
+function seenLastMonth() {
 
-    console.log("Running sightings last week...");
-    var today = new Date();
-    var sevenDaysAgo = today.getDate() - 7;
-    var fourteenDaysAgo = today.getDate() - 14;
+    console.log("Running sightings last month...");
 
-    const statistics = db.collection('statistics');
-
-    const sightingsLastWeek = db.collection('sightings', ref => ref
-        .where('timestamp', '>=', fourteenDaysAgo)
-        .where('timestamp', '<=', sevenDaysAgo)
-    );
-
-    sightingsLastWeek.get().then(snapshot => {
+    sightingsLastMonth.get().then(snapshot => {
 
         var sightingData = {}
 
@@ -184,7 +184,7 @@ function sightingsLastWeek() {
 
         for (const spec_id in sightingData) {
             statistics.doc(spec_id).set({
-                "seenLastWeek": sightingData[spec_id]
+                "seenLastMonth": sightingData[spec_id]
             }, { merge: true });
         }
 
@@ -200,17 +200,8 @@ function sightingsLastWeek() {
 function diversWhoSawAndDidNotSee() {
 
     console.log("diversWhoSaw, diversWhoDidNotSee...");
-    var today = new Date();
-    var thirtyDaysAgo = today.getDate() - 30;
 
-    const statistics = db.collection('statistics');
-
-    const sightingsInPastMonth = db.collection('sightings', ref => ref
-        .where('timestamp', '>=', thirtyDaysAgo)
-        .where('timestamp', '<=', today)
-    );
-
-    sightingsInPastMonth.get().then(snapshot => {
+    sightingsThisMonth.get().then(snapshot => {
 
         var diverData = {}
 
@@ -257,15 +248,8 @@ function diversWhoSawAndDidNotSee() {
 function countLogs() {
 
     console.log("Counting logs...");
-    var today = new Date();
-    var sevenDaysAgo = today.getDate() - 7;
 
-    const sightingsThisWeek = db.collection('sightings', ref => ref
-        .where('timestamp', '>=', sevenDaysAgo)
-        .where('timestamp', '<=', today)
-    );
-
-    sightingsThisWeek.get().then(snapshot => {
+    sightingsThisMonth.get().then(snapshot => {
 
         var totalLogs = 0;
         snapshot.forEach(sighting_doc => totalLogs += 1);
@@ -284,21 +268,63 @@ function countLogs() {
 function diversWhoSawAndDidNotSeeDivesiteSpecific() {
 
     console.log("diversWhoSaw-/diversWhoDidNotSee- DivesiteSpecific");
-    var today = new Date();
-    var thirtyDaysAgo = today.getDate() - 30;
 
-    const statistics = db.collection('statistics');
-
-    const sightingsInPastMonth = db.collection('sightings', ref => ref
-        .where('timestamp', '>=', thirtyDaysAgo)
-        .where('timestamp', '<=', today)
-    );
-
-    sightingsInPastMonth.get().then(snapshot => {
+    sightingsThisMonth.get().then(snapshot => {
 
         var diverData = {}
 
         // looping through all the sightings
+        snapshot.forEach(sighting_doc => {
+
+            const divesite_id = databasify(sighting_doc.data()["divesite"]);
+
+            if (!diverData[divesite_id])
+                diverData[divesite_id] = {};
+            // for every sighting document
+            for (const spec_id in sighting_doc.data()) {
+
+                if (spec_id === "divesite" || spec_id === "timestamp") continue;
+
+                const numSeen = sighting_doc.data()[spec_id];
+
+                // diversWhoSaw, diversWhoDidNotSee
+                if (diverData[divesite_id][spec_id])
+                    if (numSeen > 0)
+                        diverData[divesite_id][spec_id]["saw"] += 1;
+                    else
+                        diverData[divesite_id][spec_id]["didNotSee"] += 1;
+                else
+                    if (numSeen > 0)
+                        diverData[divesite_id][spec_id] = { "saw": 1, "didNotSee": 0 }
+                    else
+                        diverData[divesite_id][spec_id] = { "saw": 0, "didNotSee": 1 }
+
+            }
+        });
+
+        for (const divesite_id in diverData)
+            for (const spec_id in diverData[divesite_id])
+                statistics.doc(spec_id).collection(divesite_id).doc("stats").set({
+                    "diversWhoSaw": diverData[divesite_id][spec_id]["saw"],
+                    "diversWhoDidNotSee": diverData[divesite_id][spec_id]["didNotSee"],
+                }, { merge: true });
+
+        return 0;
+
+    }).catch(reason => {
+        console.log(reason);
+        return 1;
+    });
+
+}
+
+function seenLastMonthDivesiteSpecific() {
+
+    console.log("seenLastMonth divesite specific");
+
+    sightingsLastMonth.get().then(snapshot => {
+
+        var diverData = {}
 
         snapshot.forEach(sighting_doc => {
 
@@ -313,24 +339,22 @@ function diversWhoSawAndDidNotSeeDivesiteSpecific() {
 
                 const numSeen = sighting_doc.data()[spec_id];
 
+                // seenThisMonth
                 if (diverData[divesite_id][spec_id])
-                    if (numSeen > 0)
-                        diverData[divesite_id][spec_id]["saw"] += 1;
+                    if (diverData[divesite_id][spec_id]["seenLastMonth"])
+                        diverData[divesite_id][spec_id]["seenLastMonth"] += numSeen;
                     else
-                        diverData[divesite_id][spec_id]["didNotSee"] += 1;
+                        diverData[divesite_id][spec_id]["seenLastMonth"] = numSeen;
                 else
-                    if (numSeen > 0)
-                        diverData[divesite_id][spec_id] = { "saw": 1, "didNotSee": 0 }
-                    else
-                        diverData[divesite_id][spec_id] = { "saw": 0, "didNotSee": 1 }
+                    diverData[divesite_id][spec_id] = {"seenLastMonth": numSeen};
+
             }
         });
 
         for (const divesite_id in diverData)
             for (const spec_id in diverData[divesite_id])
                 statistics.doc(spec_id).collection(divesite_id).doc("stats").set({
-                    "diversWhoSaw": diverData[divesite_id][spec_id]["saw"],
-                    "diversWhoDidNotSee": diverData[divesite_id][spec_id]["didNotSee"]
+                    "seenLastMonth": diverData[divesite_id][spec_id]["seenLastMonth"]
                 }, { merge: true });
 
         return 0;
@@ -342,16 +366,71 @@ function diversWhoSawAndDidNotSeeDivesiteSpecific() {
 
 }
 
+function seenThisMonthDivesiteSpecific() {
+
+    console.log("seenThisMonth divesite specific");
+
+    sightingsThisMonth.get().then(snapshot => {
+
+        var diverData = {}
+
+        snapshot.forEach(sighting_doc => {
+
+            const divesite_id = databasify(sighting_doc.data()["divesite"]);
+
+            if (!diverData[divesite_id])
+                diverData[divesite_id] = {};
+            // for every sighting document
+            for (const spec_id in sighting_doc.data()) {
+
+                if (spec_id === "divesite" || spec_id === "timestamp") continue;
+
+                const numSeen = sighting_doc.data()[spec_id];
+
+                // seenThisMonth
+                if (diverData[divesite_id][spec_id])
+                    if (diverData[divesite_id][spec_id]["seenThisMonth"])
+                        diverData[divesite_id][spec_id]["seenThisMonth"] += numSeen;
+                    else
+                        diverData[divesite_id][spec_id]["seenThisMonth"] = numSeen;
+                else
+                    diverData[divesite_id][spec_id] = {"seenThisMonth": numSeen};
+
+            }
+        });
+
+        for (const divesite_id in diverData)
+            for (const spec_id in diverData[divesite_id])
+                statistics.doc(spec_id).collection(divesite_id).doc("stats").set({
+                    "seenThisMonth": diverData[divesite_id][spec_id]["seenThisMonth"]
+                }, { merge: true });
+
+        return 0;
+
+    }).catch(reason => {
+        console.log(reason);
+        return 1;
+    });
+
+}
+
+
+
 exports.runAllStats = functions.firestore
     .document('sightings/{log}')
     .onWrite((change, context) => {
 
         console.log("Running all stats.");
 
+        // general, species statistics
         diversWhoSawAndDidNotSee();
+        seenThisMonth();
+        seenLastMonth();
+
+        // divesite specific statistics
         diversWhoSawAndDidNotSeeDivesiteSpecific();
-        sightingsThisWeek();
-        sightingsLastWeek();
+        seenLastMonthDivesiteSpecific();
+        seenThisMonthDivesiteSpecific();
 
         return 0;
 
