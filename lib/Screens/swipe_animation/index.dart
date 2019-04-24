@@ -9,6 +9,7 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import 'matches.dart';
 import 'species.dart';
 import 'match_page.dart';
+import 'other_match_page.dart';
 import 'styles.dart';
 import 'package:vivagua/components/UnrealButton.dart';
 import 'package:vivagua/routes.dart';
@@ -113,10 +114,17 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
           if (match.decision == Decision.yes) {
             selectedData.insert(0, i);
             print("ran this");
-            Navigator.of(context).push(new PageRouteBuilder(
-              pageBuilder: (_, __, ___) => new MatchPage(
-                  type: i.image, spe: i, data: data, userLog: userLog),
-            ));
+            if (i.name == "Other") {
+              Navigator.of(context).push(new PageRouteBuilder(
+                pageBuilder: (_, __, ___) => new OtherMatchPage(
+                    type: i.image, spe: i, data: data, userLog: userLog),
+              ));
+            } else {
+              Navigator.of(context).push(new PageRouteBuilder(
+                pageBuilder: (_, __, ___) => new MatchPage(
+                    type: i.image, spe: i, data: data, userLog: userLog),
+              ));
+            }
           }
 
           _buttonController.reset();
@@ -308,8 +316,6 @@ class CardDemoState extends State<CardDemo> with TickerProviderStateMixin {
                   } else {
                     backCardPosition = backCardPosition + 10;
                     backCardWidth = backCardWidth + 10;
-                    print(
-                        "This is the postion: " + backCardPosition.toString());
 
                     return cardDemoDummy(item.image, backCardPosition, 0.0, 0.0,
                         backCardWidth + 5, 0.0, 0.0, context);

@@ -7,6 +7,7 @@ import 'detail.dart';
 import 'package:flutter/material.dart';
 import 'species.dart';
 import 'match_page.dart';
+import 'other_match_page.dart';
 
 Positioned cardDemo(
     Species sp,
@@ -28,18 +29,16 @@ Positioned cardDemo(
   Size screenSize = MediaQuery.of(context).size;
 
   return new Positioned(
-    
-    bottom: 60.0,   // autocenters if we don't specify this
+    bottom: 60.0, // autocenters if we don't specify this
     right: flag == 0 ? right != 0.0 ? right : null : null,
     left: flag == 1 ? right != 0.0 ? right : null : null,
     child: new Dismissible(
-      
       key: new Key(new Random().toString()),
       crossAxisEndOffset: -0.3,
       onDismissed: (DismissDirection direction) {
         if (direction == DismissDirection.endToStart) {
           dismissImg(sp);
-          
+
           if (data.length == 0) {
             // writing entire log to database
             userLog['timestamp'] = Timestamp.now();
@@ -50,14 +49,21 @@ Positioned cardDemo(
             Routes.navigateTo(context, 'landing', clear: true);
           }
         } else {
-          Navigator.of(context).push(new PageRouteBuilder(
-            pageBuilder: (_, __, ___) => new MatchPage(type: img, spe: sp, data: data, userLog: userLog),
-          ));
+          if (sp.name == "Other") {
+            Navigator.of(context).push(new PageRouteBuilder(
+              pageBuilder: (_, __, ___) => new OtherMatchPage(
+                  type: img, spe: sp, data: data, userLog: userLog),
+            ));
+          } else {
+            Navigator.of(context).push(new PageRouteBuilder(
+              pageBuilder: (_, __, ___) => new MatchPage(
+                  type: img, spe: sp, data: data, userLog: userLog),
+            ));
+          }
           addImg(sp);
         }
       },
       child: new Transform(
-        
         alignment: flag == 0 ? Alignment.bottomRight : Alignment.bottomLeft,
         transform: new Matrix4.skewX(skew),
         child: new RotationTransition(
@@ -76,7 +82,6 @@ Positioned cardDemo(
                 color: Colors.transparent,
                 elevation: 8.0,
                 child: new Container(
-                  
                   alignment: Alignment.center,
                   width: screenSize.width / 1.14 + cardWidth,
                   height: screenSize.height / 1.5 - 40,
