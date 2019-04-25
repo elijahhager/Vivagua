@@ -18,33 +18,38 @@ class SuccessScreenState extends State<SuccessScreen> {
   @override
   initState() {
     super.initState();
-    new Timer(const Duration(seconds: 5), onClose);
+    new Timer(const Duration(seconds: 10), onClose);
   }
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return new Scaffold(
       body: new Container(
         child: new Center(
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            //crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Material(
                 elevation: 4.0,
                 shape: CircleBorder(),
-                color: Colors.transparent,
+                color: Colors.white,
                 child: Ink.image(
                   image: AssetImage('assets/success.png'),
                   fit: BoxFit.cover,
-                  width: 120.0,
-                  height: 120.0,
+                  width: screenSize.width * 0.35,
+                  height: screenSize.height * 0.35,
                   child: InkWell(
                     onTap: () {},
                     child: null,
                   ),
                 ),
               ),
+              Container(
+                padding: EdgeInsets.only(top: 25, bottom: 30),
+              ),
+
               SmoothStarRating(
                 allowHalfRating: false,
                 onRatingChanged: (v) {
@@ -53,7 +58,7 @@ class SuccessScreenState extends State<SuccessScreen> {
                 },
                 starCount: 5,
                 rating: rating,
-                size: 40.0,
+                size: 70.0,
                 color: Colors.blue,
                 borderColor: Colors.blue,
               ),
