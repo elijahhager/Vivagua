@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:vivagua/ui/common/spec_summary.dart';
 import 'package:vivagua/components/WhiteTick.dart';
 import 'package:vivagua/styles.dart';
-import 'package:vivagua/ui/home/pdf_tools.dart';
+//import 'package:vivagua/ui/home/pdf_tools.dart';
 
 class HomePageBody extends StatelessWidget {
   void _showDialog(BuildContext context) {
@@ -39,7 +39,7 @@ class HomePageBody extends StatelessWidget {
             new FlatButton(
               child: new Text("Send"),
               onPressed: () {
-                sendEmail();
+                //sendEmail();
               },
             ),
           ],
