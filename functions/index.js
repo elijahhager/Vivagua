@@ -346,7 +346,7 @@ function seenLastMonthDivesiteSpecific() {
                     else
                         diverData[divesite_id][spec_id]["seenLastMonth"] = numSeen;
                 else
-                    diverData[divesite_id][spec_id] = {"seenLastMonth": numSeen};
+                    diverData[divesite_id][spec_id] = { "seenLastMonth": numSeen };
 
             }
         });
@@ -394,7 +394,7 @@ function seenThisMonthDivesiteSpecific() {
                     else
                         diverData[divesite_id][spec_id]["seenThisMonth"] = numSeen;
                 else
-                    diverData[divesite_id][spec_id] = {"seenThisMonth": numSeen};
+                    diverData[divesite_id][spec_id] = { "seenThisMonth": numSeen };
 
             }
         });
@@ -413,8 +413,6 @@ function seenThisMonthDivesiteSpecific() {
     });
 
 }
-
-
 
 exports.runAllStats = functions.firestore
     .document('sightings/{log}')
@@ -435,3 +433,5 @@ exports.runAllStats = functions.firestore
         return 0;
 
     });
+
+
