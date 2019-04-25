@@ -69,12 +69,8 @@ class HomePageBody extends StatelessWidget {
             new FlatButton(
               child: new Text("Send"),
               onPressed: () {
-<<<<<<< HEAD
-                //sendEmail();
-=======
                 sendEmail();
                 Navigator.of(context).pop();
->>>>>>> 8b5744e42994ce208bcf3905a380deb632b958dc
               },
             ),
           ],
