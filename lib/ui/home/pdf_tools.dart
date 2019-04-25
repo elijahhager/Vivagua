@@ -165,7 +165,7 @@ void sendEmail(String emailAddress) async {
       username: config.username, password: config.password);
 
   final message = new Message()
-    ..from = new Address("auto-reply@vivagua-app.com", 'Ralph')
+    ..from = new Address("auto-reply@vivagua-app.com", 'Ralph Moran')
     ..recipients.add(emailAddress)
     ..subject = 'Your monthly data breakdown is ready.'
     ..text = 'Sample text.'
@@ -175,7 +175,9 @@ void sendEmail(String emailAddress) async {
   await send(message, smtpServer);
 }
 
+// this is just for testing purposes
 void main() {
   print("entered main");
-  sendEmail();
+  // sendEmail();
+  createPdf();
 }
