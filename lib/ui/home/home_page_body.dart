@@ -7,6 +7,36 @@ import 'package:vivagua/styles.dart';
 //import 'package:vivagua/ui/home/pdf_tools.dart';
 
 class HomePageBody extends StatelessWidget {
+  void _successDialog(BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Success!"),
+          content: Container(
+            height: 100.0,
+            width: 60.0,
+            child: ListView(
+              children: <Widget>[
+                new Text("Remember to check your spam folder."),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _showDialog(BuildContext context) {
     // flutter defined function
     showDialog(
@@ -39,7 +69,12 @@ class HomePageBody extends StatelessWidget {
             new FlatButton(
               child: new Text("Send"),
               onPressed: () {
+<<<<<<< HEAD
                 //sendEmail();
+=======
+                sendEmail();
+                Navigator.of(context).pop();
+>>>>>>> 8b5744e42994ce208bcf3905a380deb632b958dc
               },
             ),
           ],

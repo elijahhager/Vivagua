@@ -8,4 +8,4 @@ build/
 ios/.generated/
 packages
 .flutter-plugins
-lib/ui/home/pdf_tools.dart
+lib/ui/home/config.dart
