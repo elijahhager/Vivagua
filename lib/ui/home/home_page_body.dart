@@ -38,6 +38,8 @@ class HomePageBody extends StatelessWidget {
   }
 
   void _showDialog(BuildContext context) {
+
+    final controller = TextEditingController();
     // flutter defined function
     showDialog(
       context: context,
@@ -54,6 +56,7 @@ class HomePageBody extends StatelessWidget {
                     "Enter your email to receive a PDF version of these statistics."),
                 new TextField(
                   decoration: const InputDecoration(labelText: "Email: "),
+                  controller: controller,
                 ),
               ],
             ),
@@ -69,8 +72,9 @@ class HomePageBody extends StatelessWidget {
             new FlatButton(
               child: new Text("Send"),
               onPressed: () {
-                sendEmail();
+                sendEmail(controller.text);
                 Navigator.of(context).pop();
+                _successDialog(context);
               },
             ),
           ],
