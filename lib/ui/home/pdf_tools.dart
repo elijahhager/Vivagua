@@ -1,12 +1,13 @@
 import 'dart:io';
 
-import 'package:mailer2/mailer.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 import 'package:async/async.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'config.dart' as config;
 
-void createPdf() {
+File createPdf() {
   final Document pdf = Document(deflate: zlib.encode);
 
   pdf.addPage(MultiPage(
@@ -149,32 +150,32 @@ void createPdf() {
                     'Text is available under the Creative Commons Attribution Share Alike License.')
           ]));
 
-  final File file = File('/tmp/monthly_report.pdf');
+  File file = new File('monthly_report.pdf');
   file.writeAsBytesSync(pdf.save());
+
+  return file;
 }
 
 void sendEmail() async {
   print("creating");
-  // createPdf();
 
-  var options = new SmtpOptions()
-    ..hostName = config.hostName
-    ..username = config.username
-    ..password = config.password;
+  File pdf = createPdf();
 
-  var emailTransport = new SmtpTransport(options);
+  final smtpServer = SmtpServer(config.hostName,
+      username: config.username, password: config.password);
 
-  var envelope = new Envelope()
-    ..from = 'auto-reply@vivagua.com'
+  final message = new Message()
+    ..from = new Address("auto-reply@vivagua-app.com", 'Ralph')
     ..recipients.add('ralph.moran98@gmail.com')
-    ..subject = 'Wowza.'
-    ..attachments
-        .add(new Attachment(file: new File("../../assets/divesite.png")))
-    ..text = 'This is a cool email message. Whats up?'
-    ..html = '<h1>Test</h1><p>Hey!</p>';
+    ..subject = 'Your monthly data breakdown is ready.'
+    ..text = 'Sample text.'
+    ..html = "<h1> Yes </h1>"
+    ..attachments = [new FileAttachment(pdf)];
 
-  emailTransport
-      .send(envelope)
-      .then((envelope) => print('Email sent!'))
-      .catchError((e) => print('Error occurred: $e'));
+  await send(message, smtpServer);
+}
+
+void main() {
+  print("entered main");
+  sendEmail();
 }
