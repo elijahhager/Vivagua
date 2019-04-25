@@ -156,7 +156,7 @@ File createPdf() {
   return file;
 }
 
-void sendEmail() async {
+void sendEmail(String emailAddress) async {
   print("creating");
 
   File pdf = createPdf();
@@ -166,7 +166,7 @@ void sendEmail() async {
 
   final message = new Message()
     ..from = new Address("auto-reply@vivagua-app.com", 'Ralph')
-    ..recipients.add('ralph.moran98@gmail.com')
+    ..recipients.add(emailAddress)
     ..subject = 'Your monthly data breakdown is ready.'
     ..text = 'Sample text.'
     ..html = "<h1> Yes </h1>"
